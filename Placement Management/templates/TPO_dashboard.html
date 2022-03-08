@@ -1,0 +1,322 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="TPO.css" />
+  <link rel="stylesheet" href="ProfileStudent.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="div1">
+        <div class="name">
+          <label class="ti">Training and Placement</label>
+          <p>Shivaji University</p>
+        </div>
+        <div class="select">
+
+          <li id='1' onclick="show(this.id)">Overview</li>
+          <li id='2' onclick="show(this.id)">Event</li>
+          <li id='3' onclick="show(this.id)">Profile
+          </li>
+          <li id='3' onclick="show(this.id)">Advanced Search
+          </li>
+          <li id='4' onclick="show(this.id)">Logout</li>
+
+        </div>
+        <div class="help">
+        
+        </div>
+      </div>
+    </div>
+
+    <div class="main_body">
+
+      <div class="Overview" id="D1">
+        <div class="main-cont-dashboard">
+
+          <div class='first-cont'>
+              <div class="first-sub s-count">
+                  
+
+                  <div class="div-student">
+                      <img src="boy.png" width="80px" height="80px">
+                      <div class="student-count"> 
+                          <label>Boys</label>
+                          <h3>56000</h3>
+                      </div>
+                  </div>
+                 
+
+                  <div class="div-student">
+                      <img src="girl.png" width="80px" height="80px">
+                      <div class="student-count">
+                          <label>Girls</label> 
+                          <h3>56000</h3>
+                      </div>
+                  </div>
+                  
+
+
+              </div>
+              <div class="first-sub report">
+                      <div class="graph">
+                          <img src="graph.png" alt="" class="graph">
+                      </div>
+                      <div class="details">
+                          <div class="sub">Placement Statatics</div>
+                          <div class='det-repo'>
+                              <div class='box'>box</div>
+                              <div class='det'>
+                                  <h3>65</h3>
+                                  <label for="">Placed Students</label>
+                              </div>
+                          </div>
+                          <div class='det-repo'>
+                              <div class='box'>box</div>
+                              <div class='det'>
+                                  <h3>65</h3>
+                                  <label for="">Not Placed Students</label>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+            
+          </div>
+
+          <div class='second-cont'>
+              <div >
+                  <h5 class="dia-title"> Recent Campus</h5>
+                  <div>
+                      <div id="compinfo">
+                          <p>16 January 2021</p>
+                          <h3>Company Name</h3>
+                          <p>Registered Students</p>
+                      </div>
+                     
+                  </div>
+              </div>
+           
+          </div>
+          
+          <div class='third-cont'>
+
+              <div  class='third-sub1'>
+                  <h5 class="dia-title">Student Request</h5>
+                <div>
+                  <div class='det-repo'>
+                      <div class='box'>box</div>
+                      <div class='det'>
+                          <h3>65</h3>
+                          <label for="">Not Placed Students</label>
+                      </div>
+                  </div>
+                </div>
+                  
+              </div>
+
+
+              <div class='third-sub'>
+                  <h5 class="dia-title">Student Request</h5>
+              </div>
+
+
+          </div>
+      </div>
+      </div>
+
+      <div class="Events" id="D2">
+        <div class="title">
+          <h3>Events</h3>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Search for events" />
+          <button type="button" id="search" onclick="search()">Search</button>
+          <button type="button" id="add_event">Add Event</button>
+        </div>
+        <div class="cards">
+          <div class="sing-card">
+            <p id="deadline">Last Date : <b>20 DEC 2022</b></p>
+            <br /><br /><br /><br />
+
+            <h5>Infosys off Campus</h5>
+            <p>This is description of the off Campus drive it will</p>
+          </div>
+          <div class="sing-card">
+            <p>Last Date : <b>20 DEC 2022</b></p>
+            <br /><br /><br /><br />
+
+            <h5>Wipro off Campus</h5>
+            <p>This is description of the off Campus drive it will</p>
+          </div>
+          <div class="sing-card">
+            <p>Last Date : <b>20 DEC 2022</b></p>
+            <br /><br /><br /><br />
+
+            <h5>Wipro off Campus</h5>
+            <p>This is description of the off Campus drive it will</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="Profile" id="D3">
+
+        <!-- <div class="select sel">
+          <ul>
+            <li>Personal Information</li>
+            <li>Password Managment</li>
+          </ul>
+        </div> -->
+
+      
+          <div>
+              <h3>Personal Information</h3>
+              <p>you can update personal information</p>
+              <div class="text-area">
+                <label for="name">Name</label>
+                <input type="text">
+              </div>
+              <div class="merge">
+                <div class="text-area">
+                  <label for="name">Email</label>
+                  <input type="Email">
+                </div>
+                <div class="text-area">
+                  <label for="name">Mobile</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="text-area">
+                <label for="name">Department</label>
+                <input type="text">
+              </div>
+   
+          </div>
+
+          <div>
+              <h3>Password Management</h3>
+              <p>you can update personal information</p>
+              <div class="text-area">
+                <label for="name">Old Password</label>
+                <input type="text">
+              </div>
+              <div class="text-area">
+                <label for="name">New Password</label>
+                <input type="password">
+              </div>
+              <div class="text-area">
+                <label for="name">Retype Password</label>
+                <input type="password">
+              </div>
+              <button type="submit">Update</button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="dialog" id="myModal">
+      <div class="content">
+        <span class="close">&times;</span>
+        <div>
+          <div class="add-event-card">
+            <h3>Add Event</h3>
+            <div >
+                <label for="Name of Comapany">Comapany Name</label>
+                <input type="text">
+            </div>
+    
+            <div >
+                <label for="Name of Comapany">Minimum Requirements</label>
+                <input type="text">
+            </div>
+    
+            <div class="ctc-pass-cont">
+                <div>
+                    <label for="Name of Comapany">CTC</label>
+                    <input type="text">
+                </div>
+                <div>
+                    <label for="Name of Comapany">Pass Out Year</label>
+                    <input type="number" >
+                </div>
+            </div >
+    
+            <div >
+                <label for="Name of Comapany">Last Date</label>
+                <input type="date">
+            </div>
+    
+            <div >
+                <label for="Name of Comapany">Website / Link</label>
+                <input type="text">
+            </div>
+            <button class="btn-primary"> <span class="material-icons">
+                post_add
+                </span> Post </button>
+        </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script>
+  var modal = document.getElementById("myModal");
+
+  var btn = document.getElementById("add_event");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+<script async defer>
+
+  function show(id) {
+    switch (id) {
+      case '1':
+
+        document.getElementById('D2').style.display = "none";
+        document.getElementById('D3').style.display = "none";
+        document.getElementById('D1').style.display = "block";
+        break;
+      case '2':
+        document.getElementById('D3').style.display = "none";
+        document.getElementById('D1').style.display = "none";
+        document.getElementById('D2').style.display = "block";
+        break;
+      case '3':
+        document.getElementById('D2').style.display = "none";
+        document.getElementById('D1').style.display = "none";
+        document.getElementById('D3').style.display = "block";
+        break;
+
+    }
+
+  }
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script>
+      function change(id) {
+        document.getElementById("page_title").innerHTML =
+          document.getElementById(id).innerHTML;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <img class="name-header" src="{% static 'css/top-header.png' %}" height='90px'  />
+      <img src="{% static 'css/clg.png' %}" class="clg-img" height="120px" />
+    </div>
+    <div class="main_body">
+      <div class="div1">
+        <div class="options">
+          <button class="sidebar_btn" id="1" onclick="change(this.id)">
+            Admin Login
+          </button>
+
+          <button class="sidebar_btn" id="2" onclick="change(this.id)">
+            TPO Login
+          </button>
+          <button class="sidebar_btn" id="4" onclick="change(this.id)">
+            Student Login
+          </button>
+        </div>
+        <div class="help">
+          <h4>Help?</h4>
+        </div>
+      </div>
+      <div class="div2">
+        <div class="div4">
+          <h4 id="page_title">Admin Login</h4>
+          <p>Dont have an account?</p>
+          <button id="create">
+            <a href="/student/Signup">Create</a>
+          </button>
+        </div>
+        <div class="div3">
+         
+        </div>
+        <div class="div5">
+          <h2>Login</h2>
+          <p>Log in with your Email</p>
+          <!-- <div id="form"> -->
+
+            <form action="" id="form"  method="POST">
+              {% csrf_token %}
+              <label>Username </label>
+              <input type="text" placeholder="Username" name="username" />
+              <label>Password </label>
+              <input type="password" placeholder="Password" name="password" />
+              <button class="submit" id="submit">Login </button>
+            </form>
+
+            <p><a href="#">Forgot Password?</a></p>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

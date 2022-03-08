@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/TPORegister.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="main-cont">
+            <h2>Department of Technology</h2>
+            <div class="sub-title">
+                <p>Shivaji University </p>
+                <p><b>Sign Up</b></p>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+            <div class="inputs">
+                <div class="input-field">
+                    <Label>
+                        Name
+                    </Label>
+                    <input name="Name" type="text" placeholder="Enter full name">
+                </div>
+                <div class="input-field">
+                    <Label>
+                        Password
+                    </Label>
+                    </Label>
+                    <input name="Pass"  type="text" placeholder="Enter password">
+                </div>
+               
+                <div class="input-field">
+                    <Label>
+                        Email
+                    </Label>
+                    <input type="text" name="Email" placeholder="Enter email address">
+                </div>
+                <div class="input-field">
+                    <Label>
+                        Retype Password
+                    </Label>
+                    <input  name="RPass"  type="text" placeholder="Retype password">
+                </div>
+                <div class="input-field">
+                    <Label>
+                        Department
+                    </Label>
+                    <input name="Dep" type="text" placeholder="Enter Department">
+                </div>
+                <div class="agreem">
+                    <input type="checkbox">
+                    <p </p>
+                </div>
+                <div class="input-field">
+                    <Label>
+                        Mobile
+                    </Label>
+                    <input name="Mobile" type="text" placeholder="Enter mobile number">
+                </div>
+                
+                <button type="submit" >Register</button>
+              
+            </div>
+        </form>
+        </div>
+</body>
+</html>

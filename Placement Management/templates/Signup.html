@@ -1,0 +1,91 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="Email">Email</label>
+            <input type="text" name="Email">
+            <label for="Name">Password</label>
+            <input type="password" name="Pass">
+            <label for="Name">Retype Password</label>
+            <input type="password" name="passw">
+            <button type="submit">Create Account</button>
+        </form>
+        <p>Already Have an account <a href="/student/Login"> Login </a> </p>
+        
+</body>
+</html> -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <img class="name-header" src="{% static 'css/top-header.png' %}" height='90px'  />
+        <img src="{% static 'css/clg.png' %}" class="clg-img" height="120px" />
+      </div>
+    <div class="main-div">
+        <div class="col-info">
+            <div class="inner-div">
+                <h2>Department of Technology</h2>
+                <p>Shivaji University started Department of Technology in June 2006 with the
+                    aim that opportunity for students to learn in technology education and 
+                    research of global standard for the human resource development. In 2006
+                    first four M. Tech courses were started and in 2008 five B. Tech courses were 
+                    started. Department of Technology is approved by AICTE and admissions 
+                    are as per AICTE and DTE, Govt of Maharashtra norms. Recently Department has 
+                    received grants under TEQIP program Phase-II and Phase-III, funded by World 
+                    Bank through MHRD, New Delhi worth Rs. 10 Crore and Rs. 7 
+                    Crores respectively.</p>
+            </div>
+            
+        </div>
+
+        <div class="form-inputs">
+           
+            <form action="" method="post">
+                {% csrf_token %}
+                <div>
+                    <h3>Sign Up</h3>
+                    <p>Already have account?   <a href="/student/Login">Login</a> </p>
+                </div>
+            <div>   
+                <label for="Email">Email</label>
+                <input type="Email" placeholder="Enter Email Address"  name="Email">
+            </div>
+            <div>
+                <label for="Password">Password</label>
+                <input type="Password" placeholder="Enter Password" name="Pass">
+            </div>
+            <div>
+                <label for="EmPasswordail">Retype Password</label>
+                <input type="Password" placeholder="Retype Password" name="Passw">
+            </div>  
+            {% if message_exist %}
+                <p class="warning"> <span class="material-icons"> error </span> Email is already registerd</p>
+            {% endif %}
+            <div class="div-primary">
+                <button class="button-primary"> <span class="material-icons">person_add</span> Create Account</button>
+            </div>
+            </form>
+         </div>
+    </div>
+</body>
+</html>

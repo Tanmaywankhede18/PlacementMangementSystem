@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+* {
+  margin: 0px;
+
+  font-family: "Poppins", sans-serif;
+} 
+/*  Color :  rgb(61, 152, 255); */
+.Events{
+  display:block;
+}
+.Profile{
+  width: 60%;
+  padding: 20px;
+  display:none;
+}
+
+.Profile :first-child{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.Profile p{
+  margin-bottom: 10px;
+}
+.Profile button{
+  padding: 5px 20px 5px 20px;
+  width: 30%;
+  align-items: flex-end ;
+}
+.merge{
+  display: flex;
+  flex-direction: row;
+}
+.Overview{
+  display:none;
+}
+
+p{
+  font-size: 14px;
+  color: rgb(160, 160, 160);
+}
+input{
+
+  padding:10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgb(212, 212, 212);
+}
+label{
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom:5px;
+}
+
+.text-area {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right:15px;
+}
+.sel ul{
+  width: 50%;
+}
+
+
+.select li{
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    padding: 10px;
+    transition:0.3s;
+}
+
+.select li:hover{
+
+    background-color: rgb(60, 145, 255);
+    cursor: pointer;
+    color: white;
+}
+
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.main_body {
+  background-color: aliceblue;
+  flex: 8;
+  padding-left: 40px;
+  padding-right: 40px
+}
+.div1 {
+  background-color: white;
+  height: 100%;
+  flex: 0.2;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar {
+  flex: 2;
+  padding: 20px;
+}
+.title {
+  padding: 20px;
+  border-bottom: 1px solid rgba(218, 218, 218, 0.452);
+}
+.title h3 {
+  font-size: 24px;
+}
+.sing-card {
+  background-color: white;
+  width: 250px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px;
+	transition:0.2s;
+}
+.sing-card h5 {
+  font-size: 20px;
+  color: rgb(61, 152, 255);
+}
+.sing-card p {
+  color: gray;
+  font-size: 12px;
+}
+.deadline {
+  float: right;
+}
+.sing-card:hover {
+  box-shadow: 20px 20px 60px rgba(153, 168, 182, 0.212);
+  
+}
+.search {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+  flex-direction: row;
+}
+.search input {
+  flex: 0.7;
+  border-radius: 5px;
+  padding: 8px;
+  border: 1px solid rgb(231, 231, 231);
+  outline: none;
+}
+.search button {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 20px;
+  font-weight: 600;
+}
+#search {
+  background-color: rgb(61, 152, 255);
+  color: white;
+}
+
+#add_event {
+  background-color: white;
+  color: rgb(61, 152, 255);
+  border: 1px solid rgb(218, 216, 216);
+}
+.cards {
+ overflow: scroll;
+ overflow-x: hidden;
+ height: 580px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.options {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+.options div {
+  padding: 10px 10px 10px 20px;
+}
+.options div:hover {
+  background-color: rgb(61, 152, 255);
+  color: white;
+}
+
+.help {
+  padding: 20px;
+  color: gray;
+}
+.name {
+  display: flex;
+  flex: 0.2;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ti {
+  font-size: 20px;
+  color: rgb(61, 152, 255);
+  font-weight: bold;
+}
+.name p {
+  color: gray;
+}
+
+.dialog {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.content {
+  border-radius: 5px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid rgb(211, 211, 211);
+  width: 40%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.single-ent {
+  margin: 10px;
+  display: flex;
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-direction: column;
+}
+.single-ent input {
+  padding: 8px;
+}
+.single-ent button {
+  background-color: rgb(61, 152, 255);
+  color: white;
+  font-weight: 600;
+}

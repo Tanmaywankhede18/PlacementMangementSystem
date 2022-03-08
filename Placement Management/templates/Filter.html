@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Student Function</title>
+        <link rel="stylesheet" href="{% static 'css/Student_options.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/input_style.css' %}">
+       
+        </head>
+
+    <body class="student_section">
+        <div class='header'>
+            <h1 class="title">Training and Placement</h1>
+            <h4 class="title1">Student Section</h4>
+    
+
+        </div>
+       <div class='main_cont'>
+          <div class='sidebar'>
+          
+                   
+                    <form action="" method="POST" class="sidebar_filter">
+                        {% csrf_token %}
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Name</label>
+                        </div>
+                        <input type="text" name="name">
+                    </div>
+
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Department</label>
+                        </div>
+                        <input type="text" name="Dep">
+                    </div>
+ 
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">PRN</label>
+                        </div>
+                        <input type="text" name="PRN">
+                    </div>
+                     
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Minimum Marks</label>
+                        </div>
+                        <input type="text" name="marks">
+                    </div>
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Backlogs</label>
+                        </div>
+                        <input type="text" name="backlogs">
+                    </div>
+                    
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" name="skills">
+                            <label for="Name">Extra Skills</label>
+                        </div>
+                      
+                    </div>
+                    <button type="submit" class='apply'>  Apply</button>
+                </form>
+                
+          </div>
+          <div class='main_body'>
+              <div class='inner-body'>
+                <div class='search-div'>
+                    <input type="text" class="search-bar" placeholder="Search Student"/>
+                    <button type="button" class="options">Search</button>
+                </div> 
+                <div class='buttons-div'>
+                
+                        <button type="button" class='download' >Selected Students</button>
+                        <button type="button" class='download'>Download CSV</button>
+                        <button type="button" class='download'>Download PDF</button>
+                        <h4>Filtered Students : 20003</h4>
+                </div>
+                <div class='data-table'>
+                    <table id="table">
+                        <tr>
+                            <th><input type="checkbox" id=""class="checkbox"/></th>
+                            <th>PRN </th>
+                            <th> Name</th>
+                            <th>Branch</th>
+                            <th>Marks</th>
+                            <th>Placement Status</th>
+                        </tr>
+                        {% for s in data %}
+                        <tr>
+                            <td><input type="checkbox" id=""class="checkbox"/></td>
+                            <td>{{s.PRN}}</td>
+                            <td><a href="http://www.google.com">{{ s.first_name }} {{ s.middle_name }} {{ s.last_name }}</a></td>
+                            <td>{{ s.ug }}</td>
+                            <td>{{ s.ug_marks }}</td>
+                            <td>NA</td>
+                          </tr>
+                         {% endfor %}
+                    </table>
+                </div>
+            </div>
+            </div>
+       </div>
+        
+      
+    </body>
+</html>

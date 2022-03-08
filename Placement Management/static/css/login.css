@@ -1,0 +1,237 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    margin: 0px;
+
+    font-family: 'Poppins', sans-serif;
+}
+body{
+       background-color:aliceblue;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+}
+p{
+    font-size: 14px;
+}
+label{
+    font-size: 14px;
+}
+.header{
+    align-items: center;
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+.name-header{
+    margin-left: 10px;
+    
+}
+.clg-img{
+    margin-left: auto;
+}
+
+.sidebar_btn{
+    background-color:white;
+    outline: none;
+    border: none;
+    width: 100%;
+    font-weight:600;
+    text-align:left;
+    padding: 15px 10px 15px 20px;
+}
+.sidebar_btn:hover{
+    color: white;
+    background-color:rgb(61, 152, 255);
+}
+
+.main_body{
+    height:630px;
+    /* flex:1; */
+    display: flex;
+    flex-direction: row;
+
+    
+}
+.div1{
+    background-color:white;
+    height: 100%;
+    flex: 0.2;
+    display: flex;
+    flex-direction: column;
+}
+.div2{
+    margin-left: 20px;;
+    flex: 0.8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.div3{
+    align-self: flex-end;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+  align-items: center;
+}
+.div3 button{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color:white;
+    border: 1px solid rgb(212, 212, 212);
+    color: rgb(61, 152, 255);
+    font-weight: 500;
+    padding:10px;
+    border-radius: 5px;
+}
+.div3 p{
+    color:gray;
+}
+.div4{
+   
+    width: 100%;
+    flex: 0.1;
+    display: flex;
+    align-items: center;
+    border-top:1px solid rgba(206, 206, 206, 0.397);
+    border-bottom:1px solid rgba(206, 206, 206, 0.397);
+}
+.div4 h4{
+    margin-left: 20px;
+    flex: 0.9;
+    color: rgb(61, 152, 255);
+    font-size: 14px;
+    font-weight: bold;
+}
+.div4 button{
+    font-weight: 600;
+    padding:8px 30px 8px 30px;
+    margin-left: 10px;
+    background-color:white;
+    border:1px solid rgba(175, 175, 175, 0.418);
+    border-radius: 5px;
+}
+.div5{
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.div5 h2{
+    font-size:20px;
+   text-align:left;
+}
+.div5 p{
+    color: gray;
+}
+
+.head {
+    padding:10px;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+.head p{
+    color : gray;
+}
+
+.single-op{
+    padding:20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+
+.inputs{
+    flex:0.8;
+    
+    padding:20px;
+}
+
+.btn{
+    margin-left: 20px;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    padding:8px 20px 8px 20px ;
+}
+
+.name{
+    display: flex;
+    flex:0.2;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+}
+.title{
+    font-size:20px;
+    color:rgb(61, 152, 255);
+    font-weight: bold;
+}
+.name p{
+    color:gray;
+}
+
+a{
+    text-decoration:none;
+}
+.options{
+    margin-top: 30px;
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+
+.help{
+    padding: 20px;
+    color:gray;
+    
+}
+
+.text_area{
+    display:flex;
+    flex-direction: column;
+}
+#form{
+  
+    padding:20px;
+
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+#form input{
+ 
+    border:1px solid rgb(212, 212, 212);
+    padding: 10px;
+    margin-top:10px;    
+    margin-bottom: 10px;
+    border-radius: 5px;
+    outline: none;
+   
+}
+#form button{
+    background-color:rgb(61, 152, 255);
+    padding: 10px;
+    border-radius: 5px;
+    border:none;
+    outline: none;
+    color: white;
+    font-weight: 500;
+    margin-top:10px;   
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+ 
+}
+#form p{
+    color:rgb(61, 152, 255);
+    align-self: flex-end;
+}
+#form label{
+    font-weight: bold;
+    
+}

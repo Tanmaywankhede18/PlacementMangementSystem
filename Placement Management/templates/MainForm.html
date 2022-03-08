@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+       
+
+</head>
+<body>
+    <form action="/student/dashboard" method="post">
+        {% csrf_token %}
+        <label for="Name" >First Name</label>
+        <input type="text" name="Firstname">
+        <label for="Name" >Middle Name</label>
+        <input type="text"name="Middlename">
+        <label for="Name">Last Name</label>
+        <input type="text" name="Lastname">
+        <label for="Name">Mobile</label>
+        <input type="text" name="Mobile">
+        <label for="Name">PRN</label>
+        <input type="text" name="PRN">
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

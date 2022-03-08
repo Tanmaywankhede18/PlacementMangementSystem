@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'css/TPO_New.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/ProfileStudent.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Overview.css' %}">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="div1">
+        <div class="name">
+          <label class="ti">Training and Placement</label>
+          <p>Shivaji University</p>
+        </div>
+        <div class="select">
+
+          <li id='1' onclick="show(this.id)">Overview</li>
+          <li id='2' onclick="show(this.id)">Event</li>
+          <li id='3' onclick="show(this.id)">Profile
+          </li>
+          <li id='3' onclick="show(this.id)">Advanced Search
+          </li>
+          <li id='4' onclick="show(this.id)">Requests</li>
+          <li id='5' onclick="show(this.id)">Logout</li>
+
+        </div>
+        <div class="help">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="main_body">
+
+      <div class="Overview" id="D1">
+ 
+        <div class="overview-body">
+
+
+          <div class="header-overview">
+              <h2>Overview</h2>
+              <div>
+                  <input type="text" placeholder="Search ">
+                  <button class="btn-primary">Search</button>
+              </div>
+          </div>
+          <div class="main-body">
+              <div class="body-sub">
+                  <div class="student">
+                      <div class="stud-count">
+                          <p>Boys</p>
+                          <h3>45000</h3>
+                      </div>
+                      <div class="stud-count">
+                          <p>Girls</p>
+                          <h3>65000</h3>
+                      </div>
+                      <div class="placed-stu stud-count">
+                          <div>
+                              C.
+                          </div>
+                          <div>
+                              <h3>650</h3>
+                              <p>Placed Students</p>
+                          </div>
+                          <div>
+                              C.
+                          </div>
+                          <div>
+                              <h3>100</h3>
+                              <p>Not-Placed Students</p>
+                          </div>
+  
+                      </div>
+                  </div>
+                  <div class="Recent-campus" >
+                      <h4   class="div-title">Recent Campus</h4>
+                    {% for i in events %}
+                     <div class="single-campus">
+                          <p>{{ i.last_date}}</p>
+                          <h4>{{ p.drive_name }}</h4>
+                     </div>
+                     {% endfor %}
+                  
+                  </div>
+              </div>
+  
+  
+              <div class="student-req" >
+        
+                      <h4 class="div-title">Requests</h4>
+                      <div class="single-req">
+                          {% for s in students%}
+                          <div>
+                              <h4>{{ s.first_name}}</h4>
+                              <p>{{ s.ug }}</p>
+                          </div>
+                          {% endfor %}
+                          <div>
+                              <button>view</button>
+                              <button>Accept</button>
+                              <button>Delete</button>
+                          </div>
+                              
+                      </div>
+                      
+                
+          
+              </div>
+  
+  
+  
+          </div>
+      </div>
+      </div>
+
+      <div class="Events" id="D2">
+        <div class="title">
+          <h3>Events</h3>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Search for events" />
+          <button type="button" id="search" onclick="search()">Search</button>
+          <button type="button" id="add_event">Add Event</button>
+        </div>
+        <div class="cards">
+          {% for p in data %}
+          <div class="sing-card">
+              <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
+              <br /><br /><br /><br />
+
+              <h5>{{ p.drive_name }}</h5>
+              <p>{{ p.req }}</p>
+          </div>
+          {% endfor %}
+      
+        </div>
+      </div>
+
+      <div class="Profile" id="D3">
+
+        <!-- <div class="select sel">
+          <ul>
+            <li>Personal Information</li>
+            <li>Password Managment</li>
+          </ul>
+        </div> -->
+
+
+        <div>
+          <h3>Personal Information</h3>
+          <p>you can update personal information</p>
+          <div class="text-area">
+            <label for="name">Name</label>
+            <input type="text">
+          </div>
+          <div class="merge">
+            <div class="text-area">
+              <label for="name">Email</label>
+              <input type="Email">
+            </div>
+            <div class="text-area">
+              <label for="name">Mobile</label>
+              <input type="text">
+            </div>
+          </div>
+
+          <div class="text-area">
+            <label for="name">Department</label>
+            <input type="text">
+          </div>
+
+        </div>
+
+        <div>
+          <h3>Password Management</h3>
+          <p>you can update personal information</p>
+          <div class="text-area">
+            <label for="name">Old Password</label>
+            <input type="text">
+          </div>
+          <div class="text-area">
+            <label for="name">New Password</label>
+            <input type="password">
+          </div>
+          <div class="text-area">
+            <label for="name">Retype Password</label>
+            <input type="password">
+          </div>
+          <button type="submit">Update</button>
+        </div>
+      </div>
+
+      <div class="Request" id="D4">
+
+        <div class="search-head">
+          <h2>Requests</h2>
+          <div class="search-h">
+            <input type="text" placeholder="Search Student">
+            <button class="btn-primary"> <i class="tiny material-icons"> search</i>Search</button>
+          </div>
+
+        </div>
+        <div class="table-div">
+          <table>
+            <thead>
+              <tr>
+                <th>PRN</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for i in students %}
+              <tr>
+                <td>{{ i.PRN }}</td>
+                <td>{{ i.first_name }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.ug }}</td>
+                <td>
+                  <div class="btns">
+                    <Button class="accept view"><i class="tiny material-icons">visibility</i></Button>
+                    <Button class="accept"><i class="tiny material-icons">check</i></Button>
+                    <Button class="reject"><i class="tiny material-icons"> highlight_off</i></Button>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+
+    <div class="dialog" id="myModal">
+      <div class="content">
+        <span class="close">&times;</span>
+        <div>
+          <div class="add-event-card">
+            <h3>Add Event</h3>
+            <div>
+              <label for="Name of Comapany">Comapany Name</label>
+              <input type="text">
+            </div>
+
+            <div>
+              <label for="Name of Comapany">Minimum Requirements</label>
+              <input type="text">
+            </div>
+
+            <div class="ctc-pass-cont">
+              <div>
+                <label for="Name of Comapany">CTC</label>
+                <input type="text">
+              </div>
+              <div>
+                <label for="Name of Comapany">Pass Out Year</label>
+                <input type="number">
+              </div>
+            </div>
+
+            <div>
+              <label for="Name of Comapany">Last Date</label>
+              <input type="date">
+            </div>
+
+            <div>
+              <label for="Name of Comapany">Website / Link</label>
+              <input type="text">
+            </div>
+            <button class="btn-primary"> <span class="material-icons">
+                post_add
+              </span> Post </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script>
+  var modal = document.getElementById("myModal");
+
+  var btn = document.getElementById("add_event");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+<script async defer>
+
+  function show(id) {
+    switch (id) {
+      case '1':
+        document.getElementById('D2').style.display = "none";
+        document.getElementById('D3').style.display = "none";
+        document.getElementById('D1').style.display = "block";
+        document.getElementById('D4').style.display = "none";
+        break;
+      case '2':
+        document.getElementById('D3').style.display = "none";
+        document.getElementById('D1').style.display = "none";
+        document.getElementById('D4').style.display = "none";
+        document.getElementById('D2').style.display = "block";
+        break;
+      case '3':
+        document.getElementById('D4').style.display = "none";
+        document.getElementById('D2').style.display = "none";
+        document.getElementById('D1').style.display = "none";
+        document.getElementById('D3').style.display = "block";
+        break;
+      case '4':
+        console.log("show 4th item ")
+        document.getElementById('D4').style.display = "flex ";
+        document.getElementById('D2').style.display = "none";
+        document.getElementById('D1').style.display = "none";
+        document.getElementById('D3').style.display = "none";
+        break;
+
+    }
+
+  }
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/register_div.css' %}" />
+
+</head>
+
+<body>
+    <div class="header">
+        <img class="name-header" src="{% static 'css/top-header.png' %}" height='90px' />
+        <img src="{% static 'css/clg.png' %}" class="clg-img" height="120px" />
+    </div>
+    <div class="main-body">
+
+        <div class="option-select">
+            <ul>
+                <li>Personal Information</li>
+                <li>Education</li>
+                <li>Extra Curriculam</li>
+                <li>Experience</li>
+            </ul>
+        </div>
+
+        <!-- Make it scrolable -->
+
+        <div class="register-cont">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h2>Personal Information</h2>
+                <div class="personal-cont">
+                    <!-- This is one side of cont -->
+                    <div class="container1">
+                        <div class="birth-gen">
+                            <div class="container-input">
+                                <label for="Name">Firstname</label>
+                                <input type="text" placeholder="First Name" name="first_name" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Middlename</label>
+                                <input type="text" placeholder="Middle Name" name="middle_name" />
+                            </div>
+                            <div class="container-input lastname">
+                                <label for="Name">Lastname</label>
+                                <input type="text" placeholder="Last Name" name="last_name" />
+                            </div>
+                        </div>
+
+                        <div class="container-input">
+                            <label for="Name">Address</label>
+                            <input type="text" placeholder="Address" name="address" />
+                        </div>
+                        <div class="birth-gen">
+
+                            <div class="container-input">
+                                <label for="Name">City</label>
+                                <input type="text" placeholder="City" name="city" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">State</label>
+                                <input type="text" placeholder="State" name="state" />
+                            </div>
+                        </div>
+                         <div class="birth-gen">
+                            <div class="container-input">
+                                <label for="Name">BirthDate</label>
+                                <input type="date" name="birth_date" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Gender</label>
+                                <select id="" name="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="birth-gen">
+
+                            <div class="container-input">
+                                <label for="Name">PRN Number</label>
+                                <input type="Number" placeholder="PRN number" id="" name="PRN" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Contact Number</label>
+                                <input type="Number" placeholder="Mobile number"name="mobile" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- This is another side of container -->
+              
+                </div>
+                <h2>Education</h2>
+                <!-- This is education container element -->
+                <div>
+                    <div class="Education-cont">
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Education Type</label>
+                                <select name="EducationType" id="">
+                                    <option value="BTech">B.Tech</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="HSC">HSC</option>
+                                    <option value="SSC">SSC</option>
+                                </select>
+                            </div>
+                            <div class="container-input">
+                                <label for="Stream">Stream</label>
+                                <select id="" name="ug_stream">
+                                    <option value="Computer Science and Technology">Computer Science and Technology
+                                    </option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                    <option value="Electronics & Telecommunication Engineering">Electronics &
+                                        Telecommunication Engineering</option>
+                                    <option value="Food Technology">Food Technology</option>
+                                    <option value="Civil  Engineering">Civil Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container-input">
+                            <label for="Name">Institue Name</label>
+                            <input type="text" name="ug" />
+                        </div>
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Marks/Percentage</label>
+                                <input type="Number" name="ug_marks" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Passout Year</label>
+                                <input type="Number" name="ug_passout" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="Education-cont">
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Education Type</label>
+                                <select name="EducationType" id="">
+                                    <option value="BTech">B.Tech</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="HSC">HSC</option>
+                                    <option value="SSC">SSC</option>
+                                </select>
+                            </div>
+                            <div class="container-input">
+                                <label for="Stream">Stream</label>
+                                <select  id="" name="deploma_stream">
+                                    <option value="Computer Science and Technology">Computer Science and Technology
+                                    </option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                    <option value="Electronics & Telecommunication Engineering">Electronics &
+                                        Telecommunication Engineering</option>
+                                    <option value="Food Technology">Food Technology</option>
+                                    <option value="Civil  Engineering">Civil Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container-input">
+                            <label for="Name">Institue Name</label>
+                            <input type="text" name="deploma" />
+                        </div>
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Marks/Percentage</label>
+                                <input type="Number" name="deploma_marks" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Passout Year</label>
+                                <input type="Number" name="deploma_passout" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="Education-cont">
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Education Type</label>
+                                <select name="EducationType" id="">
+                                    <option value="BTech">B.Tech</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="HSC">HSC</option>
+                                    <option value="SSC">SSC</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="container-input">
+                            <label for="Name">Institue Name</label>
+                            <input type="text" name="ssc" />
+                        </div>
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Marks/Percentage</label>
+                                <input type="Number" name="ssc_marks" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Passout Year</label>
+                                <input type="Number" name="ssc_passout" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- This is Extra Curriculam Activities -->
+
+                <div>
+
+                </div>
+
+                <div class="agreem">
+                    <input type="checkbox">
+                    <p> I have read, understood and consent to the language and authorization</p>
+                    <button class="button-primary" type="submit">Submit and Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

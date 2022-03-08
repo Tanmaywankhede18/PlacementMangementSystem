@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/TPO.css'%}" />
+  </head>
+  <body>
+ 
+    <div class="container">
+      <div class="sidebar">
+        <div class="div1">
+          <div class="name">
+            <label class="ti">Training and Placement</label>
+            <p>Shivaji University</p>
+          </div>
+          <div class="options">
+            <div>Overview</div>
+            <div>Profile</div>
+            <div>Events</div>
+            <div>Logout</div>
+          </div>
+          <div class="help">
+            <h4>Help?</h4>
+          </div>
+        </div>
+      </div>
+      <div class="main_body">
+        <div class="title">
+          <h3>Events</h3>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="Search for events" />
+          <button type="button" id="search" onclick="search()">Search</button>
+        </div>
+        <div class="cards">
+          {% for p in data %}
+          <div class="sing-card">
+              <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
+              <br /><br /><br /><br />
+
+              <h5>{{ p.drive_name }}</h5>
+              <p>{{ p.req }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog" id="myModal">
+      <div class="content">
+        <span class="close">&times;</span>
+        <div>
+          <div class="single-ent">
+            <label>Name of Drive / Company </label>
+            <input type="text" name="" />
+          </div>
+          <div class="single-ent">
+            <label>Description </label>
+            <input type="text" name="" />
+          </div>
+          <div class="single-ent">
+            <label>Last Date </label>
+            <input type="text" name="" />
+          </div>
+          <div class="single-ent">
+            <label>CTC </label>
+            <input type="text" name="" />
+          </div>
+
+          <button type="button">Publish</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("add_event");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</html>

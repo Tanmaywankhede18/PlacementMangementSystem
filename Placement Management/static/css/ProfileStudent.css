@@ -1,0 +1,129 @@
+
+.main-cont-dashboard{
+    background-color: rgb(238, 246, 255);
+    display: flex;
+ 
+    flex-direction: row;
+    padding: 20px;
+}
+.main-cont-dashboard div{
+    border-radius: 5px;
+
+}
+
+.first-cont{
+    flex: 0.33;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+ 
+}
+
+
+.first-sub{
+   
+    display: flex;
+   flex-direction: row;
+  
+}
+.s-count{
+  
+    flex:0.2;
+    align-items: center;
+    background-color:white;
+    
+}
+.div-student{
+    padding: 10px;
+    display: flex;
+}
+.sub{
+        color:gray;
+        margin-top: 20px;
+}
+.report{
+    margin-top: 10px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    flex:0.8;
+}
+.student-count{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    justify-content: center;
+}
+.second-cont{
+    margin: 10px;
+    padding: 10px;
+    flex: 0.33;
+    background-color:white;
+}
+.student-count label:first-child{
+    color:gray;
+}
+.dia-title{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#compinfo{
+    padding: 10px;
+}
+#compinfo p:first-child{
+    color: rgb(255, 82, 82);
+    font-size: 12px;
+}
+.third-cont{
+
+
+    flex: 0.33;
+    display: flex;
+    flex-direction: column;
+    
+}
+.third-cont{
+    margin: 10px;
+    flex: 0.5;
+
+}
+.third-cont div{
+    
+}
+.box{
+    margin-right: 10px;
+    color: rgb(103, 103, 255);
+    background-color: rgb(103, 103, 255);
+}
+.det-repo{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.det-repo div:first-child{
+    color: rgb(162, 205, 247);
+    background-color: rgb(162, 205, 247);
+}
+.det{
+    display: flex;
+    flex-direction: column;
+}
+.graph{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+    flex:0.6;
+}
+.details{
+    flex:0.4;
+}
+.third-sub{
+    margin-top: 10px;
+    background-color: #fff;
+}
+.third-sub1{
+    background-color: #fff;
+}
+

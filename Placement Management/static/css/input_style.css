@@ -1,0 +1,26 @@
+.filter-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.check-box{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 5px;
+
+}
+.check-box input{
+    width:15px;
+    height: 15px;
+    margin-right: 10px;
+}
+input{
+    padding: 8px;
+}
+
+.checkbox{
+    width:15px;
+    height: 15px;
+}
