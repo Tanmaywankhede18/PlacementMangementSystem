@@ -21,6 +21,13 @@ from django.utils.encoding import force_bytes,force_str
 # Create your views here.
 import  pandas as pd 
 
+def POdashboard(request):
+   
+    events = Event.objects.all()
+    st = Student.objects.filter(verified=0)
+    return render(request,'PMdashboard.html',{'data':events,'students':st})
+
+
 def index(request):
     if(request.method=="POST"):
         name = request.POST.get("name")
@@ -50,8 +57,7 @@ def index(request):
     print(events)
 
     if user.is_staff:
-       st = Student.objects.filter(verified=0)
-       return render(request,'PMdashboard.html',{'data':events,'students':st})
+        return redirect('/student/PODashboard')
     
     if obj.verified:
         return render(request, 'dashboard.html',{'data':events})

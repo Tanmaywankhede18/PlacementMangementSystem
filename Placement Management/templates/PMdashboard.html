@@ -101,13 +101,14 @@
                               <h4>{{ s.first_name}}</h4>
                               <p>{{ s.ug }}</p>
                           </div>
-                          {% endfor %}
+          
                           <div>
-                              <button>view</button>
-                              <button>Accept</button>
-                              <button>Delete</button>
+                              <button id='1' onclick="action( this.id,'{{ s.PRN }}')">view</button>
+                              <button id='2' onclick="action(this.id,'{{ s.PRN }}')" >Accept</button>
+                              <button id='3' onclick="action(this.id,'{{ s.PRN }}')"  >Delete</button>
+                      
                           </div>
-                              
+                          {% endfor %}
                       </div>
                       
                 
@@ -254,42 +255,46 @@
       <div class="content">
         <span class="close">&times;</span>
         <div>
-          <div class="add-event-card">
+          <form class="add-event-card" method="POST" >
+            {% csrf_token %}
             <h3>Add Event</h3>
             <div>
               <label for="Name of Comapany">Comapany Name</label>
-              <input type="text">
+              <input type="text" name="name">
             </div>
-
+            <div>
+              <label for="Name of Comapany">Roll</label>
+              <input type="text" name="roll">
+            </div>
             <div>
               <label for="Name of Comapany">Minimum Requirements</label>
-              <input type="text">
+              <input type="text" name="requirements">
             </div>
 
             <div class="ctc-pass-cont">
               <div>
                 <label for="Name of Comapany">CTC</label>
-                <input type="text">
+                <input type="text" name="ctc">
               </div>
               <div>
                 <label for="Name of Comapany">Pass Out Year</label>
-                <input type="number">
+                <input type="number" name="passouts">
               </div>
             </div>
 
             <div>
               <label for="Name of Comapany">Last Date</label>
-              <input type="date">
+              <input type="date" name="lastdate">
             </div>
 
             <div>
               <label for="Name of Comapany">Website / Link</label>
-              <input type="text">
+              <input type="text" name="link">
             </div>
-            <button class="btn-primary"> <span class="material-icons">
+            <button class="btn-primary" type="submit" > <span class="material-icons">
                 post_add
               </span> Post </button>
-          </div>
+            </form>
         </div>
       </div>
     </div>
@@ -317,7 +322,20 @@
   };
 </script>
 <script async defer>
-
+  function action(id,data){
+    console.log(data)
+    switch(id){
+      case '1':
+        console.log("View is Clicked on Student id:"+data);
+        break;
+      case '2':
+        console.log("View is Clicked on Student id:"+data);
+        break;
+      case '3':
+        console.log("View is Clicked on Student id:"+data);
+        break;
+    }
+  }
   function show(id) {
     switch (id) {
       case '1':
