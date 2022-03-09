@@ -22,7 +22,9 @@ from django.utils.encoding import force_bytes,force_str
 import  pandas as pd 
 
 def POdashboard(request):
-   
+    if request.method=='POST':
+     print(request.POST.get('PRN'))
+
     events = Event.objects.all()
     st = Student.objects.filter(verified=0)
     return render(request,'PMdashboard.html',{'data':events,'students':st})
@@ -57,7 +59,7 @@ def index(request):
     print(events)
 
     if user.is_staff:
-        return redirect('/student/PODashboard')
+        return redirect('/student/Pdashboard')
     
     if obj.verified:
         return render(request, 'dashboard.html',{'data':events})

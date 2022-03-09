@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/table.css' %}">
   <link rel="stylesheet" href="{% static 'css/Overview.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -322,20 +323,46 @@
   };
 </script>
 <script async defer>
+
+
   function action(id,data){
-    console.log(data)
+   
+
+    var upload ={
+      'PRN':0,
+      'Action':"None"
+    }
     switch(id){
       case '1':
         console.log("View is Clicked on Student id:"+data);
+        upload['PRN'] = data
+        upload['Action'] = "view"
+
         break;
       case '2':
         console.log("View is Clicked on Student id:"+data);
+        upload['PRN'] = data
+        upload['Action'] = "accept"
         break;
       case '3':
-        console.log("View is Clicked on Student id:"+data);
+        console.log("View is Clicked on Student id:"+data);     
+        upload['PRN'] = data  
+        upload['Action'] = "Decline"
         break;
     }
+
+    url='/student/Pdashboard'
+ 
+
+    $.ajax({
+    "url": url,
+    "type": "POST",
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' ,upload},
+    })
   }
+    
+
+
   function show(id) {
     switch (id) {
       case '1':
