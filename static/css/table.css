@@ -2,9 +2,10 @@
 * {
     margin: 0px;
     font-family: "Poppins", sans-serif;
+   
   }
 .Request{
-    padding: 20px;
+
     display: none;
     height: 100vh;
     flex-flow: column;
@@ -24,11 +25,12 @@ table{
    
 }
 .table-div{
+
     overflow: scroll;
     overflow-x: hidden;
     border-radius: 10px;
-    margin-top: 10px;
-    flex-grow: 1;
+    margin-top: 20px;
+    flex-grow: 0.95;
     background-color: white;
 }
 .tiny{
@@ -83,6 +85,9 @@ input{
 }
 
 .search-head{
+    padding-top: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(228, 228, 228);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -131,4 +136,10 @@ input{
     color: rgb(177, 177, 177);
     background-color: white;
     border: 1px solid gray;
+}
+.accept{
+    color: green;
+}
+.reject{
+    color: red;
 }

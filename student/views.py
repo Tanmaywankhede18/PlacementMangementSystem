@@ -26,8 +26,7 @@ def POdashboard(request):
      Action = request.POST['Action']
      prn = request.POST['PRN']
      stud = Student.objects.get(PRN=prn)
-     print(stud.PRN)
-
+   
      if(Action=="view"):
        print("View")
      elif(Action=="accept"):
@@ -72,10 +71,12 @@ def index(request):
         obj = Student.objects.get(user_id=user.id)
     except Student.DoesNotExist:
         return redirect('/student/Register')
+        
     events = Event.objects.all()
-    print(events)
-
+    events = Event.objects.all()
+    st = Student.objects.filter(verified=0)
     if user.is_staff:
+        return render(request,'PMdashboard.html',{'data':events,'students':st})
         return redirect('/student/Pdashboard')
     
     if obj.verified:

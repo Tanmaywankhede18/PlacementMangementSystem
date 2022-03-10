@@ -4,6 +4,7 @@
 
   font-family: "Poppins", sans-serif;
 } 
+
 /*  Color :  rgb(61, 152, 255); */
 .Events{
   height: 100vh;
@@ -12,15 +13,10 @@
 .Profile{
   height: 100vh;
   width: 60%;
-  padding: 20px;
   display:none;
 }
 
-.Profile :first-child{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
+
 .Profile p{
   margin-bottom: 10px;
 }
@@ -29,9 +25,13 @@
   width: 30%;
   align-items: flex-end ;
 }
+.Profile-div{
+  display: flex;
+  padding: 20px;
+}
 .merge{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .Overview{
   display:none;

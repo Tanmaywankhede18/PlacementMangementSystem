@@ -42,14 +42,16 @@
 
         <div class="overview-body">
 
-
-          <div class="header-overview">
+          <div class="title">
+            <h3>Overview</h3>
+          </div>
+          <!-- <div class="header-overview">
             <h2>Overview</h2>
             <div>
               <input type="text" placeholder="Search ">
               <button class="btn-primary">Search</button>
             </div>
-          </div>
+          </div> -->
           <div class="main-body">
             <div class="body-sub">
               <div class="student">
@@ -81,10 +83,10 @@
               </div>
               <div class="Recent-campus">
                 <h4 class="div-title">Recent Campus</h4>
-                {% for i in events %}
+                {% for i in data %}
                 <div class="single-campus">
                   <p>{{ i.last_date}}</p>
-                  <h4>{{ p.drive_name }}</h4>
+                  <h4>{{ i.drive_name }}</h4>
                 </div>
                 {% endfor %}
 
@@ -145,71 +147,70 @@
       </div>
 
       <div class="Profile" id="D3">
-
-        <!-- <div class="select sel">
-          <ul>
-            <li>Personal Information</li>
-            <li>Password Managment</li>
-          </ul>
-        </div> -->
-
-
-        <div>
-          <h3>Personal Information</h3>
-          <p>you can update personal information</p>
-          <div class="text-area">
-            <label for="name">Name</label>
-            <input type="text">
-          </div>
-          <div class="merge">
+        <div class="title">
+          <h3>Profile</h3>
+        </div>
+        <div class="Profile-div">
+          <div>
+            <h3>Personal Information</h3>
+            <p>you can update personal information</p>
             <div class="text-area">
-              <label for="name">Email</label>
-              <input type="Email">
-            </div>
-            <div class="text-area">
-              <label for="name">Mobile</label>
+              <label for="name">Name</label>
               <input type="text">
             </div>
+            <div class="merge">
+              <div class="text-area">
+                <label for="name">Email</label>
+                <input type="Email">
+              </div>
+              <div class="text-area">
+                <label for="name">Mobile</label>
+                <input type="text">
+              </div>
+            </div>
+  
+            <div class="text-area">
+              <label for="name">Department</label>
+              <input type="text">
+            </div>
+  
           </div>
-
-          <div class="text-area">
-            <label for="name">Department</label>
-            <input type="text">
+  
+          <div>
+            <h3>Password Management</h3>
+            <p>you can update personal information</p>
+            <div class="text-area">
+              <label for="name">Old Password</label>
+              <input type="text">
+            </div>
+            <div class="text-area">
+              <label for="name">New Password</label>
+              <input type="password">
+            </div>
+            <div class="text-area">
+              <label for="name">Retype Password</label>
+              <input type="password">
+            </div>
+            <button type="submit">Update</button>
           </div>
-
         </div>
-
-        <div>
-          <h3>Password Management</h3>
-          <p>you can update personal information</p>
-          <div class="text-area">
-            <label for="name">Old Password</label>
-            <input type="text">
-          </div>
-          <div class="text-area">
-            <label for="name">New Password</label>
-            <input type="password">
-          </div>
-          <div class="text-area">
-            <label for="name">Retype Password</label>
-            <input type="password">
-          </div>
-          <button type="submit">Update</button>
-        </div>
+     
       </div>
       <div class="Search" id="D5">
         Show search Page here
       </div>
       <div class="Request" id="D4">
-
-        <div class="search-head">
+        <div class="title">
+          <h3>Request</h3>
+        </div>
+        <!-- <div class="search-head">
           <h2>Requests</h2>
           <div class="search-h">
             <input type="text" placeholder="Search Student">
             <button class="btn-primary"> <i class="tiny material-icons"> search</i>Search</button>
           </div>
 
-        </div>
+        </div> -->
         <div class="table-div">
           <table>
             <thead>
