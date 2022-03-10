@@ -85,8 +85,8 @@
                 <h4 class="div-title">Recent Campus</h4>
                 {% for i in data %}
                 <div class="single-campus">
+                  <h5>{{ i.drive_name }}</h5>
                   <p>{{ i.last_date}}</p>
-                  <h4>{{ i.drive_name }}</h4>
                 </div>
                 {% endfor %}
 
@@ -100,7 +100,7 @@
               <div class="single-req">
                 {% for s in students%}
                 <div>
-                  <h4>{{ s.first_name}}</h4>
+                  <h5>{{ s.first_name}}</h5>
                   <p>{{ s.ug }}</p>
                 </div>
 
@@ -127,11 +127,11 @@
         <div class="title">
           <h3>Events</h3>
         </div>
-        <div class="search">
+        <!-- <div class="search">
           <input type="text" placeholder="Search for events" />
           <button type="button" id="search" onclick="search()">Search</button>
           <button type="button" id="add_event">Add Event</button>
-        </div>
+        </div> -->
         <div class="cards">
           {% for p in data %}
           <div class="sing-card">
@@ -176,29 +176,11 @@
   
           </div>
   
-          <div>
-            <h3>Password Management</h3>
-            <p>you can update personal information</p>
-            <div class="text-area">
-              <label for="name">Old Password</label>
-              <input type="text">
-            </div>
-            <div class="text-area">
-              <label for="name">New Password</label>
-              <input type="password">
-            </div>
-            <div class="text-area">
-              <label for="name">Retype Password</label>
-              <input type="password">
-            </div>
-            <button type="submit">Update</button>
-          </div>
+        
         </div>
      
       </div>
-      <div class="Search" id="D5">
-        Show search Page here
-      </div>
+    
       <div class="Request" id="D4">
         <div class="title">
           <h3>Request</h3>
@@ -232,9 +214,9 @@
                 <td>{{ i.ug }}</td>
                 <td>
                   <div class="btns">
-                    <Button class="accept view"><i class="tiny material-icons">visibility</i></Button>
-                    <Button class="accept"><i class="tiny material-icons">check</i></Button>
-                    <Button class="reject"><i class="tiny material-icons"> highlight_off</i></Button>
+                    <!-- <Button class="accept view">View</Button> -->
+                    <Button class="accept">Accept</Button>
+                    <Button class="reject">Reject</Button>
                   </div>
                 </td>
               </tr>

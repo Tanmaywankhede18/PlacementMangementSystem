@@ -25,12 +25,12 @@ table{
    
 }
 .table-div{
-
+    margin: 40px;
     overflow: scroll;
     overflow-x: hidden;
-    border-radius: 10px;
-    margin-top: 20px;
-    flex-grow: 0.95;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgb(196, 196, 196);
+    flex-grow: 1;
     background-color: white;
 }
 .tiny{
@@ -49,6 +49,7 @@ thead th:last-child{
     border-radius: 0px 5px 0px 0px ;
 }
 th{
+    text-align: left;
     text-transform: uppercase;
     padding: 10px;
     border-bottom: 1px solid rgb(207, 207, 207);
@@ -102,13 +103,14 @@ input{
     flex-direction: row;
     align-items: center;
     font-weight: 600;
-    color: rgb(177, 177, 177);
-    background-color: white;
-    border: 1px solid gray;
-    padding: 5px 10px 5px 10px ;
+    color: rgb(255 255 255);
+    background-color: rgb(40 113 247);
+    border: none;
+    padding: 5px 10px 5px 10px;
     border-radius: 5px;
     outline: none;
     font-size: small;
+
 }
 
 
@@ -118,9 +120,9 @@ input{
     align-items: center;
     font-weight: 600;
     color: rgb(177, 177, 177);
-    background-color: white;
-    border: 1px solid gray;
-    padding: 5px 10px 5px 10px ;
+    background-color: rgb(162 205 247);
+    border: none;
+    padding: 5px 10px 5px 10px;
     border-radius: 5px;
     outline: none;
     margin-left: 10px;
@@ -138,8 +140,8 @@ input{
     border: 1px solid gray;
 }
 .accept{
-    color: green;
+    color: rgb(255, 255, 255);
 }
 .reject{
-    color: red;
+    color: rgb(0, 0, 0);
 }

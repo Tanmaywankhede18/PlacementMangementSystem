@@ -12,7 +12,7 @@
 }
 .Profile{
   height: 100vh;
-  width: 60%;
+
   display:none;
 }
 
@@ -28,6 +28,11 @@
 .Profile-div{
   display: flex;
   padding: 20px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgb(196, 196, 196);
+
 }
 .merge{
   display: flex;
@@ -68,13 +73,14 @@ label{
 
 .select li{
     font-weight: 600;
-    font-size: 14px;
-    width: 100%;
+  
+    margin: 0px 15px 0px 15px;
     display: flex;
     flex-direction: row;
     text-decoration: none;
-    padding: 10px 10px 10px 30px;
-    transition:0.3s;
+    padding: 10px 20px;
+    transition:0.1s;
+    border-radius: 5px;
 }
 
 .select li:hover{
@@ -93,8 +99,7 @@ label{
 .main_body {
   background-color: aliceblue;
   flex: 8;
-  padding-left: 40px;
-  padding-right: 40px
+
 }
 .div1 {
   background-color: white;
@@ -122,14 +127,17 @@ label{
   border-radius: 5px;
   margin: 20px;
 	transition:0.2s;
+  box-shadow: 0px 1px 2px rgb(196, 196, 196);
+  font-size: 12px;
 }
 .sing-card h5 {
   font-size: 20px;
   color: rgb(61, 152, 255);
 }
-.sing-card p {
+.sing-card p{
   color: gray;
-  font-size: 12px;
+  border-radius: 5px;
+
 }
 .deadline {
   float: right;
@@ -175,6 +183,7 @@ label{
 .cards {
   display: flex;
   flex-direction: row;
+  padding: 20px;
 }
 
 .options {

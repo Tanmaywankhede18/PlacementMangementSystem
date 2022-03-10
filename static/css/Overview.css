@@ -4,6 +4,9 @@
 
   font-family: "Poppins", sans-serif;
 } 
+h5{
+    font-weight: 500;
+}
 input{
     border: 1px solid rgb(228, 228, 228);
     background-color: white;
@@ -35,12 +38,13 @@ p{
     flex-direction: column;
 }
 .main-body{
+    padding: 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: row;
 }
 .body-sub{
-    margin: 20px;
+    margin: 0px 10px;
     display: flex;
     flex-direction: column;
 
@@ -51,17 +55,20 @@ p{
     flex-flow: row;
 }
 .Recent-campus{
+    box-shadow: 0px 1px 2px rgb(196, 196, 196);
     margin: 10px;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 5px;
+  
     background-color: white;
     flex-grow: 1;
 }
 .stud-count{
+  
     margin: 10px;
     padding: 20px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgb(196, 196, 196);
 }
 .placed-stu{
     display: flex;
@@ -76,17 +83,15 @@ p{
     background-color: rgb(40, 113, 247);
 }
 .student-req{
+    box-shadow: 0px 1px 2px rgb(196, 196, 196);
     overflow: scroll;
     overflow-x: hidden;
-    margin: 30px;
+    margin: 10px 10px 10px 0px;
     flex-grow: 1;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;
 }
-.student-req {
-    font-size: 12px;
-}
+
 .header-overview{
     margin: 20px 30px 0px 30px;
     padding-top: 10px;
@@ -103,20 +108,20 @@ p{
 }
 .single-campus{
     border-bottom: 1px solid rgb(238, 238, 238);
-    padding: 10px 10px 10px 0px;
+    padding: 10px;
  }
 
 .single-campus p{
-    color: red;
+    color: rgb(158, 158, 158);
 }
 .div-title{
-    border-bottom: 1px solid rgb(238, 238, 238);
-   padding-bottom: 10px;
+    border-bottom: 1px solid rgb(206, 206, 206);
+   padding: 10px;
 }
 .single-req{
     align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 10px 10px 0px;
+    padding: 10px;
 }
