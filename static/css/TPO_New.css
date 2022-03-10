@@ -73,7 +73,7 @@ label{
 
 .select li{
     font-weight: 600;
-  
+    font-size: 14px;
     margin: 0px 15px 0px 15px;
     display: flex;
     flex-direction: row;
