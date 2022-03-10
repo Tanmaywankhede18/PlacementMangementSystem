@@ -23,11 +23,28 @@ import  pandas as pd
 
 def POdashboard(request):
     if request.method=='POST':
-     print(request.POST.get('PRN'))
+     Action = request.POST['Action']
+     prn = request.POST['PRN']
+     stud = Student.objects.get(PRN=prn)
+     print(stud.PRN)
+
+     if(Action=="view"):
+       print("View")
+     elif(Action=="accept"):
+       stud.verified=1;
+       stud.save()
+       print("Accepted succefully!")
+     else:
+       user = User.objects.get(id=stud.user_id)  
+       user.delete()
+       stud.delete()  
+       print("Delete")
+         #delete   
+  
 
     events = Event.objects.all()
     st = Student.objects.filter(verified=0)
-    return render(request,'PMdashboard.html',{'data':events,'students':st})
+    return render(request,'PMdashboard.html',{'data':events,'students':st,})
 
 
 def index(request):
@@ -303,3 +320,10 @@ def Filter(request):
         # return render(request,'Filter.html',{'data':stu})
 
     return render(request,'Filter.html',{'data':stu})
+
+def ShowProfile(request):
+    # if request.method=="GET":
+    #     prn = request.GET
+    #     stud = Student.objects.get(PRN=prn)
+        
+    return HttpResponse("Show the User Profile")

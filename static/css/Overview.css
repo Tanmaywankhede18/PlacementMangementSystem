@@ -30,7 +30,6 @@ p{
     color: gray;
 }
 .overview-body{
-    
     display: flex;
     height: 100vh;
     flex-direction: column;

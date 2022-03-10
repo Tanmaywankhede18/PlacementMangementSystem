@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
+
 <head>
   <link rel="stylesheet" href="{% static 'css/TPO_New.css' %}" />
   <link rel="stylesheet" href="{% static 'css/ProfileStudent.css' %}">
@@ -23,12 +24,10 @@
 
           <li id='1' onclick="show(this.id)">Overview</li>
           <li id='2' onclick="show(this.id)">Event</li>
-          <li id='3' onclick="show(this.id)">Profile
-          </li>
-          <li id='3' onclick="show(this.id)">Advanced Search
-          </li>
+          <li id='3' onclick="show(this.id)">Profile</li>
+          <li id='5' onclick="show(this.id)">Advanced Search</li>
           <li id='4' onclick="show(this.id)">Requests</li>
-          <li id='5' onclick="show(this.id)">Logout</li>
+          <li id='6' onclick="show(this.id)">Logout</li>
 
         </div>
         <div class="help">
@@ -40,86 +39,86 @@
     <div class="main_body">
 
       <div class="Overview" id="D1">
- 
+
         <div class="overview-body">
 
 
           <div class="header-overview">
-              <h2>Overview</h2>
-              <div>
-                  <input type="text" placeholder="Search ">
-                  <button class="btn-primary">Search</button>
-              </div>
+            <h2>Overview</h2>
+            <div>
+              <input type="text" placeholder="Search ">
+              <button class="btn-primary">Search</button>
+            </div>
           </div>
           <div class="main-body">
-              <div class="body-sub">
-                  <div class="student">
-                      <div class="stud-count">
-                          <p>Boys</p>
-                          <h3>45000</h3>
-                      </div>
-                      <div class="stud-count">
-                          <p>Girls</p>
-                          <h3>65000</h3>
-                      </div>
-                      <div class="placed-stu stud-count">
-                          <div>
-                              C.
-                          </div>
-                          <div>
-                              <h3>650</h3>
-                              <p>Placed Students</p>
-                          </div>
-                          <div>
-                              C.
-                          </div>
-                          <div>
-                              <h3>100</h3>
-                              <p>Not-Placed Students</p>
-                          </div>
-  
-                      </div>
+            <div class="body-sub">
+              <div class="student">
+                <div class="stud-count">
+                  <p>Boys</p>
+                  <h3>45000</h3>
+                </div>
+                <div class="stud-count">
+                  <p>Girls</p>
+                  <h3>65000</h3>
+                </div>
+                <div class="placed-stu stud-count">
+                  <div>
+                    C.
                   </div>
-                  <div class="Recent-campus" >
-                      <h4   class="div-title">Recent Campus</h4>
-                    {% for i in events %}
-                     <div class="single-campus">
-                          <p>{{ i.last_date}}</p>
-                          <h4>{{ p.drive_name }}</h4>
-                     </div>
-                     {% endfor %}
-                  
+                  <div>
+                    <h3>650</h3>
+                    <p>Placed Students</p>
                   </div>
+                  <div>
+                    C.
+                  </div>
+                  <div>
+                    <h3>100</h3>
+                    <p>Not-Placed Students</p>
+                  </div>
+
+                </div>
               </div>
-  
-  
-              <div class="student-req" >
-        
-                      <h4 class="div-title">Requests</h4>
-                      <div class="single-req">
-                          {% for s in students%}
-                          <div>
-                              <h4>{{ s.first_name}}</h4>
-                              <p>{{ s.ug }}</p>
-                          </div>
-          
-                          <div>
-                              <button id='1' onclick="action( this.id,'{{ s.PRN }}')">view</button>
-                              <button id='2' onclick="action(this.id,'{{ s.PRN }}')" >Accept</button>
-                              <button id='3' onclick="action(this.id,'{{ s.PRN }}')"  >Delete</button>
-                      
-                          </div>
-                          {% endfor %}
-                      </div>
-                      
-                
-          
+              <div class="Recent-campus">
+                <h4 class="div-title">Recent Campus</h4>
+                {% for i in events %}
+                <div class="single-campus">
+                  <p>{{ i.last_date}}</p>
+                  <h4>{{ p.drive_name }}</h4>
+                </div>
+                {% endfor %}
+
               </div>
-  
-  
-  
+            </div>
+
+
+            <div class="student-req">
+
+              <h4 class="div-title">Requests</h4>
+              <div class="single-req">
+                {% for s in students%}
+                <div>
+                  <h4>{{ s.first_name}}</h4>
+                  <p>{{ s.ug }}</p>
+                </div>
+
+                <div>
+                  <button id='1' onclick="action( this.id,'{{ s.PRN }}')">view</button>
+                  <button id='2' onclick="action(this.id,'{{ s.PRN }}')">Accept</button>
+                  <button id='3' onclick="action(this.id,'{{ s.PRN }}')">Delete</button>
+
+                </div>
+                {% endfor %}
+              </div>
+
+
+
+            </div>
+
+
+
           </div>
-      </div>
+        </div>
       </div>
 
       <div class="Events" id="D2">
@@ -134,14 +133,14 @@
         <div class="cards">
           {% for p in data %}
           <div class="sing-card">
-              <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
-              <br /><br /><br /><br />
+            <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
+            <br /><br /><br /><br />
 
-              <h5>{{ p.drive_name }}</h5>
-              <p>{{ p.req }}</p>
+            <h5>{{ p.drive_name }}</h5>
+            <p>{{ p.req }}</p>
           </div>
           {% endfor %}
-      
+
         </div>
       </div>
 
@@ -198,7 +197,9 @@
           <button type="submit">Update</button>
         </div>
       </div>
-
+      <div class="Search" id="D5">
+        Show search Page here
+      </div>
       <div class="Request" id="D4">
 
         <div class="search-head">
@@ -222,7 +223,7 @@
             </thead>
             <tbody>
 
-            {% for i in students %}
+              {% for i in students %}
               <tr>
                 <td>{{ i.PRN }}</td>
                 <td>{{ i.first_name }}</td>
@@ -256,7 +257,7 @@
       <div class="content">
         <span class="close">&times;</span>
         <div>
-          <form class="add-event-card" method="POST" >
+          <form class="add-event-card" method="POST">
             {% csrf_token %}
             <h3>Add Event</h3>
             <div>
@@ -292,10 +293,10 @@
               <label for="Name of Comapany">Website / Link</label>
               <input type="text" name="link">
             </div>
-            <button class="btn-primary" type="submit" > <span class="material-icons">
+            <button class="btn-primary" type="submit"> <span class="material-icons">
                 post_add
               </span> Post </button>
-            </form>
+          </form>
         </div>
       </div>
     </div>
@@ -325,42 +326,49 @@
 <script async defer>
 
 
-  function action(id,data){
-   
+  function action(id, data) {
 
-    var upload ={
-      'PRN':0,
-      'Action':"None"
+
+    var upload = {
+      'PRN': 0,
+      'Action': "None"
     }
-    switch(id){
+    switch (id) {
       case '1':
-        console.log("View is Clicked on Student id:"+data);
+        console.log("View is Clicked on Student id:" + data);
         upload['PRN'] = data
         upload['Action'] = "view"
-
+        var url = window.location.href
+        url = url.concat("/StudentProfile")
+        console.log(url)
+        window.location = url
         break;
       case '2':
-        console.log("View is Clicked on Student id:"+data);
+        console.log("View is Clicked on Student id:" + data);
         upload['PRN'] = data
         upload['Action'] = "accept"
         break;
       case '3':
-        console.log("View is Clicked on Student id:"+data);     
-        upload['PRN'] = data  
+        console.log("View is Clicked on Student id:" + data);
+        upload['PRN'] = data
         upload['Action'] = "Decline"
         break;
     }
 
-    url='/student/Pdashboard'
- 
+    url = '/student/Pdashboard'
+
 
     $.ajax({
-    "url": url,
-    "type": "POST",
-    data: {csrfmiddlewaretoken: '{{ csrf_token }}' ,upload},
+      "url": url,
+      "type": "POST",
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}', PRN: upload['PRN'], Action: upload['Action'] },
     })
+    // $('#main_body').load(document.URL +  ' #main_body');
+    // $('#main_body').load('PMdashboard.html');
+    // $("#main_body").load(location.href + " #main_body");
+
   }
-    
+
 
 
   function show(id) {
@@ -376,12 +384,14 @@
         document.getElementById('D1').style.display = "none";
         document.getElementById('D4').style.display = "none";
         document.getElementById('D2').style.display = "block";
+        document.getElementById('D5').style.display = "none";
         break;
       case '3':
         document.getElementById('D4').style.display = "none";
         document.getElementById('D2').style.display = "none";
         document.getElementById('D1').style.display = "none";
         document.getElementById('D3').style.display = "block";
+        document.getElementById('D5').style.display = "none";
         break;
       case '4':
         console.log("show 4th item ")
@@ -389,8 +399,21 @@
         document.getElementById('D2').style.display = "none";
         document.getElementById('D1').style.display = "none";
         document.getElementById('D3').style.display = "none";
+        document.getElementById('D5').style.display = "none";
+        break;
+      case '5':
+        var url = window.location.href
+        url = url.replace(/Pdashboard/i, "Filter")
+        console.log(url)
+        window.location = url
         break;
 
+      case '6':
+        var url = window.location.href
+        url = url.replace(/Pdashboard/i, "Signout")
+        console.log(url)
+        window.location = url
+        break;
     }
 
   }
