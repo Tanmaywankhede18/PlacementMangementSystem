@@ -7,70 +7,56 @@
 }
 body{
     background-color: rgb(231, 239, 255);
-
 }
 
-
-.main-cont{
-    background-color: #fff;
-    padding: 60px;
-    margin:100px 200px 100px 200px;
-
-
-
-}
-.sub-title{
-    margin-bottom: 20px;
+.main_cont{
+    padding-top: 50px;
     display: flex;
-    justify-content: space-between;
-}
-
-.inputs{
-
-display: flex;
-flex-wrap: wrap;
-margin-bottom: 10px;
-}
-.input-field{
-    width:50%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-Label{
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-input{
-    margin-right: 10px;
-    outline: none;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-}
-.agreem{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.inputs button{
-    margin-left: auto;
-    background-color: rgb(60, 145, 255);
-    color: white;
-    padding: 10px;
-    border: none;
-    padding:0px 50px 0px 50px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-weight: 600;
-    margin-top: 20px;
+    flex-direction: column;
+}
+.inputs{
+    margin-top: 40px;
+    border-radius: 5px;
+    padding: 40px;
+  
+    background-color: white;
+    box-shadow: 0px 1px 2px gray;
+    width: 60%;
+    display: flex;
+    columns: 2;
+    flex-wrap: wrap;
+}
+.inputs button{
+    background-color: rgb(31, 91, 255);
+    padding: 8px 20px;
+    font-weight: 500;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+.inputs input,select{
+    padding: 8px;
+    border-radius: 5px;
+    border:1px solid rgb(194, 194, 194);
+    box-shadow: 0px 1px 2px rgb(194, 194, 194);
+    /* border: none; */
+}
 
+
+.inputs label{
+    margin-bottom: 5px;
+    font-size: 14px;
 }
-.inputs button:hover{
-    background-color: rgb(1, 99, 228);
-    cursor: pointer;
+ .inputs div:nth-child(even){
+    margin-left: 20px;
 }
+.single_input{
+    margin-bottom: 20px;
+    display: flex;
+    width: 48%;
+    flex-direction: column;
+}
+

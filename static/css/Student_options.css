@@ -136,26 +136,30 @@ input{
     height:75%;
     background-color:white;
     border-radius:5px;
-    border: 1px solid rgba(128, 128, 128, 0.466);
-    padding:1px;
+    box-shadow: 0px 1px 2px rgba(128, 128, 128, 0.466);
+   
 
 }
 #table {
-    
+    border-radius:5px;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #table td, #table th {
-
-    border-bottom: 1px solid rgb(231, 231, 231);
+  #table th{
+    
     padding: 8px;
    
   }
+  #table td{
+    padding: 8px;
+  }
   
-  #table tr{background-color: white;}
+  #table tr{
+      border-bottom: 1px solid rgb(204, 204, 204);
+    }
   
-  #table tr:hover {background-color: rgb(224, 236, 255);}
+ 
   
   #table th {
     padding-top: 10px;

@@ -1,5 +1,6 @@
 
 from ast import Pass
+from django.db.models import Q
 from contextlib import redirect_stderr
 from hashlib import new
 from importlib.metadata import requires
@@ -8,6 +9,7 @@ import re
 from this import d
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from numpy import deprecate
 from pkg_resources import Requirement
 from student.models import *
 from django.contrib.auth.models import User
@@ -18,67 +20,126 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string  
 from student.token import account_activation_token  
 from django.utils.encoding import force_bytes,force_str
+from django.core import serializers
+import json
 # Create your views here.
 import  pandas as pd 
 
 def POdashboard(request):
-    if request.method=='POST':
-     Action = request.POST['Action']
-     prn = request.POST['PRN']
-     stud = Student.objects.get(PRN=prn)
-   
-     if(Action=="view"):
-       print("View")
-     elif(Action=="accept"):
-       stud.verified=1;
-       stud.save()
-       print("Accepted succefully!")
-     else:
-       user = User.objects.get(id=stud.user_id)  
-       user.delete()
-       stud.delete()  
-       print("Delete")
-         #delete   
-  
-
-    events = Event.objects.all()
-    st = Student.objects.filter(verified=0)
-    return render(request,'PMdashboard.html',{'data':events,'students':st,})
+    pass
+#     print(request.POST)
+#     if request.method=='POST':
+#      Action = request.POST['Action']
+#      if "Action" in request.POST:
+#          print("This is working properly!!")
+#      prn = request.POST['PRN']
+#      print(Action,prn)
+#      stud = Student.objects.get(PRN=prn)
+#      print(prn)   
+#      if(Action=="View"):
+#        print("View")
+#        return HttpResponse("view Request initiated")
+#      elif(Action=="Accept"):
+#     #    stud.verified=1;
+#     #    stud.save()
+#        print("Accepted succefully!")
+#        return HttpResponse('Accept request initiated')
+#      else:
+#     #    user = User.objects.get(id=stud.user_id)  
+#     #    user.delete()
+#     #    stud.delete()  
+#     #    print("Delete")
+#        return HttpResponse('Delete request initiated')
+#          #delete   
+#     events = Event.objects.all()
+#     st = Student.objects.filter(verified=0)
+#     return render(request,'PMdashboard.html',{'data':events,'students':st,})
 
 
 def index(request):
     if(request.method=="POST"):
-        name = request.POST.get("name")
-        ctc = request.POST.get("ctc")
-        lastdate = request.POST.get("lastdate")
-        Requirement = request.POST.get("requirements")
-        passouts = request.POST.get("passouts")
-        link = request.POST.get("link")
-        roll = request.POST.get('roll')
-        event = Event(drive_name = name,
-        req=Requirement,
-        roll=roll,
-        ctc=ctc,
-        passouts = passouts,
-        last_date = lastdate,
-        link = link
-        )
-        event.save()
-        
+        print(request.POST)
+        if "update_event" in request.POST:
+            name = request.POST.get("name")
+            ctc = request.POST.get("ctc")
+            laststdate = request.POST.get("lastdate")
+            Requirement = request.POST.get("requirements")
+            passouts = request.POST.get("passouts")
+            link = request.POST.get("link")
+            roll = request.POST.get('roll')
+            # update event here
 
+            print("Updated "+str(request.POST.get('u_name')))
+
+        elif "Action" in request.POST:
+            action = request.POST['Action']
+            prn = request.POST['PRN']
+            print(action,prn)
+            if action == "Accept":
+                
+                return HttpResponse("Accepted Request!!")
+            elif action == "Reject":
+
+                return HttpResponse("Rejected Request!!")
+
+        elif "add_event" in request.POST:
+            name = request.POST.get("name")
+            ctc = request.POST.get("ctc")
+            lastdate = request.POST.get("lastdate")
+            Requirement = request.POST.get("requirements")
+            passouts = request.POST.get("passouts")
+            link = request.POST.get("link")
+            roll = request.POST.get('roll')
+            event = Event(drive_name = name,
+            req=Requirement,
+            roll=roll,
+            ctc=ctc,
+            passouts = passouts,
+            last_date = lastdate,
+            link = link
+            )
+            event.save()
+        elif "updat_profile" in request.POST:
+            pm_obj = PM.objects.get(user_id=request.user.id)
+
+            pm_obj.name = request.POST.get('Name')
+            pm_obj.mobile = request.POST.get('Mobile')
+            pm_obj.dep = request.POST.get('Dep')
+            pm_obj.email = request.POST.get('Email')
+            pm_obj.save()
+        else:
+            id = request.POST['id']
+            if id!=None:
+                print(id)
+                RequestedEvent = Event.objects.get(drive_name=id)
+                Jresp = {
+                    'drive_name':RequestedEvent.drive_name,
+                    'Desc':RequestedEvent.req,
+                    'roll':RequestedEvent.roll,
+                    'ctc':RequestedEvent.ctc,
+                    'passout':RequestedEvent.passouts,
+                    'website':RequestedEvent.link,
+                    'lastdate':RequestedEvent.last_date,
+                }
+                jo = json.dumps(Jresp,default=str)
+                print(jo)
+                return HttpResponse(jo)
     user = request.user
+    events = Event.objects.all()
+    st = Student.objects.filter(verified=0)
+    if user.is_staff:
+        manager = PM.objects.get(email=user.email)
+        print(manager)
+        return render(request,'PMdashboard.html',{'data':events,'students':st,'Profile':manager})
+        return redirect('/student/Pdashboard')
     try:
         obj = Student.objects.get(user_id=user.id)
     except Student.DoesNotExist:
         return redirect('/student/Register')
-        
-    events = Event.objects.all()
-    events = Event.objects.all()
-    st = Student.objects.filter(verified=0)
-    if user.is_staff:
-        return render(request,'PMdashboard.html',{'data':events,'students':st})
-        return redirect('/student/Pdashboard')
-    
+   
+    # Profile = PM.objects.get(user=request.user)
+    # print(Profile)
+ 
     if obj.verified:
         return render(request, 'dashboard.html',{'data':events})
     else:
@@ -89,45 +150,29 @@ def index(request):
 
         
 def test(request):
+    if request.method == 'POST':
+        if "view_user" in request.POST:
 
-    # if request.method=="POST":
-    #     email = request.POST.get('email')
-    #     password = request.POST.get('pass')
-    #     user = User.objects.create_user(email,email,password);
-    #     user.is_active = False  
-    #     user.save()  
-    #     current_site = get_current_site(request)  
-    #     mail_subject = 'Activation link has been sent to your email id'  
-    #     message = render_to_string('acc_active_email.html', {  
-    #             'user': user,  
-    #             'domain': current_site.domain,  
-    #             'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-    #             'token':account_activation_token.make_token(user),  
-    #         })  
-    #     email = EmailMessage(  
-    #                     mail_subject, message, to=[email]  
-    #         )  
-    #     email.send()  
-    #     return HttpResponse('Please confirm your email address to complete the registration')  
-    if request.method == "POST":
-        filter = request.POST.get('pass')
-        name  = request.POST.get('name')
-        stu = Student.objects.filter(ug_marks__gte=filter).filter(first_name=name)
-        prn  = []
-        name = []
-        ug = []
-        ug_marks  = []
-        for s in stu:
-            prn.append(s.PRN)
-            name.append(str(s.first_name)+str(s.last_name))
-            ug.append(s.ug)
-            ug_marks.append(s.ug_marks)
+            print('This is working!!!'+ str(request.POST.get('view_user')))
+    # if request.method == "POST":
+    #     filter = request.POST.get('pass')
+    #     name  = request.POST.get('name')
+    #     stu = Student.objects.filter(ug_marks__gte=filter).filter(first_name=name)
+    #     prn  = []
+    #     name = []
+    #     ug = []
+    #     ug_marks  = []
+    #     for s in stu:
+    #         prn.append(s.PRN)
+    #         name.append(str(s.first_name)+str(s.last_name))
+    #         ug.append(s.ug)
+    #         ug_marks.append(s.ug_marks)
 
-        df = pd.DataFrame({'PRN': prn,'Name':name,'Stream':ug,'Marks':ug_marks})
-        writer = pd.ExcelWriter('demo.xlsx', engine='xlsxwriter')
-        df.to_excel(writer, sheet_name='Sheet1', index=False)
-        writer.save()
-        return render(request,'test.html',{'data':stu})
+    #     df = pd.DataFrame({'PRN': prn,'Name':name,'Stream':ug,'Marks':ug_marks})
+    #     writer = pd.ExcelWriter('demo.xlsx', engine='xlsxwriter')
+    #     df.to_excel(writer, sheet_name='Sheet1', index=False)
+    #     writer.save()
+    #     return render(request,'test.html',{'data':stu})
 
     stu = Student.objects.all()
     return render(request,'test.html',{'data':stu})
@@ -233,7 +278,31 @@ def register(request):
         return redirect('/student/Signup')
 
 def TPO(request):
-     return render(request, 'TPORegister.html')
+    if request.method == "POST":
+        if "TPO_register" in request.POST:
+            name = request.POST.get('Name')
+            mobile = request.POST.get('Mobile')
+            dep = request.POST.get('Dep')
+            email = request.POST.get('Email')
+            password = request.POST.get('Password')
+            user = User.objects.create_user(email,email,password)
+            user.is_staff=True;
+            print(name,mobile,dep,email,password)
+            user.save()
+
+            pm_obj = PM(
+              
+                fullname = name,
+                email=email,
+                mobile=mobile,
+                department=dep,
+                user = user
+            )
+            pm_obj.save()
+
+            return HttpResponse("User is created!!")
+
+    return render(request, 'TPORegister.html')
 # def Register(request):
 #     if request.method == 'POST':
 #         name = request.POST.get("Name")
@@ -298,13 +367,20 @@ def Filter(request):
         dep = request.POST.get('Dep')
         marks = request.POST.get('marks')
         skills = request.POST.get('skills')
-    
-        stu = Student.objects.filter(ug_marks__gte=marks).filter(first_name=name)
+        
+        # stu = Student.objects.filter(ug_marks__gte=marks)
+
+        stu = Student.objects.filter(
+            Q(ug_marks__gte=marks) &
+            Q(first_name=name)
+        )
+
+ 
+
         prn  = []
         name = []
         ug = []
         ug_marks  = []
-
 
         for s in stu:
             prn.append(s.PRN)
@@ -328,3 +404,6 @@ def ShowProfile(request):
     #     stud = Student.objects.get(PRN=prn)
         
     return HttpResponse("Show the User Profile")
+
+
+  

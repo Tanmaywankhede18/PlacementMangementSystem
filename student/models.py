@@ -12,6 +12,7 @@ class Admin(models.Model):
     mobile = models.CharField(max_length=10)
     
 class Student(models.Model):
+    
     email = models.CharField(max_length=100)
     roll = models.CharField(max_length=10,default='student')
     verified = models.BooleanField();
@@ -46,7 +47,7 @@ class Student(models.Model):
 
 
 class PM(models.Model):
-    roll = models.CharField(max_length=10,default='pm')
+
     fullname = models.CharField(max_length=100)
     email = models.CharField(max_length=30)
     mobile = models.CharField(max_length=10)

@@ -22,7 +22,7 @@
         </div>
         <div class="select">
 
-          <li id='1' onclick="show(this.id)">Overview</li>
+
           <li id='2' onclick="show(this.id)">Event</li>
           <li id='3' onclick="show(this.id)">Profile</li>
           <li id='5' onclick="show(this.id)">Advanced Search</li>
@@ -126,6 +126,8 @@
       <div class="Events" id="D2">
         <div class="title">
           <h3>Events</h3>
+          <input type="text" placeholder="Search for events" />
+          <button type="button" id="add_event">Add Event</button>
         </div>
         <!-- <div class="search">
           <input type="text" placeholder="Search for events" />
@@ -133,15 +135,19 @@
           <button type="button" id="add_event">Add Event</button>
         </div> -->
         <div class="cards">
+
+          {% csrf_token %}
           {% for p in data %}
-          <div class="sing-card">
+          <div class="sing-card" type="submit" id={{ p.drive_name }}>
             <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
             <br /><br /><br /><br />
-
             <h5>{{ p.drive_name }}</h5>
             <p>{{ p.req }}</p>
+            <button id={{p.drive_name}} value={{p.drive_name}} name="requestEvent" onclick="openCard(this.value)">View</button>
           </div>
           {% endfor %}
+
+
 
         </div>
       </div>
@@ -152,35 +158,65 @@
         </div>
         <div class="Profile-div">
           <div>
-            <h3>Personal Information</h3>
-            <p>you can update personal information</p>
-            <div class="text-area">
-              <label for="name">Name</label>
-              <input type="text">
-            </div>
-            <div class="merge">
+
+            <div class="sub-profile">
+              <form action="" method="POST">
+                {% csrf_token %}
+              <h3>Personal Information</h3>
+              <p>you can update personal information</p>
               <div class="text-area">
-                <label for="name">Email</label>
-                <input type="Email">
+                <label for="name">Name</label>
+                <input type="text" name="Name" value={{ Profile.fullname }}>
               </div>
+              <div class="merge">
+                <div class="text-area">
+                  <label for="name">Email</label>
+                  <input type="Email" name="Email" value={{ Profile.email }}>
+                </div>
+                <div class="text-area">
+                  <label for="name">Mobile</label>
+                  <input type="text" name="Mobile" value={{ Profile.mobile }}>
+                </div>
+              </div>
+
               <div class="text-area">
-                <label for="name">Mobile</label>
-                <input type="text">
+                <label for="name">Department</label>
+                <input type="text" name="Dep" disabled="True" value={{ Profile.department }}>
               </div>
+              <button type="submit" name="updat_profile">Update</button>
             </div>
-  
-            <div class="text-area">
-              <label for="name">Department</label>
-              <input type="text">
-            </div>
-  
+                            
+          </form>
           </div>
-  
-        
+          <div>
+
+            <div class="sub-profile">
+              <h3>Change Password</h3>
+              <p>Update Your Password</p>
+              <div class="text-area">
+                <label for="name">Old Password</label>
+                <input type="text" name="old_pasword">
+              </div>
+              <div class="merge">
+                <div class="text-area">
+                  <label for="name">New Password</label>
+                  <input type="Email" name="new_password">
+                </div>
+                <div class="text-area">
+                  <label for="name">Retype Password</label>
+                  <input type="text" name="retype_password">
+                </div>
+              </div>
+
+              <button>Update</button>
+            </div>
+          </div>
+
+
         </div>
-     
+
       </div>
-    
+
       <div class="Request" id="D4">
         <div class="title">
           <h3>Request</h3>
@@ -204,8 +240,8 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
 
+            <tbody>
               {% for i in students %}
               <tr>
                 <td>{{ i.PRN }}</td>
@@ -215,13 +251,13 @@
                 <td>
                   <div class="btns">
                     <!-- <Button class="accept view">View</Button> -->
-                    <Button class="accept">Accept</Button>
-                    <Button class="reject">Reject</Button>
+                    <Button class="accept" onclick="action(this.value,this.id)" id={{ i.PRN }} value="Accept">Accept</Button>
+                    <Button class="reject" onclick="action(this.value,this.id)" id={{ i.PRN }} name="Reject" value="Reject">Reject</Button>
                   </div>
                 </td>
               </tr>
               {% endfor %}
-
+          
 
 
             </tbody>
@@ -245,7 +281,7 @@
             <h3>Add Event</h3>
             <div>
               <label for="Name of Comapany">Comapany Name</label>
-              <input type="text" name="name">
+              <input type="text" name="name" >
             </div>
             <div>
               <label for="Name of Comapany">Roll</label>
@@ -276,10 +312,80 @@
               <label for="Name of Comapany">Website / Link</label>
               <input type="text" name="link">
             </div>
-            <button class="btn-primary" type="submit"> <span class="material-icons">
+            <button class="btn-primary" type="submit" name="add_event"> <span class="material-icons">
                 post_add
               </span> Post </button>
           </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="view_modal" id="view_modal">
+      <div class="view_drive">
+        <div class="dialog-inputs">
+          <h3>Drive Name</h3>
+          <form action="" method="POST">
+            {% csrf_token %}
+          <div>
+            <label for="Name of Comapany">Comapany/Drive Name</label>
+            <input type="text" name="u_name" id="drive_name">
+          </div>
+          <div>
+            <label for="Name of Comapany">Description</label>
+            <input type="text" name="u_desc" id="desc">
+          </div>
+          <div>
+            <label for="Name of Comapany">Roll</label>
+            <input type="text" name="u_roll" id="roll">
+          </div>
+          <div>
+            <label for="Name of Comapany">CTC</label>
+            <input type="text" name="u_CTC" id="ctc">
+          </div>
+          <div>
+            <label for="Name of Comapany">Passout</label>
+            <input type="text" name="u_passout" id="passout">
+          </div>
+          <div>
+            <label for="Name of Comapany">Last Date</label>
+            <input type="text" name="u_lastdate" id="lastdate">
+          </div>
+          <div>
+            <label for="Name of Comapany">Website</label>
+            <input type="text" name="u_link" id="link">
+          </div>
+          <button class="btn-primary" id="profile_update" name="update_event">Update</button>
+        </form>
+        </div>
+
+        <div class="list_stud">
+          <h3>Students </h3>
+          <div class="list-s">
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr</th>
+                  <th>Name</th>
+                  <th>PRN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Manasi Ranjit Patil</td>
+                  <td>2020078384</td>
+                </tr>
+                
+              </tbody>
+            </table>
+            <!-- <ul>
+              <li>Manasi Ranjit Patil</li>
+              <li>Manasi Ranjit Patil</li>
+    
+            </ul> -->
+          </div>
         </div>
       </div>
     </div>
@@ -287,11 +393,11 @@
 
 <script>
   var modal = document.getElementById("myModal");
-
   var btn = document.getElementById("add_event");
-
+  var view = document.getElementById('profile_update');
+  var view_modal = document.getElementById("view_modal");
   var span = document.getElementsByClassName("close")[0];
-
+  var card = document.getElementsByClassName("sing-card");
   btn.onclick = function () {
     modal.style.display = "block";
   };
@@ -301,55 +407,61 @@
   };
 
   window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == modal || event.target == view_modal) {
       modal.style.display = "none";
+      view_modal.style.display = 'none';
     }
+
   };
+
+  view.onclick = function(){
+
+  }
+
+  function openCard(id){
+      console.log(id)
+      let event_data = "";
+      // open dialog box here get here all that data 
+      $.ajax({
+      url: '',
+      type: "POST",
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}',id:id},
+      success:function(data){
+        event_data = JSON.parse(data)
+        console.log(event_data.drive_name)
+        document.getElementById("drive_name").value = event_data.drive_name
+        document.getElementById("desc").value = event_data.Desc
+        document.getElementById("ctc").value = event_data.ctc
+        document.getElementById("roll").value = event_data.roll
+        document.getElementById("link").value = event_data.website
+        document.getElementById("passout").value = event_data.passout
+        document.getElementById("lastdate").value = event_data.lastdate
+
+        view_modal.style.display = "block";
+      }
+    })
+
+
+  
+  }
 </script>
+
+
 <script async defer>
 
 
   function action(id, data) {
 
-
-    var upload = {
-      'PRN': 0,
-      'Action': "None"
-    }
-    switch (id) {
-      case '1':
-        console.log("View is Clicked on Student id:" + data);
-        upload['PRN'] = data
-        upload['Action'] = "view"
-        var url = window.location.href
-        url = url.concat("/StudentProfile")
-        console.log(url)
-        window.location = url
-        break;
-      case '2':
-        console.log("View is Clicked on Student id:" + data);
-        upload['PRN'] = data
-        upload['Action'] = "accept"
-        break;
-      case '3':
-        console.log("View is Clicked on Student id:" + data);
-        upload['PRN'] = data
-        upload['Action'] = "Decline"
-        break;
-    }
-
     url = '/student/Pdashboard'
-
-
     $.ajax({
-      "url": url,
-      "type": "POST",
-      data: { csrfmiddlewaretoken: '{{ csrf_token }}', PRN: upload['PRN'], Action: upload['Action'] },
+      url: '',
+      type: "POST",
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}', PRN: data, Action: id },
+      success:function(){
+        console.log('Requested data')
+      }
     })
-    // $('#main_body').load(document.URL +  ' #main_body');
-    // $('#main_body').load('PMdashboard.html');
-    // $("#main_body").load(location.href + " #main_body");
-
+   
   }
 
 
@@ -386,14 +498,14 @@
         break;
       case '5':
         var url = window.location.href
-        url = url.replace(/Pdashboard/i, "Filter")
+        url = url.replace(/dashboard/i, "Filter")
         console.log(url)
         window.location = url
         break;
 
       case '6':
         var url = window.location.href
-        url = url.replace(/Pdashboard/i, "Signout")
+        url = url.replace(/dashboard/i, "Signout")
         console.log(url)
         window.location = url
         break;

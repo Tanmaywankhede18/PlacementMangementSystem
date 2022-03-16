@@ -19,7 +19,19 @@
         {% csrf_token %}
         <input type="text" name="name">
         <input type="text" name="pass">
-        <button type="submit"> submit</button>
+        <button type="submit" name="delete_user"> submit</button>
+    </form>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name">
+        <input type="text" name="pass">
+        <button type="submit" name="view_user" value="Add"> submit</button>
     </form>
 </body>
+{% for i in data %}
+<script>
+
+    console.log("{{ i.first_name }}")
+</script>
+{% endfor %}
 </html>

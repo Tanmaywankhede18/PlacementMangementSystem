@@ -27,12 +27,17 @@
 }
 .Profile-div{
   display: flex;
-  padding: 20px;
   margin: 40px;
-  background-color: #fff;
   border-radius: 5px;
+ 
+}
+.sub-profile{
+  padding: 20px;
   box-shadow: 0px 1px 2px rgb(196, 196, 196);
-
+  background-color: #fff;
+}
+.sub-profile:first-child{
+  margin-right: 20px;
 }
 .merge{
   display: flex;
@@ -51,7 +56,7 @@ input{
   padding:10px;
   border-radius: 5px;
   outline: none;
-  border: 1px solid rgb(212, 212, 212);
+  box-shadow: 0px 1px 2px  rgb(212, 212, 212);
 }
 label{
   font-weight: 600;
@@ -113,8 +118,13 @@ label{
  
 }
 .title {
+  display: flex;
+  flex-direction: row;
   padding: 20px;
   border-bottom: 1px solid rgba(218, 218, 218, 0.452);
+}
+.title input{
+    margin-left: 10px;
 }
 .title h3 {
   font-size: 24px;
@@ -176,11 +186,16 @@ label{
 }
 
 #add_event {
-  background-color: white;
-  color: rgb(61, 152, 255);
-  border: 1px solid rgb(218, 216, 216);
+  padding: 0px 20px 0px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-left: auto;
+  background-color: rgb(61, 152, 255);
+  color: white;
+
 }
 .cards {
+  flex-wrap: wrap;
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -224,7 +239,7 @@ label{
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 50px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -236,14 +251,38 @@ label{
 
 /* Modal Content */
 .content {
-  border-radius: 5px;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid rgb(211, 211, 211);
-  width: 40%;
-}
 
+ 
+  border-radius: 5px;
+  margin: auto;
+  width: fit-content;
+ 
+}
+.add-event-card{    
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content{
+  background-color: white;
+  padding: 20px;
+
+}
+.add-event-card div{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.add-event-card>.btn-primary{
+  margin-top: 10px;
+}
+.card-title{
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
 /* The Close Button */
 .close {
   color: #aaaaaa;
@@ -272,4 +311,77 @@ label{
   background-color: rgb(61, 152, 255);
   color: white;
   font-weight: 600;
+}
+
+/* Modal Css */
+.view_modal input{
+  margin: 0px;
+}
+.view_modal{
+
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 30px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.view_drive label{
+  font-weight: 500;
+}
+
+.view_drive{
+  margin:auto;
+  padding: 40px;
+  width: 50%;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+}
+.dialog-inputs{
+  flex: 1;
+  display: flex;
+  flex-direction:column;
+
+}
+.dialog-inputs div{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.list_stud{
+  margin-left: 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+}
+.list-s{ 
+  flex: 1;
+  overflow-x: hidden;
+
+  box-shadow: 0px 1px 2px lightgray;
+  height: 400px;
+}
+.list_stud li{
+  font-size: 14px;
+  list-style: none;
+}
+.list_stud h3{
+  margin-bottom: 10px;
+}
+.list_stud ul{
+  list-style: none;
+  padding: 0px;
+}
+
+.btn-primary{
+  margin-top: 20px;
 }

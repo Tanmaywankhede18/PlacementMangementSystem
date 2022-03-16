@@ -10,7 +10,7 @@ urlpatterns = [
     path('/Register',views.register),
     path('/TPO',views.TPO),
     path('/Pdashboard',views.POdashboard),
-    path('/Pdashboard/StudentProfile',views.ShowProfile),
+    path('/dashboard/StudentProfile',views.ShowProfile),
     path('/Filter',views.Filter),
     path('/test',views.test),
         path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
