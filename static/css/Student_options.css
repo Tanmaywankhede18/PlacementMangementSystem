@@ -5,6 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
+    overflow: hidden;
     background-color:rgb(244, 249, 255);
 }
 
@@ -39,9 +40,12 @@ body{
 }
 
 .main_cont{
+    font-size: 13px;
     display: flex;
 }
 .sidebar{
+    overflow: scroll;
+    overflow-x: hidden;
     background-color:white;
     padding:10px 20px 0px 20px;
     height:90vh;
@@ -64,7 +68,7 @@ body{
 label{
     font-weight: 500;
 }
-input{
+input,select{
     border-radius: 5px;
     width: 100%;
     padding:8px;

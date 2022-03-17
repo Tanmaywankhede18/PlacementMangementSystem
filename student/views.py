@@ -70,13 +70,21 @@ def index(request):
             # update event here
 
             print("Updated "+str(request.POST.get('u_name')))
+        elif "update_pass" in request.POST:
+            # new_pass = request.POST.get('new_password')
+            new_pass = request.POST['update_pass']
+            user = request.user
+            user.set_password(new_pass)
+            user.save()
+            login(request,user)
+            return HttpResponse("Password Updated Successfully!!")
 
         elif "Action" in request.POST:
             action = request.POST['Action']
             prn = request.POST['PRN']
             print(action,prn)
             if action == "Accept":
-                
+
                 return HttpResponse("Accepted Request!!")
             elif action == "Reject":
 
@@ -125,6 +133,7 @@ def index(request):
                 print(jo)
                 return HttpResponse(jo)
     user = request.user
+    
     events = Event.objects.all()
     st = Student.objects.filter(verified=0)
     if user.is_staff:
@@ -362,19 +371,61 @@ def activate(request, uidb64, token):
 def Filter(request):
     stu = Student.objects.all()
     if request.method == "POST":
+        if "filters" in request.POST:
+            name = request.POST['name']
+            prn = request.POST['prn']
+            dep = request.POST['dep']
+            marks = request.POST['marks']
+            gender = request.POST['gender']
+            school = request.POST['school']
+            gap = request.POST['gap']
+            hsc_dep = request.POST['hsc_dep']
+
+            stu = Student.objects.filter(
+            Q(ug_marks__gte=marks) &
+            Q(first_name=name) &
+            Q(PRN=prn) &
+            Q(ug_stream=dep) 
+            )   
+            Jresp ={}
+            
+            for i in stu:
+                Jresp[i.PRN]={
+                    'name':i.first_name,
+                    'prn':i.PRN,
+                    'dep':i.ug_stream,
+                    'marks':i.ug_marks
+                }
+            
+        
+          
+            jo = json.dumps(Jresp,default=str)
+           
+            print(jo)
+            return HttpResponse(jo)
+
         name = request.POST.get('name')
         prn = request.POST.get('PRN')
         dep = request.POST.get('Dep')
         marks = request.POST.get('marks')
         skills = request.POST.get('skills')
+        gap = request.POST.get('gap')
+        gender = request.POST.get('gender')
+        school = request.POST.get('school')
+        dep_hsc = request.POST.get('12th')
         
         # stu = Student.objects.filter(ug_marks__gte=marks)
 
         stu = Student.objects.filter(
-            Q(ug_marks__gte=marks) &
-            Q(first_name=name)
+            Q(ug_marks__gte=marks) |
+            Q(first_name=name) |
+            Q(gender=gender) |
+            Q(school_marks__gte=school) |
+            Q(diploma_marks__gte = dep_hsc)
+
         )
 
+          
  
 
         prn  = []

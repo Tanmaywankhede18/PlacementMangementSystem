@@ -189,27 +189,30 @@
           </form>
           </div>
           <div>
-
+            <!-- <form action="" method="POST">
+              {% csrf_token %} -->
+              
             <div class="sub-profile">
               <h3>Change Password</h3>
               <p>Update Your Password</p>
               <div class="text-area">
                 <label for="name">Old Password</label>
-                <input type="text" name="old_pasword">
+                <input type="password" name="old_pasword" id="old_p">
               </div>
               <div class="merge">
                 <div class="text-area">
                   <label for="name">New Password</label>
-                  <input type="Email" name="new_password">
+                  <input type="password" name="new_password" id="new_p">
                 </div>
                 <div class="text-area">
                   <label for="name">Retype Password</label>
-                  <input type="text" name="retype_password">
+                  <input type="password" name="retype_password" id="retype_p">
                 </div>
               </div>
 
-              <button>Update</button>
+              <button type="submit" name="update_password" onclick="changep()">Update</button>
             </div>
+          <!-- </form> -->
           </div>
 
 
@@ -241,7 +244,7 @@
               </tr>
             </thead>
 
-            <tbody>
+            <tbody id="tbody">
               {% for i in students %}
               <tr>
                 <td>{{ i.PRN }}</td>
@@ -325,7 +328,7 @@
     <div class="view_modal" id="view_modal">
       <div class="view_drive">
         <div class="dialog-inputs">
-          <h3>Drive Name</h3>
+          <h3>Update</h3>
           <form action="" method="POST">
             {% csrf_token %}
           <div>
@@ -449,15 +452,34 @@
 
 <script async defer>
 
-
+  function changep(){
+    var old = document.getElementById("old_p")
+    var new_p = document.getElementById("new_p")
+    var retype_p = document.getElementById("retype_p")
+    $.ajax({
+      url: '',
+      type: "POST",
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}',
+      update_pass:new_p.value
+    },
+      success:function(data){
+        console.log("Password Updated!!!")
+      }
+    })
+  }
   function action(id, data) {
-
+    let tbody = document.getElementById('tbody')
     url = '/student/Pdashboard'
     $.ajax({
       url: '',
       type: "POST",
       data: { csrfmiddlewaretoken: '{{ csrf_token }}', PRN: data, Action: id },
       success:function(){
+        var len = 5,out="";
+        for(var i=0;i<len;i++){
+          out+='<tr> <td>'+i.prn+'</td><td>'+i.first_name+'</td><td>'+i.email+'</td> <td>'+i.ug +'</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id='+i.PRN+'value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id='+i.PRN+' name="Reject" value="Reject">Reject</Button></div></td></tr>'
+        }
+        tbody.innerHTML=out
         console.log('Requested data')
       }
     })

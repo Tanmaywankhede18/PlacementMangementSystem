@@ -5,7 +5,7 @@
         <title>Student Function</title>
         <link rel="stylesheet" href="{% static 'css/Student_options.css' %}" />
         <link rel="stylesheet" href="{% static 'css/input_style.css' %}">
-       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         </head>
 
     <body class="student_section">
@@ -18,15 +18,15 @@
        <div class='main_cont'>
           <div class='sidebar'>
           
-                   
+                    <!-- <div class="sidebar_filter">  -->
                     <form action="" method="POST" class="sidebar_filter">
                         {% csrf_token %}
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox">
-                            <label for="Name">Name</label>
+                            <label for="Name" >Name</label>
                         </div>
-                        <input type="text" name="name">
+                        <input type="text" name="name" id="name" >
                     </div>
 
 
@@ -35,7 +35,7 @@
                             <input type="checkbox">
                             <label for="Name">Department</label>
                         </div>
-                        <input type="text" name="Dep">
+                        <input type="text" name="Dep" id="dep">
                     </div>
  
                     <div class="filter-input">
@@ -43,7 +43,7 @@
                             <input type="checkbox">
                             <label for="Name">PRN</label>
                         </div>
-                        <input type="text" name="PRN">
+                        <input type="text" name="PRN" id="prn">
                     </div>
                      
                     <div class="filter-input">
@@ -51,7 +51,7 @@
                             <input type="checkbox">
                             <label for="Name">Minimum Marks</label>
                         </div>
-                        <input type="text" name="marks">
+                        <input type="text" name="marks" id="marks">
                     </div>
 
                     <div class="filter-input">
@@ -59,9 +59,40 @@
                             <input type="checkbox">
                             <label for="Name">Backlogs</label>
                         </div>
-                        <input type="text" name="backlogs">
+                        <input type="text" name="backlogs" id="backlogs">
                     </div>
-                    
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Year Gap</label>
+                        </div>
+                        <input type="text" name="Gap" id="gap">
+                    </div>
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">Gender</label>
+                        </div>
+                        <select name="gender" id="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">12th/Deploma Marks</label>
+                        </div>
+                        <input type="text" name="12th" id="12th">
+                    </div>
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox">
+                            <label for="Name">10th Marks</label>
+                        </div>
+                        <input type="text" name="10th" id="10th">
+                    </div>
+
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" name="skills">
@@ -69,9 +100,10 @@
                         </div>
                       
                     </div>
-                    <button type="submit" class='apply'>  Apply</button>
+                    <button type="submit" class='apply' >  Apply</button>
                 </form>
-                
+            <!-- </div>
+                 -->
           </div>
           <div class='main_body'>
               <div class='inner-body'>
@@ -115,6 +147,39 @@
       
     </body>
     <script>
+
+        var student_name = document.getElementById("name")
+        var dep = document.getElementById("dep")
+        var marks = document.getElementById("marks")
+        var backlogs = document.getElementById("backlogs")
+        var prn = document.getElementById("prn")
+        var gender = document.getElementById("gender")
+        var school = document.getElementById("10th")
+        var hsc_dep = document.getElementById("12th")
+        var gap = document.getElementById("gap")
+
+        function showValue(){
+            console.log(gender.value)
+            $.ajax({
+            url: '',
+            type: "POST",
+            data: { csrfmiddlewaretoken: '{{ csrf_token }}', name: student_name.value,
+            dep:dep.value,
+            marks:marks.value,
+            backlogs:backlogs.value, 
+            prn: prn.value,
+            gap:gap.value,
+            gender:gender.value,
+            school:school.value,
+            hsc_dep:hsc_dep.value,    
+            filters:''},
+            success:function(data){
+                console.log(data)
+            }
+            })
+
+        }
         
+
     </script>
 </html>

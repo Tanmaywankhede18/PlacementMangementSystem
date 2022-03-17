@@ -52,15 +52,16 @@ p{
   color: rgb(160, 160, 160);
 }
 input{
-
+  border: 1px solid lightgray;
   padding:10px;
   border-radius: 5px;
   outline: none;
-  box-shadow: 0px 1px 2px  rgb(212, 212, 212);
+
 }
 label{
-  font-weight: 600;
-  font-size: 14px;
+ 
+  font-size: 12px;
+  color:gray;
   margin-bottom:5px;
 }
 
@@ -332,9 +333,7 @@ label{
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.view_drive label{
-  font-weight: 500;
-}
+
 
 .view_drive{
   margin:auto;
