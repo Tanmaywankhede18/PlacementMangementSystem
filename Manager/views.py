@@ -122,11 +122,12 @@ def index(request):
                 student = Student.objects.filter(verified=0)
                 Jresp={}
                 for s in student:
+                    ug = Student.objects.get(PRN=s.PRN).ug_stream
                     Jresp[s.PRN] ={
                         'PRN':s.PRN,
                         'Name':s.first_name,
                         'Email':s.email,
-                        'Department':s.ug
+                        'Department':ug
                     }
                     
                 print(Jresp)

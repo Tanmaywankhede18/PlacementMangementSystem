@@ -5,11 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="dashboard1.css">
-    <link rel="stylesheet" href="test2.css">
     <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_1.css' %}">
     <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_2.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -78,43 +77,43 @@
                     <div class="area">
                         <div class="text-area">
                             <label for="name">First Name</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.first_name }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Middle Name</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.middle_name }}" >
                         </div>
                         <div class="text-area">
                             <label for="name">Last Name</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.last_name }}" >
                         </div>
                     </div>
 
                     <div class="area">
                         <div class="text-area username">
                             <label for="name">User Name</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.email }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Birth Date</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.birth_date }}">
                         </div>
                     </div>
 
                     <div class="area">
                         <div class="text-area username">
                             <label for="name">Email</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.email }}" >
                         </div>
                         <div class="text-area">
                             <label for="name">Contact</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.mobile }}">
                         </div>
                     </div>
                     <div class="area">
                         <div class="text-area">
                             <label for="name">Address</label>
-                            <input class="address" type="text">
+                            <input class="address" type="text" value="{{ Personal.address }}">
                         </div>
 
                     </div>
@@ -122,11 +121,11 @@
                     <div class="area">
                         <div class="text-area username">
                             <label for="name">City</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.city }}">
                         </div>
                         <div class="text-area">
                             <label for="name">State</label>
-                            <input type="text">
+                            <input type="text" value="{{ Personal.state }}">
                         </div>
                     </div>
 
@@ -319,122 +318,122 @@
                 </div>
             </div>
             <div class="Education" id="Education_div">
+
                 <div class="btech">
-                <form action="" method="POST">
+                    <!-- <form class="btech" action="" method="POST"> -->
 
-                    
-                    <div class="info-fields">
-                        <h3>Bachelor</h3>
-                        <div class="text-area">
-                            <label for="name">Stream</label>
-                            <select name="" id="ug_stream">
-                                <option value="">Computer Science Engineering</option>
-                                <option value="">Electronics and Telecommunication</option>
-                                <option value="">Civil Engineering</option>
-                                <option value="">Mechanical Engineering</option>
-                                <option value="">Food Technology</option>
-                            </select>
+                        <div class="info-fields">
+                            <h3>Bachelor</h3>
+                            <div class="text-area">
+                                <label for="name">Stream</label>
+                                <select name="" id="ug_stream" value="{{ Education.ug_stream }}">
+                                    <option value="">Computer Science Engineering</option>
+                                    <option value="">Electronics and Telecommunication</option>
+                                    <option value="">Civil Engineering</option>
+                                    <option value="">Mechanical Engineering</option>
+                                    <option value="">Food Technology</option>
+                                </select>
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Admission Year</label>
+                                <input type="text" id="ug_admission" value="{{ Education.ug_admission }}">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Passout Year</label>
+                                <input type="text" id="ug_passout" value="{{ Education.ug_passout }}">
+                            </div>
                         </div>
-                        <div class="text-area">
-                            <label for="name">Admission Year</label>
-                            <input type="text" id="ug_admission">
+
+                        <div class="marks-fields">
+                            <table>
+
+
+                                <tr>
+                                    <th> </th>
+                                    <th>First Year</th>
+                                    <th>Second Year</th>
+                                    <th>Third Year</th>
+                                    <th>Fourth Year</th>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        Sem I
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_fy_sem1" value="{{ Education.ug_fy_sem1 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_sy_sem1" value="{{ Education.ug_sy_sem1 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_ty_sem1" value="{{ Education.ug_ty_sem1 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_be_sem1" value="{{ Education.ug_be_sem1 }}">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Sem II
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_fy_sem2" value="{{ Education.ug_fy_sem2 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_sy_sem2" value="{{ Education.ug_sy_sem2 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_ty_sem2" value="{{ Education.ug_ty_sem2 }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_be_sem2" value="{{ Education.ug_be_sem2 }}">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Atkt's
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_fy_atkt" value="{{ Education.ug_fy_atkt }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_sy_atkt" value="{{ Education.ug_sy_atkt }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_ty_atkt" value="{{ Education.ug_ty_atkt }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_be_atkt" value="{{ Education.ug_be_atkt }}">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Gap
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_fy_gap" value="{{ Education.ug_fy_gap }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_sy_gap" value="{{ Education.ug_sy_gap }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_ty_gap" value="{{ Education.ug_ty_gap }}">
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ug_be_gap" value="{{ Education.ug_be_gap }}">
+                                    </td>
+
+                                </tr>
+
+
+
+                            </table>
                         </div>
-                        <div class="text-area">
-                            <label for="name">Passout Year</label>
-                            <input type="text" id="ug_passout">
-                        </div>
-                    </div>
-
-                    <div class="marks-fields">
-                        <table>
-
-
-                            <tr>
-                                <th> </th>
-                                <th>First Year</th>
-                                <th>Second Year</th>
-                                <th>Third Year</th>
-                                <th>Fourth Year</th>
-
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Sem I
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_fy_sem1">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_sy_sem1">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_ty_sem1">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_be_sem1">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    Sem II
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_fy_sem2">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_sy_sem2">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_ty_sem2">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_be_sem2">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    Atkt's
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_fy_atkt" >
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_sy_atkt">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_ty_atkt">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_be_atkt">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    Gap
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_fy_gap">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_sy_gap" >
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_ty_gap">
-                                </td>
-                                <td>
-                                    <input type="text" id="ug_be_gap"> 
-                                </td>
-
-                            </tr>
-
-
-
-                        </table>
-                    </div>
 
                 </div>
 
@@ -444,11 +443,11 @@
                     <div class="line1">
                         <div class="text-area">
                             <label for="name">College Name</label>
-                            <input type="text" id="diploma_college_name">
+                            <input type="text" id="diploma_college_name" value="{{ Education.diploma_college_name }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Stream</label>
-                            <select name="" id="diploma_stream">
+                            <select name="" id="diploma_stream" value="CE">
                                 <option value="CSE">Computer Science Engineering</option>
                                 <option value="ENTC">Electronics and Telecommunication</option>
                                 <option value="CE">Civil Engineering</option>
@@ -458,7 +457,7 @@
                         </div>
                         <div class="text-area">
                             <label for="name">Passout Year</label>
-                            <input type="text" id="diploma_passout">
+                            <input type="text" id="diploma_passout" value="{{ Education.diploma_passout }}">
                         </div>
                     </div>
 
@@ -466,19 +465,19 @@
 
                         <div class="text-area">
                             <label for="name">First Year</label>
-                            <input type="text" id="diploma_fy">
+                            <input type="text" id="diploma_fy" value="{{ Education.diploma_fy }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Second Year</label>
-                            <input type="text" id="diploma_sy">
+                            <input type="text" id="diploma_sy" value="{{ Education.diploma_ty }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Third Year</label>
-                            <input type="text" id="diploma_ty">
+                            <input type="text" id="diploma_ty" value="{{ Education.diploma_ty }}">
                         </div>
                         <div class="text-area">
                             <label for="name">Aggregate</label>
-                            <input type="text" id="diploma_total">
+                            <input type="text" id="diploma_total" value="{{ Education.diploma_total }}">
                         </div>
 
                     </div>
@@ -491,16 +490,16 @@
                         <h3>12th</h3>
                         <div class="text-area">
                             <label for="name">College Name</label>
-                            <input type="text" id="hsc_college_name">
+                            <input type="text" id="hsc_college_name" value="{{ Education.hsc_college_name }}">
                         </div>
                         <div class="line1">
                             <div class="text-area">
                                 <label for="name">Marks</label>
-                                <input type="text" id="hsc_marks">
+                                <input type="text" id="hsc_marks" value="{{ Education.hsc_marks }}">
                             </div>
                             <div class="text-area">
                                 <label for="name">Passout</label>
-                                <input type="text" id="hsc_passout">
+                                <input type="text" id="hsc_passout" value="{{ Education.hsc_passout }}">
                             </div>
                         </div>
                     </div>
@@ -509,16 +508,16 @@
                         <h3>10th</h3>
                         <div class="text-area">
                             <label for="name">School Name</label>
-                            <input type="text" id="school_name">
+                            <input type="text" id="school_name" value="{{ Education.school_name }}">
                         </div>
                         <div class="line1">
                             <div class="text-area">
                                 <label for="name">Marks</label>
-                                <input type="text" id="school_marks">
+                                <input type="text" id="school_marks" value="{{ Education.school_marks }}">
                             </div>
                             <div class="text-area">
                                 <label for="name">Passout</label>
-                                <input type="text" id="school_passout">
+                                <input type="text" id="school_passout" class="value" value="{{ Education.school_passout }}">
                             </div>
                         </div>
                     </div>
@@ -526,113 +525,9 @@
                 </div>
 
 
-
-            </form>
+                <button name="update_education" type="" onclick="update_education()">Update</button>
+                <!-- </form> -->
             </div>
-
-
-
-
-
-            <script async defer>
-                var title = document.getElementById('title_div')
-                function change_tab(id) {
-                    title.innerHTML = document.getElementById(id).innerText
-                    switch (id) {
-                        case '1':
-
-                            document.getElementById('Main_div').style.display = "none";
-                            document.getElementById('Placement_div').style.display = "none";
-                            document.getElementById('Event_div').style.display = "block";
-                            document.getElementById('Education_div').style.display = "none";
-                            break;
-                        case '2':
-
-                            document.getElementById('Placement_div').style.display = "none";
-                            document.getElementById('Event_div').style.display = "none";
-                            document.getElementById('Main_div').style.display = "flex";
-                            document.getElementById('Education_div').style.display = "none";
-                            break;
-                        case '3':
-                            document.getElementById('Main_div').style.display = "none";
-                            document.getElementById('Placement_div').style.display = "none";
-                            document.getElementById('Event_div').style.display = "none";
-                            document.getElementById('Education_div').style.display = "flex";
-
-                            break;
-                        case '4':
-                            document.getElementById('Education_div').style.display = "none";
-                            document.getElementById('Placement_div').style.display = "block";
-                            document.getElementById('Event_div').style.display = "none";
-                            document.getElementById('Main_div').style.display = "none";
-                            break
-                    }
-
-                }
-
-
-                function show(id) {
-                    switch (id) {
-                        case '1':
-                            document.getElementById('D5').style.display = "none";
-                            document.getElementById('D2').style.display = "none";
-                            document.getElementById('D3').style.display = "none";
-                            document.getElementById('D4').style.display = "none";
-                            document.getElementById('D1').style.display = "block";
-                            break;
-                        case '2':
-                            document.getElementById('D5').style.display = "none";
-                            document.getElementById('D3').style.display = "none";
-                            document.getElementById('D4').style.display = "none";
-                            document.getElementById('D1').style.display = "none";
-                            document.getElementById('D2').style.display = "block";
-                            break;
-                        case '3':
-                            document.getElementById('D5').style.display = "none";
-                            document.getElementById('D2').style.display = "none";
-                            document.getElementById('D4').style.display = "none";
-                            document.getElementById('D1').style.display = "none";
-                            document.getElementById('D3').style.display = "block";
-                            break;
-                        case '4':
-                            document.getElementById('D5').style.display = "none";
-                            document.getElementById('D2').style.display = "none";
-                            document.getElementById('D3').style.display = "none";
-                            document.getElementById('D1').style.display = "none";
-                            document.getElementById('D4').style.display = "block";
-                            break;
-                        case '5':
-                            document.getElementById('D2').style.display = "none";
-                            document.getElementById('D3').style.display = "none";
-                            document.getElementById('D1').style.display = "none";
-                            document.getElementById('D4').style.display = "none";
-                            document.getElementById('D5').style.display = "block";
-                            break
-                    }
-
-                }
-
-
-
-            </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -640,20 +535,125 @@
     </div>
 </body>
 
-<script>
-    function apply(id){
-      console
-      $.ajax({
-      url:'',
-      type:"POST",
-      data:{
-        csrfmiddlewaretoken:'{{ csrf_token }}',
-        id:id,
-        apply:''
-      }
-    })
+<script async defer>
+    var title = document.getElementById('title_div')
+    function change_tab(id) {
+        title.innerHTML = document.getElementById(id).innerText
+        switch (id) {
+            case '1':
+
+                document.getElementById('Main_div').style.display = "none";
+                document.getElementById('Placement_div').style.display = "none";
+                document.getElementById('Event_div').style.display = "block";
+                document.getElementById('Education_div').style.display = "none";
+                break;
+            case '2':
+
+                document.getElementById('Placement_div').style.display = "none";
+                document.getElementById('Event_div').style.display = "none";
+                document.getElementById('Main_div').style.display = "flex";
+                document.getElementById('Education_div').style.display = "none";
+                break;
+            case '3':
+                document.getElementById('Main_div').style.display = "none";
+                document.getElementById('Placement_div').style.display = "none";
+                document.getElementById('Event_div').style.display = "none";
+                document.getElementById('Education_div').style.display = "flex";
+
+                break;
+            case '4':
+                document.getElementById('Education_div').style.display = "none";
+                document.getElementById('Placement_div').style.display = "block";
+                document.getElementById('Event_div').style.display = "none";
+                document.getElementById('Main_div').style.display = "none";
+                break
+        }
+
     }
+
+
+    function show(id) {
+        switch (id) {
+            case '1':
+                document.getElementById('D5').style.display = "none";
+                document.getElementById('D2').style.display = "none";
+                document.getElementById('D3').style.display = "none";
+                document.getElementById('D4').style.display = "none";
+                document.getElementById('D1').style.display = "block";
+                break;
+            case '2':
+                document.getElementById('D5').style.display = "none";
+                document.getElementById('D3').style.display = "none";
+                document.getElementById('D4').style.display = "none";
+                document.getElementById('D1').style.display = "none";
+                document.getElementById('D2').style.display = "block";
+                break;
+            case '3':
+                document.getElementById('D5').style.display = "none";
+                document.getElementById('D2').style.display = "none";
+                document.getElementById('D4').style.display = "none";
+                document.getElementById('D1').style.display = "none";
+                document.getElementById('D3').style.display = "block";
+                break;
+            case '4':
+                document.getElementById('D5').style.display = "none";
+                document.getElementById('D2').style.display = "none";
+                document.getElementById('D3').style.display = "none";
+                document.getElementById('D1').style.display = "none";
+                document.getElementById('D4').style.display = "block";
+                break;
+            case '5':
+                document.getElementById('D2').style.display = "none";
+                document.getElementById('D3').style.display = "none";
+                document.getElementById('D1').style.display = "none";
+                document.getElementById('D4').style.display = "none";
+                document.getElementById('D5').style.display = "block";
+                break
+        }
+
+    }
+
+
+
+</script>
+
+
+
+<script>
+    let arr = new Set()
+
+    $(".value").on("input", function () {
+        arr.add($(this).attr('id'))
+        console.log(arr)
+        
+    });
+
+    function update_education(){
    
-  </script>
+        $.ajax({
+            url:'',
+            type:'POST',
+            data:{
+                csrfmiddlewaretoken:'{{ csrf_token }}',
+                update_education_specified:'',
+                id_arr:'World',
+            }
+        })
+    }
+
+    function apply(id) {
+        console
+        $.ajax({
+            url: '',
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                id: id,
+                apply: ''
+            }
+        })
+    }
+
+</script>
 
 </html>

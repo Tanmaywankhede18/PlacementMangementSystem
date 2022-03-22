@@ -1,6 +1,6 @@
 
-from tkinter import E
-from django.http import HttpResponse, JsonResponse
+
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from Manager.models import *
 from student.models import *
@@ -12,7 +12,6 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string  
 from student.token import account_activation_token  
 from django.utils.encoding import force_bytes,force_str
-from django.core import serializers
 
 
 def signup(request):
@@ -66,23 +65,21 @@ def register(request):
             prn = request.POST.get('PRN')
             city = request.POST.get('city')
             state = request.POST.get('state')
+
             ug = request.POST.get('ug')
             ug_marks = request.POST.get('ug_marks')
             ug_passout = request.POST.get('ug_passout')
             ug_stream = request.POST.get('ug_stream')
-            deploma = request.POST.get('deploma')
-            deploma_marks = request.POST.get('deploma_marks')
-            deploma_passout = request.POST.get('deploma_passout')
-            deploma_stream = request.POST.get('deploma_stream')
+            diploma_name = request.POST.get('deploma')
+            diploma_marks = request.POST.get('deploma_marks')
+            diploma_passout = request.POST.get('deploma_passout')
+            diploma_stream = request.POST.get('deploma_stream')
             ssc = request.POST.get('ssc')
             ssc_marks = request.POST.get('ssc_marks')
             ssc_passout  = request.POST.get('ssc_passout')
-            
-            print(gender,ug_stream,deploma_stream)
-            
+
             stu = Student(
             email = email,
-            roll = "student",
             verified = False,
             first_name = firstname,
             middle_name = middlename,
@@ -94,22 +91,37 @@ def register(request):
             state = state,
             mobile = mobile,
             PRN = prn,
-            ug = ug,
-            ug_marks = ug_marks,
-            ug_passout =ug_passout,
-            ug_stream = ug_stream,
-            diploma = deploma,
-            diploma_marks = deploma_marks,
-            diploma_stream = deploma_stream,
-            diploma_passout = deploma_passout,
-            school = ssc,
-            school_marks = ssc_marks,
-            school_passout = ssc_passout,
+            # ug = ug,
+            # ug_marks = ug_marks,
+            # ug_passout =ug_passout,
+            # ug_stream = ug_stream,
+            # diploma = deploma,
+            # diploma_marks = deploma_marks,
+            # diploma_stream = deploma_stream,
+            # diploma_passout = deploma_passout,
+            # school = ssc,
+            # school_marks = ssc_marks,
+            # school_passout = ssc_passout,
             user = request.user,
             extra_curriculam = {"Activity 1":'premier legue'}
             )
-
             stu.save()
+            
+   
+            stud_edu = StudentEducation(
+                student =  stu,
+                ug_stream = ug,
+                ug_passout = ug_passout,
+                diploma_college_name = diploma_name,
+                diploma_stream = diploma_stream,
+                diploma_passout = diploma_passout,
+                diploma_total = diploma_marks,
+                school_name = ssc,
+                school_marks = ssc_marks,
+                school_passout = ssc_passout
+
+            )
+            stud_edu.save()
             return redirect('/student/dashboard')
         return render(request,'register_div.html')
     else:
@@ -183,15 +195,112 @@ def Signin(request):
 def index(request):
     user = request.user
     stu = Student.objects.get(user_id=user.id)
+
+    print(stu)
+    UpdateEducation(request,stu)
+
     if stu.verified==1:
         events = Event.objects.all()
         ApplyForEvent(request)
-        return render(request, 'Student_Dashboard.html',{'data':events})
+        education = StudentEducation.objects.get(student_id=stu.id)
+        print(education.diploma_college_name)
+        return render(request, 'Student_Dashboard.html',{'data':events,'Education':education,'Personal':stu})
     else:
         print("Inside index")
         return render(request,'Email_verification.html')
-        return HttpResponse("Wait for your request is under monitor!!")
 
+
+def UpdateEducation(request,stu):
+    if request.method == "POST":
+        if "update_education_specified" in request.POST:
+            print(request.POST['id_arr'])
+            # print(arr)
+            return HttpResponse(arr)
+
+        elif "update_education" in request.POST:
+            student_obj = stu
+            ug_stream = request.POST.get('ug_stream')
+            ug_admission = request.POST.get('ug_admission')
+            ug_passout = request.POST.get('ug_passout')
+            ug_fy_sem1 = request.POST.get('ug_fy_sem1')        
+            ug_sy_sem1 = request.POST.get('ug_sy_sem1')          
+            ug_ty_sem1 = request.POST.get('ug_ty_sem1')          
+            ug_be_sem1 = request.POST.get('ug_be_sem1')          
+            ug_fy_sem2 = request.POST.get('ug_fy_sem2')          
+            ug_sy_sem2 = request.POST.get('ug_sy_sem1')          
+            ug_ty_sem2 = request.POST.get('ug_ty_sem1')          
+            ug_be_sem2 =request.POST.get('ug_be_sem1')           
+            #Atkt
+            ug_fy_atkt =request.POST.get('ug_fy_atkt')           
+            ug_sy_atkt = request.POST.get('ug_sy_atkt')          
+            ug_ty_atkt = request.POST.get('ug_ty_atkt')          
+            ug_be_atkt = request.POST.get('ug_be_atkt')          
+            #gap
+            ug_fy_gap  = request.POST.get('ug_fy_gap')          
+            ug_sy_gap  = request.POST.get('ug_sy_gap')         
+            ug_ty_gap  = request.POST.get('ug_ty_gap')         
+            ug_be_gap  =request.POST.get('ug_be_gap')
+            #Diploma
+            diploma_college_name =request.POST.get('diploma_college_name')
+            diploma_stream =request.POST.get('diploma_stream')            
+            diploma_passout = request.POST.get('diploma_passout')  
+            diploma_fy = request.POST.get('diploma_fy')          
+            diploma_sy = request.POST.get('diploma_sy')          
+            diploma_ty = request.POST.get('diploma_ty')          
+            diploma_total = request.POST.get('diploma_total')  
+            #HSC 
+            hsc_college_name = request.POST.get('hsc_college_name')            
+            hsc_marks =request.POST.get('hsc_marks')  
+            hsc_passout = request.POST.get('hsc_passout')  
+            #ssc
+            school_name = request.POST.get('school_name')            
+            school_marks = request.POST.get('school_marks') 
+            school_passout = request.POST.get('school_passout') 
+
+            #Create Object of Student Education
+            student_education = StudentEducation(
+                student = student_obj,
+                ug_stream =ug_stream,
+                ug_admission =ug_admission,
+                ug_passout =ug_passout,
+                ug_fy_sem1 =ug_fy_sem1,
+                ug_sy_sem1 =ug_sy_sem1,
+                ug_ty_sem1 =ug_ty_sem1,
+                ug_be_sem1 =ug_be_sem1,
+                ug_fy_sem2 =ug_fy_sem2,
+                ug_sy_sem2 =ug_sy_sem2,
+                ug_ty_sem2 = ug_ty_sem2,
+                ug_be_sem2 =ug_be_sem2,
+                #Atkt
+                ug_fy_atkt =ug_fy_atkt,
+                ug_sy_atkt =ug_sy_atkt,
+                ug_ty_atkt =ug_ty_atkt,
+                ug_be_atkt =ug_be_atkt,
+                #gap
+                ug_fy_gap  =ug_fy_gap,
+                ug_sy_gap  =ug_sy_gap,
+                ug_ty_gap  =ug_ty_gap,
+                ug_be_gap  =ug_be_gap,
+                #Diploma
+                diploma_college_name =diploma_college_name,
+                diploma_stream =diploma_stream,
+                diploma_passout =diploma_passout,
+                diploma_fy =diploma_fy,
+                diploma_sy =diploma_sy,
+                diploma_ty =diploma_ty,
+                diploma_total =diploma_total,
+                #HSC 
+                hsc_college_name =hsc_college_name,
+                hsc_marks =hsc_marks,
+                hsc_passout =hsc_passout,
+                #ssc
+                school_name =school_name,
+                school_marks = school_marks,        
+                school_passout =school_passout
+                )
+
+            print("Update education!!")
+        
 def ApplyForEvent(request):
     if request.method == "POST":
         if 'apply' in request.POST:

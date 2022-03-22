@@ -46,45 +46,45 @@ class Student(models.Model):
 
 class StudentEducation(models.Model):
     #BTech
-    student_id = models.ForeignKey(Student,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
     ug_stream = models.CharField(max_length=100)
-    ug_admmision = models.IntegerField()
+    ug_admmision = models.IntegerField(null=True)
     ug_passout = models.IntegerField()
     #Percentage 
-    ug_fy_sem1 = models.IntegerField()
-    ug_sy_sem1 = models.IntegerField()
-    ug_ty_sem1 = models.IntegerField()
-    ug_be_sem1 = models.IntegerField()
-    ug_fy_sem2 = models.IntegerField()
-    ug_sy_sem2 = models.IntegerField()
-    ug_ty_sem2 = models.IntegerField()
-    ug_be_sem2 = models.IntegerField()
+    ug_fy_sem1 = models.IntegerField(null=True)
+    ug_sy_sem1 = models.IntegerField(null=True)
+    ug_ty_sem1 = models.IntegerField(null=True)
+    ug_be_sem1 = models.IntegerField(null=True)
+    ug_fy_sem2 = models.IntegerField(null=True)
+    ug_sy_sem2 = models.IntegerField(null=True)
+    ug_ty_sem2 = models.IntegerField(null=True)
+    ug_be_sem2 = models.IntegerField(null=True)
     #Atkt
-    ug_fy_atkt = models.IntegerField()
-    ug_sy_atkt = models.IntegerField()
-    ug_ty_atkt = models.IntegerField()
-    ug_be_atkt = models.IntegerField()
+    ug_fy_atkt = models.IntegerField(null=True)
+    ug_sy_atkt = models.IntegerField(null=True)
+    ug_ty_atkt = models.IntegerField(null=True)
+    ug_be_atkt = models.IntegerField(null=True)
     #gap
-    ug_fy_gap  = models.IntegerField()
-    ug_sy_gap  = models.IntegerField()
-    ug_ty_gap  = models.IntegerField()
-    ug_be_gap  = models.IntegerField()
+    ug_fy_gap  = models.IntegerField(null=True)
+    ug_sy_gap  = models.IntegerField(null=True)
+    ug_ty_gap  = models.IntegerField(null=True)
+    ug_be_gap  = models.IntegerField(null=True)
 
 
     #Diploma
-    diploma_college_name = models.CharField(max_length=100)
-    diploma_stream = models.CharField(max_length=50)
-    diploma_passout = models.IntegerField()
+    diploma_college_name = models.CharField(max_length=100,null=True)
+    diploma_stream = models.CharField(max_length=50,null=True)
+    diploma_passout = models.IntegerField(null=True)
 
-    diploma_fy = models.IntegerField()
-    diploma_sy = models.IntegerField()
-    diploma_ty = models.IntegerField()
-    diploma_total = models.IntegerField()
+    diploma_fy = models.IntegerField(null=True)
+    diploma_sy = models.IntegerField(null=True)
+    diploma_ty = models.IntegerField(null=True)
+    diploma_total = models.IntegerField(null=True)
 
     #HSC 
-    hsc_college_name = models.CharField(max_length=100)
-    hsc_marks = models.IntegerField()
-    hsc_passout = models.IntegerField()
+    hsc_college_name = models.CharField(max_length=100,null=True)
+    hsc_marks = models.IntegerField(null=True)
+    hsc_passout = models.IntegerField(null=True)
 
     #ssc
     school_name = models.CharField(max_length=100)

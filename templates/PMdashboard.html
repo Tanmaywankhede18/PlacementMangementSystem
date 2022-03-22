@@ -447,7 +447,7 @@
         document.getElementById("lastdate").value = event_data.lastdate
         document.getElementById("updateButton").value = event_data.id
         // Fetch students list here
-        var students_arr  =event_data.students
+        var students_arr  = event_data.students
         let j=1,out="";
         for(i in students_arr){
           out+='<tr><td>'+j+'</td><td>'+students_arr[i]+'</td><td>'+i+'</td></tr>'
