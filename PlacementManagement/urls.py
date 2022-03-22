@@ -16,8 +16,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static #add this
+from PlacementManagement import settings
+from Manager.views import Login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('student',include('student.urls')),
-]
+    path('Manager',include('Manager.urls')),
+    path('Login',Login)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+* {
+  margin: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+.add-event-card{
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+.add-event-card div{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.add-event-card label{
+  font-weight:400;
+}
+p {
+  color: gray;
+  font-size:14px;
+}
+.header{
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+.header button{
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 15px;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar{
+    flex:0.2;
+
+
+}
+.select{
+
+  padding-top: 40px;
+
+}
+.select li{
+  color: rgb(185, 185, 185);
+    font-weight: 600;
+    font-size: 14px;
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    padding: 10px;
+    align-items:center;
+    transition:0.3s;
+}
+.select span{
+  margin-right: 10px;
+}
+.select li:hover{
+   
+   background-color: rgb(60, 145, 255);
+    cursor: pointer;
+    color:white;
+    border-radius: 5px;
+ 
+}
+
+
+input,select{
+    padding:10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(212, 212, 212);
+}
+label{
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom:5px;
+}
+.text-area {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.cont {
+  padding: 20px;
+ 
+}
+.cont2{
+   
+    padding: 20px; 
+    display: none;
+}
+.area {
+ 
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.btn-primary{
+  background-color: rgb(60, 145, 255);
+  color: white;
+
+  border: none;
+  padding: 8px 20px 8px 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 20px;
+  float: right;
+}
+.btn-primary span{
+  margin-right: 10px;
+}
+
+.btn-sec{
+  color: rgb(60, 145, 255);
+  border: 1.5px solid rgba(60, 144, 255, 0.418);
+  
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.company{
+  
+}

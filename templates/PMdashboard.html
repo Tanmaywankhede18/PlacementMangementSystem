@@ -136,14 +136,14 @@
         </div> -->
         <div class="cards">
 
-          {% csrf_token %}
+        
           {% for p in data %}
-          <div class="sing-card" type="submit" id={{ p.drive_name }}>
+          <div class="sing-card" type="submit" id={{ p.id }}>
             <p id="deadline">Last Date : <b>{{ p.last_date }}</b></p>
             <br /><br /><br /><br />
             <h5>{{ p.drive_name }}</h5>
             <p>{{ p.req }}</p>
-            <button id={{p.drive_name}} value={{p.drive_name}} name="requestEvent" onclick="openCard(this.value)">View</button>
+            <button id={{ p.drive_name }} value={{ p.id }} name="requestEvent" onclick="openCard(this.value)">View</button>
           </div>
           {% endfor %}
 
@@ -160,22 +160,22 @@
           <div>
 
             <div class="sub-profile">
-              <form action="" method="POST">
-                {% csrf_token %}
+              <!-- <form action="" method="POST">
+                {% csrf_token %} -->
               <h3>Personal Information</h3>
               <p>you can update personal information</p>
               <div class="text-area">
                 <label for="name">Name</label>
-                <input type="text" name="Name" value={{ Profile.fullname }}>
+                <input type="text" name="Name" id='profile_name' value={{ Profile.fullname }}>
               </div>
               <div class="merge">
                 <div class="text-area">
                   <label for="name">Email</label>
-                  <input type="Email" name="Email" value={{ Profile.email }}>
+                  <input type="Email" name="Email" id='profile_email' value={{ Profile.email }} disabled="True">
                 </div>
                 <div class="text-area">
                   <label for="name">Mobile</label>
-                  <input type="text" name="Mobile" value={{ Profile.mobile }}>
+                  <input type="text" name="Mobile" id='profile_mobile' value={{ Profile.mobile }}>
                 </div>
               </div>
 
@@ -183,10 +183,10 @@
                 <label for="name">Department</label>
                 <input type="text" name="Dep" disabled="True" value={{ Profile.department }}>
               </div>
-              <button type="submit" name="updat_profile">Update</button>
+              <button type="submit" name="updat_profile" onclick="updateProfile()">Update</button>
             </div>
                             
-          </form>
+          <!-- </form> -->
           </div>
           <div>
             <!-- <form action="" method="POST">
@@ -223,6 +223,7 @@
       <div class="Request" id="D4">
         <div class="title">
           <h3>Request</h3>
+          <input type="text" placeholder="Search for events" id="search_item"/>
         </div>
         <!-- <div class="search-head">
           <h2>Requests</h2>
@@ -239,7 +240,7 @@
                 <th>PRN</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Department</th>
+                <th>College Name</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -329,8 +330,8 @@
       <div class="view_drive">
         <div class="dialog-inputs">
           <h3>Update</h3>
-          <form action="" method="POST">
-            {% csrf_token %}
+          <!-- <form action="" method="POST">
+            {% csrf_token %} -->
           <div>
             <label for="Name of Comapany">Comapany/Drive Name</label>
             <input type="text" name="u_name" id="drive_name">
@@ -345,7 +346,7 @@
           </div>
           <div>
             <label for="Name of Comapany">CTC</label>
-            <input type="text" name="u_CTC" id="ctc">
+            <input type="text" name="u_ctc" id="ctc">
           </div>
           <div>
             <label for="Name of Comapany">Passout</label>
@@ -359,8 +360,8 @@
             <label for="Name of Comapany">Website</label>
             <input type="text" name="u_link" id="link">
           </div>
-          <button class="btn-primary" id="profile_update" name="update_event">Update</button>
-        </form>
+          <button class="btn-primary" id="updateButton" name="update_event" onclick="updateEvent(this.value)" >Update</button>
+        <!-- </form> -->
         </div>
 
         <div class="list_stud">
@@ -374,7 +375,9 @@
                   <th>PRN</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="slist">
+                <!-- Add Here Applied Students -->
+
                 <tr>
                   <td>1</td>
                   <td>Manasi Ranjit Patil</td>
@@ -428,10 +431,13 @@
       $.ajax({
       url: '',
       type: "POST",
-      data: { csrfmiddlewaretoken: '{{ csrf_token }}',id:id},
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}',
+      id:id,
+      openCard:''
+
+    },
       success:function(data){
         event_data = JSON.parse(data)
-        console.log(event_data.drive_name)
         document.getElementById("drive_name").value = event_data.drive_name
         document.getElementById("desc").value = event_data.Desc
         document.getElementById("ctc").value = event_data.ctc
@@ -439,18 +445,100 @@
         document.getElementById("link").value = event_data.website
         document.getElementById("passout").value = event_data.passout
         document.getElementById("lastdate").value = event_data.lastdate
-
+        document.getElementById("updateButton").value = event_data.id
+        // Fetch students list here
+        var students_arr  =event_data.students
+        let j=1,out="";
+        for(i in students_arr){
+          out+='<tr><td>'+j+'</td><td>'+students_arr[i]+'</td><td>'+i+'</td></tr>'
+          console.log(i+":"+students_arr[i])
+          j++;
+        }
+        document.getElementById('slist').innerHTML=out
+        
         view_modal.style.display = "block";
       }
     })
-
-
-  
   }
+
+  function updateEvent(id){
+        $.ajax({
+          url:'',
+          type:'POST',
+          data:{
+            csrfmiddlewaretoken:'{{ csrf_token }}',
+            id:id,
+            name:document.getElementById("drive_name").value,
+            desc:document.getElementById("desc").value ,
+            ctc:document.getElementById("ctc").value,
+            roll:document.getElementById("roll").value,
+            link:document.getElementById("link").value,
+            passout:document.getElementById("passout").value, 
+            lastdate:document.getElementById("lastdate").value,
+            update_Event:''
+          },
+          success:function(data){
+            event_data = JSON.parse(data)
+            document.getElementById("drive_name").value = event_data.drive_name
+            document.getElementById("desc").value = event_data.Desc
+            document.getElementById("ctc").value = event_data.ctc
+            document.getElementById("roll").value = event_data.roll
+            document.getElementById("link").value = event_data.website
+            document.getElementById("passout").value = event_data.passout
+            document.getElementById("lastdate").value = event_data.lastdate
+            document.getElementById("updateButton").value = event_data.id
+            location.reload()
+          }
+        })
+
+    }
+
 </script>
 
 
 <script async defer>
+  let monin = document.getElementById('search_item')
+
+  monin.oninput = function(){
+    console.log(monin.value)
+    $.ajax({
+      url:'',
+      type:'POST',
+      data:{
+        csrfmiddlewaretoken:'{{ csrf_token }}',
+        inputData:monin.value
+      },
+      success:function(data){
+        let d =  JSON.parse(data),out="";
+        console.log(d)
+        for (student in d){
+              console.log(student) 
+              out+='<tr> <td>'+d[student].PRN+'</td><td>'+d[student].Name+'</td><td>'+d[student].Email+'</td> <td>'+d[student].Department +'</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id='+d[student].PRN+' value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id='+d[student].PRN+' name="Reject" value="Reject">Reject</Button></div></td></tr>'
+        }
+        tbody.innerHTML=out
+      }
+    })
+  }
+
+  function updateProfile(){
+    var name = document.getElementById('profile_name')
+    var email = document.getElementById('profile_email')
+    var mobile = document.getElementById('profile_mobile')
+    $.ajax({
+      url:'',
+      type:'POST',
+      data:{
+        csrfmiddlewaretoken:'{{ csrf_token }}',
+        name:name.value,
+        email:email.value,
+        mobile:mobile.value,
+        updateProfile:''
+      },
+      success:function(data){
+        console.log(JSON.parse(data))
+      }
+    }) 
+  }
 
   function changep(){
     var old = document.getElementById("old_p")
@@ -467,20 +555,24 @@
       }
     })
   }
+
   function action(id, data) {
     let tbody = document.getElementById('tbody')
     url = '/student/Pdashboard'
+    var out="";
     $.ajax({
       url: '',
       type: "POST",
       data: { csrfmiddlewaretoken: '{{ csrf_token }}', PRN: data, Action: id },
-      success:function(){
-        var len = 5,out="";
-        for(var i=0;i<len;i++){
-          out+='<tr> <td>'+i.prn+'</td><td>'+i.first_name+'</td><td>'+i.email+'</td> <td>'+i.ug +'</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id='+i.PRN+'value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id='+i.PRN+' name="Reject" value="Reject">Reject</Button></div></td></tr>'
+      success:function(data){
+        let d =  JSON.parse(data);
+        console.log(d)
+        for (student in d){
+              console.log(student) 
+              out+='<tr> <td>'+d[student].PRN+'</td><td>'+d[student].Name+'</td><td>'+d[student].Email+'</td> <td>'+d[student].Department +'</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id='+d[student].PRN+' value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id='+d[student].PRN+' name="Reject" value="Reject">Reject</Button></div></td></tr>'
         }
         tbody.innerHTML=out
-        console.log('Requested data')
+        console.log(d)
       }
     })
    

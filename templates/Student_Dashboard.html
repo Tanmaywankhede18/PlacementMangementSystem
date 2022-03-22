@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<!-- {% load static %} -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="dashboard1.css">
+    <link rel="stylesheet" href="test2.css">
+    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_2.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="Logo">
+            <h2>Placement <br> Management </h2>
+            <p>Shivaji University</p>
+        </div>
+        <div>
+            <ul>
+                <li id="1" onclick="change_tab(this.id)" value="Event">Events</li>
+                <li id="2" onclick="change_tab(this.id)" value="Profile">Profile</li>
+                <li id="3" onclick="change_tab(this.id)" value="Education">Education</li>
+                <li id="4" onclick="change_tab(this.id)" value="Placement">Placement</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-body">
+        <div class="head">
+            <div class="name-header">
+                <span class="material-icons">person</span>
+                <h3>Jack Martin</h3>
+            </div>
+            <div class="name-header">
+                <p id="title_div">Comapny</p>
+            </div>
+        </div>
+        <div class="body-cont">
+
+
+
+
+
+
+
+
+            <div class="main Profile" id="Main_div">
+
+
+                <div class="select">
+                    <ul>
+                        <li id='1' onclick="show(this.id)"><span class="material-icons">person</span>Personal
+                            Information</li>
+                        <!-- <li id='2' onclick="show(this.id)"><span class="material-icons">school</span>Education</li> -->
+                        <li id='3' onclick="show(this.id)"><span
+                                class="material-icons">emoji_symbols</span>Co-Curricular</li>
+                        <li id='4' onclick="show(this.id)"><span class="material-icons">work</span>Extra-Curricular</li>
+                        <li id="5" onclick="show(this.id)"><span class="material-icons">pin</span>Password Management
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Starting of Personal infomation -->
+                <div class="cont" id='D1'>
+                    <div class="header">
+                        <div>
+                            <h2>Personal Information</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area">
+                            <label for="name">First Name</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Middle Name</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Last Name</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area username">
+                            <label for="name">User Name</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Birth Date</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area username">
+                            <label for="name">Email</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Contact</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="area">
+                        <div class="text-area">
+                            <label for="name">Address</label>
+                            <input class="address" type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area username">
+                            <label for="name">City</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">State</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Starting of Education -->
+                <div class="cont2" id='D2'>
+                    <div class="header">
+                        <div>
+                            <h2>Education</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+
+                        <button class="btn-sec">Add Field</button>
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area">
+                            <label for="name">Education Type</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Stream</label>
+                            <input type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area username">
+                            <label for="name">Institute Name</label>
+                            <input type="text">
+                        </div>
+
+                    </div>
+
+                    <div class="area">
+                        <div class="text-area username">
+                            <label for="name">Marks/Percentage</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Passing Year</label>
+                            <input type="text">
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+                <!-- This is curricualm tab -->
+                <div class="cont2" id='D3'>
+                    <div class="header">
+                        <div>
+                            <h2>Co Curricualar</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+
+                        <button class="btn-sec">Add Field</button>
+                    </div>
+
+                    <div class="extra-curr-cont">
+                        <div class="text-area">
+                            <label for="name">Name</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Description</label>
+                            <input class="address" type="text">
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+                <!-- This is Experince Area  -->
+                <div class="cont2" id='D4'>
+                    <div class="header">
+                        <div>
+                            <h2>Extra Curricular</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+                        <button class="btn-sec">Add Experience</button>
+                    </div>
+
+                    <div class="extra-curr-cont">
+                        <div class="text-area">
+                            <label for="name">Designation</label>
+                            <input type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Description</label>
+                            <input class="address" type="text">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Experience</label>
+                            <input type="Number">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- This is password Area -->
+                <div class="cont2" id='D5'>
+                    <div class="header">
+                        <div>
+                            <h2>Password Management</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+
+                    </div>
+
+                    <div class="extra-curr-cont">
+                        <div class="text-area">
+                            <label for="name">Current Password</label>
+                            <input type="password">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">New Password</label>
+                            <input type="password">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Retype New Password</label>
+                            <input type="password">
+                        </div>
+                        <button class="btn-primary"><span class="material-icons"> update </span> Update
+                            Password</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="Placement" id="Placement_div">
+                <div class="Placement-cards">
+                    <div class="company-card">
+
+                        <div class="c-title">
+                            <h2>
+                                Google
+                            </h2>
+                            <span class="material-icons"> verified </span>
+                            <!-- Add here that blue tick -->
+                        </div>
+
+                        <p class="designation">Software Developer</p>
+
+                        <div class="ctc-cont">
+                            <div>
+                                <label for="Joining Date">Joining Date</label>
+                                <h4>12/02/2021</h4>
+                            </div>
+
+                            <div>
+                                <label for="CTC">CTC</label>
+                                <h4>51 LPA</h4>
+                            </div>
+                        </div>
+
+                        <div class="offer">
+                            <label for="Offer Letter">Offer Letter</label>
+                            <button class="button-sec"><span class="material-icons">
+                                    file_upload
+                                </span> Upload</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="Event" id="Event_div">
+                <div class="cards">
+                    {% for i in data %}
+                    <div class="single-card">
+                        <h3>{{ i.drive_name }}</h3>
+                        <p>{{ i.req }}</p>
+                        <button value={{ i.id }} onclick="apply(this.value)"> Apply</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="Education" id="Education_div">
+                <div class="btech">
+                <form action="" method="POST">
+
+                    
+                    <div class="info-fields">
+                        <h3>Bachelor</h3>
+                        <div class="text-area">
+                            <label for="name">Stream</label>
+                            <select name="" id="ug_stream">
+                                <option value="">Computer Science Engineering</option>
+                                <option value="">Electronics and Telecommunication</option>
+                                <option value="">Civil Engineering</option>
+                                <option value="">Mechanical Engineering</option>
+                                <option value="">Food Technology</option>
+                            </select>
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Admission Year</label>
+                            <input type="text" id="ug_admission">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Passout Year</label>
+                            <input type="text" id="ug_passout">
+                        </div>
+                    </div>
+
+                    <div class="marks-fields">
+                        <table>
+
+
+                            <tr>
+                                <th> </th>
+                                <th>First Year</th>
+                                <th>Second Year</th>
+                                <th>Third Year</th>
+                                <th>Fourth Year</th>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Sem I
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_fy_sem1">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_sy_sem1">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_ty_sem1">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_be_sem1">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sem II
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_fy_sem2">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_sy_sem2">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_ty_sem2">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_be_sem2">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Atkt's
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_fy_atkt" >
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_sy_atkt">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_ty_atkt">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_be_atkt">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Gap
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_fy_gap">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_sy_gap" >
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_ty_gap">
+                                </td>
+                                <td>
+                                    <input type="text" id="ug_be_gap"> 
+                                </td>
+
+                            </tr>
+
+
+
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <div class="diploma">
+                    <h3>Diploma</h3>
+                    <div class="line1">
+                        <div class="text-area">
+                            <label for="name">College Name</label>
+                            <input type="text" id="diploma_college_name">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Stream</label>
+                            <select name="" id="diploma_stream">
+                                <option value="CSE">Computer Science Engineering</option>
+                                <option value="ENTC">Electronics and Telecommunication</option>
+                                <option value="CE">Civil Engineering</option>
+                                <option value="ME">Mechanical Engineering</option>
+                                <option value="FT">Food Technology</option>
+                            </select>
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Passout Year</label>
+                            <input type="text" id="diploma_passout">
+                        </div>
+                    </div>
+
+                    <div class="line1">
+
+                        <div class="text-area">
+                            <label for="name">First Year</label>
+                            <input type="text" id="diploma_fy">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Second Year</label>
+                            <input type="text" id="diploma_sy">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Third Year</label>
+                            <input type="text" id="diploma_ty">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Aggregate</label>
+                            <input type="text" id="diploma_total">
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="school">
+
+                    <div class="school-div">
+                        <h3>12th</h3>
+                        <div class="text-area">
+                            <label for="name">College Name</label>
+                            <input type="text" id="hsc_college_name">
+                        </div>
+                        <div class="line1">
+                            <div class="text-area">
+                                <label for="name">Marks</label>
+                                <input type="text" id="hsc_marks">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Passout</label>
+                                <input type="text" id="hsc_passout">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="school-div">
+                        <h3>10th</h3>
+                        <div class="text-area">
+                            <label for="name">School Name</label>
+                            <input type="text" id="school_name">
+                        </div>
+                        <div class="line1">
+                            <div class="text-area">
+                                <label for="name">Marks</label>
+                                <input type="text" id="school_marks">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Passout</label>
+                                <input type="text" id="school_passout">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </form>
+            </div>
+
+
+
+
+
+            <script async defer>
+                var title = document.getElementById('title_div')
+                function change_tab(id) {
+                    title.innerHTML = document.getElementById(id).innerText
+                    switch (id) {
+                        case '1':
+
+                            document.getElementById('Main_div').style.display = "none";
+                            document.getElementById('Placement_div').style.display = "none";
+                            document.getElementById('Event_div').style.display = "block";
+                            document.getElementById('Education_div').style.display = "none";
+                            break;
+                        case '2':
+
+                            document.getElementById('Placement_div').style.display = "none";
+                            document.getElementById('Event_div').style.display = "none";
+                            document.getElementById('Main_div').style.display = "flex";
+                            document.getElementById('Education_div').style.display = "none";
+                            break;
+                        case '3':
+                            document.getElementById('Main_div').style.display = "none";
+                            document.getElementById('Placement_div').style.display = "none";
+                            document.getElementById('Event_div').style.display = "none";
+                            document.getElementById('Education_div').style.display = "flex";
+
+                            break;
+                        case '4':
+                            document.getElementById('Education_div').style.display = "none";
+                            document.getElementById('Placement_div').style.display = "block";
+                            document.getElementById('Event_div').style.display = "none";
+                            document.getElementById('Main_div').style.display = "none";
+                            break
+                    }
+
+                }
+
+
+                function show(id) {
+                    switch (id) {
+                        case '1':
+                            document.getElementById('D5').style.display = "none";
+                            document.getElementById('D2').style.display = "none";
+                            document.getElementById('D3').style.display = "none";
+                            document.getElementById('D4').style.display = "none";
+                            document.getElementById('D1').style.display = "block";
+                            break;
+                        case '2':
+                            document.getElementById('D5').style.display = "none";
+                            document.getElementById('D3').style.display = "none";
+                            document.getElementById('D4').style.display = "none";
+                            document.getElementById('D1').style.display = "none";
+                            document.getElementById('D2').style.display = "block";
+                            break;
+                        case '3':
+                            document.getElementById('D5').style.display = "none";
+                            document.getElementById('D2').style.display = "none";
+                            document.getElementById('D4').style.display = "none";
+                            document.getElementById('D1').style.display = "none";
+                            document.getElementById('D3').style.display = "block";
+                            break;
+                        case '4':
+                            document.getElementById('D5').style.display = "none";
+                            document.getElementById('D2').style.display = "none";
+                            document.getElementById('D3').style.display = "none";
+                            document.getElementById('D1').style.display = "none";
+                            document.getElementById('D4').style.display = "block";
+                            break;
+                        case '5':
+                            document.getElementById('D2').style.display = "none";
+                            document.getElementById('D3').style.display = "none";
+                            document.getElementById('D1').style.display = "none";
+                            document.getElementById('D4').style.display = "none";
+                            document.getElementById('D5').style.display = "block";
+                            break
+                    }
+
+                }
+
+
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</body>
+
+<script>
+    function apply(id){
+      console
+      $.ajax({
+      url:'',
+      type:"POST",
+      data:{
+        csrfmiddlewaretoken:'{{ csrf_token }}',
+        id:id,
+        apply:''
+      }
+    })
+    }
+   
+  </script>
+
+</html>

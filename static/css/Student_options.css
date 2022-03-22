@@ -44,14 +44,14 @@ body{
     display: flex;
 }
 .sidebar{
-    overflow: scroll;
-    overflow-x: hidden;
+   
     background-color:white;
-    padding:10px 20px 0px 20px;
-    height:90vh;
+    height:100vh;
     flex  : .24;
   
-  
+}
+.fil-title{
+    padding: 10px 30px 10px 30px;
 }
 .main_body{
 
@@ -185,17 +185,17 @@ input,select{
       display:flex;
       flex-direction: row;
       align-items: center;
-   padding:20px 20px 20px 0px; 
+   padding:0px 20px 20px 0px; 
   }
   .download{
+    border: none;
+    background-color: #DFEDFF;
     outline: none;
-    padding:10px 20px 10px 20px;
-    background-color:white;
-    border: 1px solid rgb(216, 216, 216);
+    padding: 10px 20px 10px 20px;
     margin-right: 20px;
-    color: rgb(0, 140, 255);
+    color: rgb(3, 54, 95);
     font-weight: bold;
-    border-radius:5px;
+    border-radius: 5px;
 
   }
   .filter-op{
@@ -212,3 +212,36 @@ input,select{
   .marks h5{
     margin: 10px;
   }
+
+
+
+  .filters{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+   
+
+
+    
+}
+.filter1{
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+    width: fit-content;
+    padding: 5px;
+    transition: 0.2s;
+    margin: 5px;
+    background-color: rgb(218, 234, 255);
+}
+.filter1:hover{
+    box-shadow: 0px 1px 2px gray;
+}
+.filter1 span{
+    cursor: pointer;
+}
+.material-icons{
+    padding-left: 2px;
+    font-size: 16px;
+}

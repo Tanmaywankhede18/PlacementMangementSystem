@@ -3,6 +3,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="{% static 'css/TPO.css'%}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   </head>
   <body>
  
@@ -40,6 +42,7 @@
 
               <h5>{{ p.drive_name }}</h5>
               <p>{{ p.req }}</p>
+              <button value={{ p.id }} onclick="apply(this.value)"> Apply</button>
           </div>
           {% endfor %}
         </div>
@@ -93,5 +96,22 @@
         modal.style.display = "none";
       }
     };
+
+  </script>
+
+  <script>
+    function apply(id){
+      console
+      $.ajax({
+      url:'',
+      type:"POST",
+      data:{
+        csrfmiddlewaretoken:'{{ csrf_token }}',
+        id:id,
+        apply:''
+      }
+    })
+    }
+   
   </script>
 </html>
