@@ -1,5 +1,5 @@
-
-
+from django.db import connection, reset_queries
+import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from Manager.models import *
@@ -196,7 +196,6 @@ def index(request):
     user = request.user
     stu = Student.objects.get(user_id=user.id)
 
-    print(stu)
     UpdateEducation(request,stu)
 
     if stu.verified==1:
@@ -213,13 +212,46 @@ def index(request):
 def UpdateEducation(request,stu):
     if request.method == "POST":
         if "update_education_specified" in request.POST:
-            print(request.POST['id_arr'])
-            # print(arr)
-            return HttpResponse(arr)
+            data_toupdate = json.loads(request.POST['id_arr'])
+            print(data_toupdate)
+            for i in data_toupdate:
+                with connection.cursor() as cursor:
+                        cursor.execute('update student_studenteducation  set '+i+'=%s where student_id=%s',[data_toupdate[i],stu.id])
+                        
+            return HttpResponse("Data Updated Successfully!!")
+
+        if "UpdatePassword" in request.POST:
+            if request.method == "POST":
+                password = request.POST['id']
+                user = request.user
+                user.set_password(password)
+                user.save()
+                login(request,user)
+                return HttpResponse("Password Updated Successfully!")    
+                
+        elif "updateProfile" in request.POST:
+            firstName = request.POST.get('Firstname')   
+            middleName = request.POST.get('Middlename')
+            lastName = request.POST.get('Lastname')
+            Email = request.POST.get('Email')
+            Birthdate = request.POST.get('Birthdate')
+            contact = request.POST.get('Contact')
+            address = request.POST.get('Address')
+            city = request.POST.get('City')
+            state = request.POST.get('State')
+            stu.first_name = firstName
+            stu.middle_name = middleName
+            stu.last_name = lastName
+            stu.mobile = contact 
+            stu.city = city
+            stu.address = address
+            stu.state = state
+            stu.save()            
+            return HttpResponse("Data Updated Successfully!!")
 
         elif "update_education" in request.POST:
             student_obj = stu
-            ug_stream = request.POST.get('ug_stream')
+            ug_stream = request.POST.get('ug_stream') 
             ug_admission = request.POST.get('ug_admission')
             ug_passout = request.POST.get('ug_passout')
             ug_fy_sem1 = request.POST.get('ug_fy_sem1')        
@@ -318,10 +350,10 @@ def ApplyForEvent(request):
             event.stu_applied = student_list
             event.save()
 
-        #check for student action 
-        # student can only apply to drive
-        # how to Apply for drive 
-        # Step 1 fetch specific drive  details
-        # Fetch its stu_applied col and convert that string to array 
-        # Add current logged user id in that array and save this array as string to Event 
-        
+def my_custom_sql(self):
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE bar SET foo = 1 WHERE baz = %s", [self.baz])
+        cursor.execute("SELECT foo FROM bar WHERE baz = %s", [self.baz])
+        row = cursor.fetchone()
+
+    return row

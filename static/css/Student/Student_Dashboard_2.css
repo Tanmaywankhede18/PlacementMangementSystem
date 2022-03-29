@@ -76,7 +76,15 @@ input,select{
     padding:10px;
     border-radius: 5px;
     outline: none;
+    transition: 0.2s;
     border: 1px solid rgb(212, 212, 212);
+}
+input:focus{
+  border: 1px solid #1670BE;
+  box-shadow: 0 0 3px #1670BE;
+  outline-offset: 0px;
+  outline: none;
+
 }
 label{
     font-weight: 500;

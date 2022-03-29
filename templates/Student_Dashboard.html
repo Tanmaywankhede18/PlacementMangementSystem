@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- {% load static %} -->
+{% load static %}
 <html lang="en">
 
 <head>
@@ -34,7 +34,7 @@
         <div class="head">
             <div class="name-header">
                 <span class="material-icons">person</span>
-                <h3>Jack Martin</h3>
+                <h3>{{ Personal.first_name }} {{ Personal.middle_name }} {{ Personal.last_name }}</h3>
             </div>
             <div class="name-header">
                 <p id="title_div">Comapny</p>
@@ -67,67 +67,71 @@
 
                 <!-- Starting of Personal infomation -->
                 <div class="cont" id='D1'>
-                    <div class="header">
-                        <div>
-                            <h2>Personal Information</h2>
-                            <p>This infomation will be displayed and shared to TPO</p>
-                        </div>
-                    </div>
-
-                    <div class="area">
-                        <div class="text-area">
-                            <label for="name">First Name</label>
-                            <input type="text" value="{{ Personal.first_name }}">
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Middle Name</label>
-                            <input type="text" value="{{ Personal.middle_name }}" >
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Last Name</label>
-                            <input type="text" value="{{ Personal.last_name }}" >
-                        </div>
-                    </div>
-
-                    <div class="area">
-                        <div class="text-area username">
-                            <label for="name">User Name</label>
-                            <input type="text" value="{{ Personal.email }}">
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Birth Date</label>
-                            <input type="text" value="{{ Personal.birth_date }}">
-                        </div>
-                    </div>
-
-                    <div class="area">
-                        <div class="text-area username">
-                            <label for="name">Email</label>
-                            <input type="text" value="{{ Personal.email }}" >
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Contact</label>
-                            <input type="text" value="{{ Personal.mobile }}">
-                        </div>
-                    </div>
-                    <div class="area">
-                        <div class="text-area">
-                            <label for="name">Address</label>
-                            <input class="address" type="text" value="{{ Personal.address }}">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="header">
+                            <div>
+                                <h2>Personal Information</h2>
+                                <p>This infomation will be displayed and shared to TPO</p>
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="area">
+                            <div class="text-area">
+                                <label for="name">First Name</label>
+                                <input type="text" value="{{ Personal.first_name }}" name="Firstname">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Middle Name</label>
+                                <input type="text" value="{{ Personal.middle_name }}" name="Middlename">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Last Name</label>
+                                <input type="text" value="{{ Personal.last_name }}" name="Lastname">
+                            </div>
+                        </div>
 
-                    <div class="area">
-                        <div class="text-area username">
-                            <label for="name">City</label>
-                            <input type="text" value="{{ Personal.city }}">
+                        <div class="area">
+                            <div class="text-area username">
+                                <label for="name">User Name</label>
+                                <input type="text" value="{{ Personal.email }}" disabled="True" name="Username>
                         </div>
-                        <div class="text-area">
-                            <label for="name">State</label>
-                            <input type="text" value="{{ Personal.state }}">
+                        <div class=" text-area">
+                                <label for="name">Birth Date</label>
+                                <input type="text" value="{{ Personal.birth_date }}" name="Birthdate">
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="area">
+                            <div class="text-area username">
+                                <label for="name">Email</label>
+                                <input type="text" value="{{ Personal.email }}" name="Email" disabled="True">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Contact</label>
+                                <input type="number" value="{{ Personal.mobile }}" name="Contact">
+                            </div>
+                        </div>
+                        <div class="area">
+                            <div class="text-area">
+                                <label for="name">Address</label>
+                                <input class="address" type="text" value="{{ Personal.address }}" name="Address">
+                            </div>
+
+                        </div>
+
+                        <div class="area">
+                            <div class="text-area username">
+                                <label for="name">City</label>
+                                <input type="text" value="{{ Personal.city }}" name="City">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">State</label>
+                                <input type="text" value="{{ Personal.state }}" name="State">
+                            </div>
+                        </div>
+                        <button onclick="callUpdateProfileFunction()" name="updateProfile">Update</button>
+                    </form>
 
                 </div>
 
@@ -192,7 +196,7 @@
 
                     <div class="extra-curr-cont">
                         <div class="text-area">
-                            <label for="name">Name</label>
+                            <label for="name">Company Name</label>
                             <input type="text">
                         </div>
                         <div class="text-area">
@@ -216,22 +220,16 @@
                             <h2>Extra Curricular</h2>
                             <p>This infomation will be displayed and shared to TPO</p>
                         </div>
-                        <button class="btn-sec">Add Experience</button>
+                        <!-- <button class="btn-sec">Add Experience</button> -->
                     </div>
 
                     <div class="extra-curr-cont">
-                        <div class="text-area">
-                            <label for="name">Designation</label>
-                            <input type="text">
-                        </div>
+
                         <div class="text-area">
                             <label for="name">Description</label>
-                            <input class="address" type="text">
+                            <textarea class="address" type="text" rows="3"></textarea>
                         </div>
-                        <div class="text-area">
-                            <label for="name">Experience</label>
-                            <input type="Number">
-                        </div>
+
                     </div>
                 </div>
 
@@ -246,20 +244,26 @@
                     </div>
 
                     <div class="extra-curr-cont">
+
+                        <p id="wg" >All Fields Required</p>
+
                         <div class="text-area">
                             <label for="name">Current Password</label>
-                            <input type="password">
+                            <input type="password" required>
                         </div>
                         <div class="text-area">
                             <label for="name">New Password</label>
-                            <input type="password">
+                            <input type="password" id="psw" required>
                         </div>
                         <div class="text-area">
                             <label for="name">Retype New Password</label>
-                            <input type="password">
+                            <input type="password" required>
                         </div>
-                        <button class="btn-primary"><span class="material-icons"> update </span> Update
+
+                        <button class="btn-primary" type="submit" onclick="UpdatePassword()"><span
+                                class="material-icons"> update </span> Update
                             Password</button>
+
                     </div>
                 </div>
 
@@ -322,118 +326,130 @@
                 <div class="btech">
                     <!-- <form class="btech" action="" method="POST"> -->
 
-                        <div class="info-fields">
-                            <h3>Bachelor</h3>
-                            <div class="text-area">
-                                <label for="name">Stream</label>
-                                <select name="" id="ug_stream" value="{{ Education.ug_stream }}">
-                                    <option value="">Computer Science Engineering</option>
-                                    <option value="">Electronics and Telecommunication</option>
-                                    <option value="">Civil Engineering</option>
-                                    <option value="">Mechanical Engineering</option>
-                                    <option value="">Food Technology</option>
-                                </select>
-                            </div>
-                            <div class="text-area">
-                                <label for="name">Admission Year</label>
-                                <input type="text" id="ug_admission" value="{{ Education.ug_admission }}">
-                            </div>
-                            <div class="text-area">
-                                <label for="name">Passout Year</label>
-                                <input type="text" id="ug_passout" value="{{ Education.ug_passout }}">
-                            </div>
+                    <div class="info-fields">
+                        <h3>Bachelor</h3>
+                        <div class="text-area">
+                            <label for="name">Stream</label>
+                            <select name="" id="ug_stream" value="{{ Education.ug_stream }}" class="value">
+                                <option value="">Computer Science Engineering</option>
+                                <option value="">Electronics and Telecommunication</option>
+                                <option value="">Civil Engineering</option>
+                                <option value="">Mechanical Engineering</option>
+                                <option value="">Food Technology</option>
+                            </select>
                         </div>
-
-                        <div class="marks-fields">
-                            <table>
-
-
-                                <tr>
-                                    <th> </th>
-                                    <th>First Year</th>
-                                    <th>Second Year</th>
-                                    <th>Third Year</th>
-                                    <th>Fourth Year</th>
-
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        Sem I
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_fy_sem1" value="{{ Education.ug_fy_sem1 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_sy_sem1" value="{{ Education.ug_sy_sem1 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_ty_sem1" value="{{ Education.ug_ty_sem1 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_be_sem1" value="{{ Education.ug_be_sem1 }}">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Sem II
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_fy_sem2" value="{{ Education.ug_fy_sem2 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_sy_sem2" value="{{ Education.ug_sy_sem2 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_ty_sem2" value="{{ Education.ug_ty_sem2 }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_be_sem2" value="{{ Education.ug_be_sem2 }}">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Atkt's
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_fy_atkt" value="{{ Education.ug_fy_atkt }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_sy_atkt" value="{{ Education.ug_sy_atkt }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_ty_atkt" value="{{ Education.ug_ty_atkt }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_be_atkt" value="{{ Education.ug_be_atkt }}">
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Gap
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_fy_gap" value="{{ Education.ug_fy_gap }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_sy_gap" value="{{ Education.ug_sy_gap }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_ty_gap" value="{{ Education.ug_ty_gap }}">
-                                    </td>
-                                    <td>
-                                        <input type="text" id="ug_be_gap" value="{{ Education.ug_be_gap }}">
-                                    </td>
-
-                                </tr>
-
-
-
-                            </table>
+                        <div class="text-area">
+                            <label for="name">Admission Year</label>
+                            <input type="number" id="ug_admission" value="{{ Education.ug_admission }}" class="value">
                         </div>
+                        <div class="text-area">
+                            <label for="name">Passout Year</label>
+                            <input type="number" id="ug_passout" value="{{ Education.ug_passout }}" class="value">
+                        </div>
+                    </div>
+
+                    <div class="marks-fields">
+                        <table>
+
+
+                            <tr>
+                                <th> </th>
+                                <th>First Year</th>
+                                <th>Second Year</th>
+                                <th>Third Year</th>
+                                <th>Fourth Year</th>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Sem I
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_fy_sem1" value="{{ Education.ug_fy_sem1 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_sy_sem1" value="{{ Education.ug_sy_sem1 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_ty_sem1" value="{{ Education.ug_ty_sem1 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_be_sem1" value="{{ Education.ug_be_sem1 }}"
+                                        class="value">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sem II
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_fy_sem2" value="{{ Education.ug_fy_sem2 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_sy_sem2" value="{{ Education.ug_sy_sem2 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_ty_sem2" value="{{ Education.ug_ty_sem2 }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_be_sem2" value="{{ Education.ug_be_sem2 }}"
+                                        class="value">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Atkt's
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_fy_atkt" value="{{ Education.ug_fy_atkt }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_sy_atkt" value="{{ Education.ug_sy_atkt }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_ty_atkt" value="{{ Education.ug_ty_atkt }}"
+                                        class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_be_atkt" value="{{ Education.ug_be_atkt }}"
+                                        class="value">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    Gap
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_fy_gap" value="{{ Education.ug_fy_gap }}" class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_sy_gap" value="{{ Education.ug_sy_gap }}" class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_ty_gap" value="{{ Education.ug_ty_gap }}" class="value">
+                                </td>
+                                <td>
+                                    <input type="number" id="ug_be_gap" value="{{ Education.ug_be_gap }}" class="value">
+                                </td>
+
+                            </tr>
+
+
+
+                        </table>
+                    </div>
 
                 </div>
 
@@ -443,7 +459,8 @@
                     <div class="line1">
                         <div class="text-area">
                             <label for="name">College Name</label>
-                            <input type="text" id="diploma_college_name" value="{{ Education.diploma_college_name }}">
+                            <input type="text" id="diploma_college_name" value="{{ Education.diploma_college_name }}"
+                                class="value">
                         </div>
                         <div class="text-area">
                             <label for="name">Stream</label>
@@ -457,7 +474,8 @@
                         </div>
                         <div class="text-area">
                             <label for="name">Passout Year</label>
-                            <input type="text" id="diploma_passout" value="{{ Education.diploma_passout }}">
+                            <input type="text" id="diploma_passout" value="{{ Education.diploma_passout }}"
+                                class="value">
                         </div>
                     </div>
 
@@ -465,19 +483,19 @@
 
                         <div class="text-area">
                             <label for="name">First Year</label>
-                            <input type="text" id="diploma_fy" value="{{ Education.diploma_fy }}">
+                            <input type="number" id="diploma_fy" value="{{ Education.diploma_fy }}" class="value">
                         </div>
                         <div class="text-area">
                             <label for="name">Second Year</label>
-                            <input type="text" id="diploma_sy" value="{{ Education.diploma_ty }}">
+                            <input type="number" id="diploma_sy" value="{{ Education.diploma_ty }}" class="value">
                         </div>
                         <div class="text-area">
                             <label for="name">Third Year</label>
-                            <input type="text" id="diploma_ty" value="{{ Education.diploma_ty }}">
+                            <input type="number" id="diploma_ty" value="{{ Education.diploma_ty }}" class="value">
                         </div>
                         <div class="text-area">
                             <label for="name">Aggregate</label>
-                            <input type="text" id="diploma_total" value="{{ Education.diploma_total }}">
+                            <input type="number" id="diploma_total" value="{{ Education.diploma_total }}" class="value">
                         </div>
 
                     </div>
@@ -490,16 +508,17 @@
                         <h3>12th</h3>
                         <div class="text-area">
                             <label for="name">College Name</label>
-                            <input type="text" id="hsc_college_name" value="{{ Education.hsc_college_name }}">
+                            <input type="text" id="hsc_college_name" value="{{ Education.hsc_college_name }}"
+                                class="value">
                         </div>
                         <div class="line1">
                             <div class="text-area">
                                 <label for="name">Marks</label>
-                                <input type="text" id="hsc_marks" value="{{ Education.hsc_marks }}">
+                                <input type="number" id="hsc_marks" value="{{ Education.hsc_marks }}" class="value">
                             </div>
                             <div class="text-area">
                                 <label for="name">Passout</label>
-                                <input type="text" id="hsc_passout" value="{{ Education.hsc_passout }}">
+                                <input type="number" id="hsc_passout" value="{{ Education.hsc_passout }}" class="value">
                             </div>
                         </div>
                     </div>
@@ -508,16 +527,19 @@
                         <h3>10th</h3>
                         <div class="text-area">
                             <label for="name">School Name</label>
-                            <input type="text" id="school_name" value="{{ Education.school_name }}">
+                            <input type="text" id="school_name" class="value" value="{{ Education.school_name }}"
+                                class="value">
                         </div>
                         <div class="line1">
                             <div class="text-area">
                                 <label for="name">Marks</label>
-                                <input type="text" id="school_marks" value="{{ Education.school_marks }}">
+                                <input type="number" id="school_marks" class="value"
+                                    value="{{ Education.school_marks }}" class="value">
                             </div>
                             <div class="text-area">
                                 <label for="name">Passout</label>
-                                <input type="text" id="school_passout" class="value" value="{{ Education.school_passout }}">
+                                <input type="number" id="school_passout" class="value"
+                                    value="{{ Education.school_passout }}" class="value">
                             </div>
                         </div>
                     </div>
@@ -625,18 +647,24 @@
     $(".value").on("input", function () {
         arr.add($(this).attr('id'))
         console.log(arr)
-        
+
     });
 
-    function update_education(){
-   
+    function update_education() {
+        let send = ""
+        let json_obj = {}
+        for (let i of arr) {
+            send += "," + i
+            json_obj[i] = document.getElementById(i).value
+        }
+
         $.ajax({
-            url:'',
-            type:'POST',
-            data:{
-                csrfmiddlewaretoken:'{{ csrf_token }}',
-                update_education_specified:'',
-                id_arr:'World',
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                update_education_specified: '',
+                id_arr: JSON.stringify(json_obj),
             }
         })
     }
@@ -654,6 +682,23 @@
         })
     }
 
+    function UpdatePassword() {
+        
+        pass = document.getElementById("psw")
+        console.log(pass.value)
+        $.ajax({
+            url: '',
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                id: pass.value,
+                UpdatePassword: ''
+            },
+            success: function () {
+                console.log("Data Updated Successfully!!")
+            }
+        })
+    }
 </script>
 
 </html>

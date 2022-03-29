@@ -48,17 +48,18 @@ class StudentEducation(models.Model):
     #BTech
     student = models.ForeignKey(Student,on_delete=models.CASCADE)
     ug_stream = models.CharField(max_length=100)
-    ug_admmision = models.IntegerField(null=True)
+    ug_admission = models.IntegerField(null=True)
     ug_passout = models.IntegerField()
     #Percentage 
-    ug_fy_sem1 = models.IntegerField(null=True)
-    ug_sy_sem1 = models.IntegerField(null=True)
-    ug_ty_sem1 = models.IntegerField(null=True)
-    ug_be_sem1 = models.IntegerField(null=True)
-    ug_fy_sem2 = models.IntegerField(null=True)
-    ug_sy_sem2 = models.IntegerField(null=True)
-    ug_ty_sem2 = models.IntegerField(null=True)
-    ug_be_sem2 = models.IntegerField(null=True)
+
+    ug_fy_sem1 = models.FloatField(null=True)
+    ug_sy_sem1 = models.FloatField(null=True)
+    ug_ty_sem1 = models.FloatField(null=True)
+    ug_be_sem1 = models.FloatField(null=True)
+    ug_fy_sem2 = models.FloatField(null=True)
+    ug_sy_sem2 = models.FloatField(null=True)
+    ug_ty_sem2 = models.FloatField(null=True)
+    ug_be_sem2 = models.FloatField(null=True)
     #Atkt
     ug_fy_atkt = models.IntegerField(null=True)
     ug_sy_atkt = models.IntegerField(null=True)
@@ -76,21 +77,22 @@ class StudentEducation(models.Model):
     diploma_stream = models.CharField(max_length=50,null=True)
     diploma_passout = models.IntegerField(null=True)
 
-    diploma_fy = models.IntegerField(null=True)
-    diploma_sy = models.IntegerField(null=True)
-    diploma_ty = models.IntegerField(null=True)
-    diploma_total = models.IntegerField(null=True)
+    diploma_fy = models.FloatField(null=True)
+    diploma_sy = models.FloatField(null=True)
+    diploma_ty = models.FloatField(null=True)
+    diploma_total = models.FloatField(null=True)
 
     #HSC 
     hsc_college_name = models.CharField(max_length=100,null=True)
-    hsc_marks = models.IntegerField(null=True)
+    hsc_marks = models.FloatField(null=True)
     hsc_passout = models.IntegerField(null=True)
 
     #ssc
     school_name = models.CharField(max_length=100)
-    school_marks = models.IntegerField()
+    school_marks  = models.FloatField()
     school_passout = models.IntegerField()
-       
+
+  
 
 # class PM(models.Model):
 #     fullname = models.CharField(max_length=100)

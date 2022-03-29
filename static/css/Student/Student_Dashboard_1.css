@@ -242,3 +242,10 @@ table tr{
     display: flex;
     flex-direction: column;
 }
+
+
+.extra-curr-cont p{
+    color: rgb(255, 0, 0);
+    background-color: rgb(255, 228, 228);
+    padding: 10px;
+}
