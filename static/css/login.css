@@ -46,7 +46,7 @@ label{
 }
 
 .main_body{
-    height:630px;
+    /* height:630px; */
     /* flex:1; */
     display: flex;
     flex-direction: row;
@@ -61,8 +61,8 @@ label{
     flex-direction: column;
 }
 .div2{
-    margin-left: 20px;;
-    flex: 0.8;
+   
+    flex: 1;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -89,10 +89,12 @@ label{
     color:gray;
 }
 .div4{
-   
-    width: 100%;
+    padding: 10px;
+
     flex: 0.1;
     display: flex;
+    justify-content: flex-end;
+
     align-items: center;
     border-top:1px solid rgba(206, 206, 206, 0.397);
     border-bottom:1px solid rgba(206, 206, 206, 0.397);

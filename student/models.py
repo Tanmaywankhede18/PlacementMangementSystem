@@ -13,7 +13,6 @@ class Admin(models.Model):
     mobile = models.CharField(max_length=10)
     
 class Student(models.Model):
-    
     email = models.CharField(max_length=100)
     verified = models.BooleanField();
     first_name = models.CharField(max_length=100)
@@ -43,7 +42,6 @@ class Student(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     extra_curriculam = models.JSONField(null=True)
      
-
 class StudentEducation(models.Model):
     #BTech
     student = models.ForeignKey(Student,on_delete=models.CASCADE)
@@ -92,7 +90,16 @@ class StudentEducation(models.Model):
     school_marks  = models.FloatField()
     school_passout = models.IntegerField()
 
-  
+class Placementinfo(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE)
+    CompanyName = models.CharField(max_length=100)
+    Role = models.CharField(max_length=50)
+    JoinDate = models.DateField()
+    CTC  = models.IntegerField()
+    Offerletter = models.FileField()
+    HRname = models.CharField(max_length=100)
+    
+
 
 # class PM(models.Model):
 #     fullname = models.CharField(max_length=100)

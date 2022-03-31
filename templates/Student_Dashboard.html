@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_1.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_2.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_1.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -21,11 +21,26 @@
         </div>
         <div>
             <ul>
-                <li id="1" onclick="change_tab(this.id)" value="Event">Events</li>
-                <li id="2" onclick="change_tab(this.id)" value="Profile">Profile</li>
-                <li id="3" onclick="change_tab(this.id)" value="Education">Education</li>
-                <li id="4" onclick="change_tab(this.id)" value="Placement">Placement</li>
-                <li>Logout</li>
+                <li id="1" onclick="change_tab(this.id)" value="Event"> <span class="material-icons">work_history</span> Events</li>
+                <li id="2" onclick="change_tab(this.id)" value="Profile"> 
+                    <span class="material-icons">manage_accounts</span> Profile
+                </li>
+
+                <li id="3" onclick="change_tab(this.id)" value="Education">
+                    <span class="material-icons">
+                        school
+                        </span>
+                        Education
+                </li>
+                <li id="4" onclick="change_tab(this.id)" value="Placement">
+                    <span class="material-icons">
+                        work
+                        </span>
+                        Placement</li>
+                <li><span class="material-icons">
+                    logout
+                    </span> 
+                    Logout</li>
             </ul>
         </div>
     </div>
@@ -36,8 +51,9 @@
                 <span class="material-icons">person</span>
                 <h3>{{ Personal.first_name }} {{ Personal.middle_name }} {{ Personal.last_name }}</h3>
             </div>
-            <div class="name-header">
+            <div class="name-header with-btn">
                 <p id="title_div">Comapny</p>
+                <button class="add_company"> Add Company </button>
             </div>
         </div>
         <div class="body-cont">
@@ -74,6 +90,13 @@
                                 <h2>Personal Information</h2>
                                 <p>This infomation will be displayed and shared to TPO</p>
                             </div>
+                            
+                            <input type="file" id="imgupload" style="display:none"/> 
+                            <label class="image"  title="Click to update profile picture" for="actual-btn" >
+                                <img class="profile" src="https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg" alt="">
+                                <button  id="OpenImgUpload" ><span class="material-icons profile-update">edit</span></button>
+                            </label>
+                        
                         </div>
 
                         <div class="area">
@@ -643,7 +666,7 @@
 
 <script>
     let arr = new Set()
-
+    $('#OpenImgUpload').click(function(){ $('#imgupload').trigger('click'); });
     $(".value").on("input", function () {
         arr.add($(this).attr('id'))
         console.log(arr)

@@ -33,12 +33,16 @@ p{
 .head{
     flex: 1;
 }
+
 .name-header{
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid rgb(235, 232, 232);
+}
+.with-btn{
+    justify-content: space-between;
 }
 #title_div{
     color: rgb(0, 119, 255);
@@ -55,7 +59,12 @@ p{
    padding: 0px;
 
 }
+.sidebar li span{
+    padding-right: 10px;
+}
 .sidebar li{
+    display: flex;
+    align-items: center;
     margin: 0px 20px;
     border-radius: 5px;
     text-decoration: none;
@@ -248,4 +257,37 @@ table tr{
     color: rgb(255, 0, 0);
     background-color: rgb(255, 228, 228);
     padding: 10px;
+}
+.image{
+
+    position: relative;
+    margin-left: 18%;
+    width: 80px;
+    height: 80px;
+}
+.profile{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+.image button{
+    display: flex;
+    border: none;
+    background-color: rgb(60, 145, 255);
+    border-radius: 50%;
+    align-items: center;
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    position: absolute;
+    color: white;
+}
+.profile-update {
+    font-size: 14px;
+    padding: 8px;
 }

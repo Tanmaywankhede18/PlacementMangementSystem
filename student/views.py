@@ -43,9 +43,6 @@ def signup(request):
     
                 
                 
-
-                
-
     return render(request,'Signup.html',{'message_exist':a})
 
 def register(request):
@@ -159,8 +156,6 @@ def Signin(request):
            print(user.id)
            stu = Student.objects.get(user_id=user.id)
         #    if user.is_active:
-
-            
            try: 
              print(stu)  
              if stu.verified==1:
@@ -171,7 +166,7 @@ def Signin(request):
                  return render(request,'Review.html')           
            except Student.DoesNotExist:
                return render(request,'Review.html')
-               return HttpResponse('Please confirm your email address to complete the registration')    
+          
 
     else:
         user = request.user
