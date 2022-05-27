@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/static/css/TPO/PlacedFilter.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="centerd-div">
+        <h3 style="padding-left:20px;padding-top: 20px;">Placed Student Filter </h3>
+        <div class="Header">
+            <input type="text" placeholder="Search" id="req_data">
+            <button onclick="filterData()">Filter</button>
+        </div>
+        <div class="table-cont">
+            <p>Show Table here</p>
+            <div class="center">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Sr
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                PRN
+                            </th>
+                            <th>
+                                Offer Letter
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id='table_items'>
+                        <!-- Add Here Applied Students -->
+                        <!-- {% for student in placedstudents %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                {{ student.student_data.first_name }} {{ student.student_data.middle_name }} {{ student.student_data.last_name }}
+                            </td>
+                            <td>
+                                {{ student.student_data.PRN }}
+                            </td>
+
+                            <td>
+
+                                <button>Google </button>
+                                <button>Adobe </button>
+                                <button>Amazon</button>
+
+                            </td>
+                        </tr>
+                        {% endfor %} -->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    filterData();
+    function filterData() {
+        let data = document.getElementById("req_data").value
+        console.log(data)
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                req_data: data,
+
+            },
+            success: function (response) {
+                var student_data = JSON.parse(JSON.stringify(response.message))
+                let out = ""
+                let count = 1;
+                for (each in student_data) {
+                    console.log(student_data[each])
+                    let button_array = ""
+                    for(eachCompany in student_data[each].Company){
+                        button_array+="<button><a href="+student_data[each].Company[eachCompany].url+" target='_blank' >"+student_data[each].Company[eachCompany].Name+"</a></button>"
+                    }
+                    out += "<tr><td>"+count+"</td><td>"+student_data[each].Name+"</td><td>"+student_data[each].PRN+"</td><td>"+button_array+"</td></tr>"
+                    count++;
+                }
+                console.log(out)
+                document.getElementById('table_items').innerHTML = out
+                // window.open(response["message"], '_blank')
+            }
+        })
+    }
+
+
+</script>
+
+</html>

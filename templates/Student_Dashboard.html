@@ -8,8 +8,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_2.css' %}">
     <link rel="stylesheet" href="{% static 'css/Student/Student_Dashboard_1.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/Student/Modal.css' %}">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
 
@@ -21,25 +26,28 @@
         </div>
         <div>
             <ul>
-                <li id="1" onclick="change_tab(this.id)" value="Event"> <span class="material-icons">work_history</span> Events</li>
-                <li id="2" onclick="change_tab(this.id)" value="Profile"> 
+                <li id="1" onclick="change_tab(this.id)" value="Event"> <span class="material-icons">work_history</span>
+                    Events</li>
+                <li id="2" onclick="change_tab(this.id)" value="Profile">
                     <span class="material-icons">manage_accounts</span> Profile
                 </li>
 
                 <li id="3" onclick="change_tab(this.id)" value="Education">
                     <span class="material-icons">
                         school
-                        </span>
-                        Education
+                    </span>
+                    Education
                 </li>
                 <li id="4" onclick="change_tab(this.id)" value="Placement">
                     <span class="material-icons">
                         work
-                        </span>
-                        Placement</li>
-                <li><span class="material-icons">
-                    logout
-                    </span> 
+                    </span>
+                    Placement
+                </li>
+
+                <li id="5" onclick="change_tab(this.id)"><span class="material-icons">
+                        logout
+                    </span>
                     Logout</li>
             </ul>
         </div>
@@ -50,10 +58,19 @@
             <div class="name-header">
                 <span class="material-icons">person</span>
                 <h3>{{ Personal.first_name }} {{ Personal.middle_name }} {{ Personal.last_name }}</h3>
+                
+                {% if Personal.PlacementStatus != 1 %}
+                <p style="margin-left:auto ;">Are you placed ?  <button onclick="openPlacement()"> Yes </button></p>
+                {% endif %}
             </div>
+
             <div class="name-header with-btn">
-                <p id="title_div">Comapny</p>
-                <button class="add_company"> Add Company </button>
+                <p id="title_div"> <span class="material-icons">work_history</span>
+                    Events </p>
+                <input type="text" id="search_event" placeholder="Search Drive Name here " ">
+                <button class=" add_company btn-primary" id="addComp" style="display: none;"> Add Company </button>
+                <button name="update_education" class="btn-primary add_company" id="EducationUpdate"
+                    style="display: none;" onclick="update_education()">Update</button>
             </div>
         </div>
         <div class="body-cont">
@@ -72,7 +89,7 @@
                     <ul>
                         <li id='1' onclick="show(this.id)"><span class="material-icons">person</span>Personal
                             Information</li>
-                        <!-- <li id='2' onclick="show(this.id)"><span class="material-icons">school</span>Education</li> -->
+                        <li id='2' onclick="show(this.id)"><span class="material-icons">school</span>Resume</li>
                         <li id='3' onclick="show(this.id)"><span
                                 class="material-icons">emoji_symbols</span>Co-Curricular</li>
                         <li id='4' onclick="show(this.id)"><span class="material-icons">work</span>Extra-Curricular</li>
@@ -83,22 +100,29 @@
 
                 <!-- Starting of Personal infomation -->
                 <div class="cont" id='D1'>
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <div class="header">
-                            <div>
-                                <h2>Personal Information</h2>
-                                <p>This infomation will be displayed and shared to TPO</p>
-                            </div>
-                            
-                            <input type="file" id="imgupload" style="display:none"/> 
-                            <label class="image"  title="Click to update profile picture" for="actual-btn" >
-                                <img class="profile" src="https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg" alt="">
-                                <button  id="OpenImgUpload" ><span class="material-icons profile-update">edit</span></button>
-                            </label>
-                        
-                        </div>
 
+                    <div class="header">
+                        <div>
+                            <h2>Personal Information</h2>
+                            <p>This infomation will be displayed and shared to TPO</p>
+                        </div>
+                        <label class="image" title="Click to update profile picture" for="actual-btn" id="imagelabel">
+                            <img class="profile" id="profileimg" src="{{ Personal.profile.url }}">
+                        </label>
+
+                    </div>
+
+                    <form enctype="multipart/form-data" id="id_ajax_upload_form" method="POST" novalidate="">
+                        <input type="text" name="uploadProfile" id="name" style="display:none;">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button id="OpenImgUpload" type="submit" name="uploadProfile"
+                            class="btn-primary add_company"><span
+                                class="material-icons profile-update">cloud_upload</span>Upload</button>
+                    </form>
+
+                    <form action="" method="POST" id="update_profile" enctype="multipart/form-data" novalidate="">
+                        {% csrf_token %}
                         <div class="area">
                             <div class="text-area">
                                 <label for="name">First Name</label>
@@ -117,14 +141,17 @@
                         <div class="area">
                             <div class="text-area username">
                                 <label for="name">User Name</label>
-                                <input type="text" value="{{ Personal.email }}" disabled="True" name="Username>
-                        </div>
-                        <div class=" text-area">
+                                <input type="text" value="{{ Personal.email }}" disabled="True" name="Username">
+                            </div>
+                            <div class="text-area">
                                 <label for="name">Birth Date</label>
-                                <input type="text" value="{{ Personal.birth_date }}" name="Birthdate">
+                                <div class="date-input">
+                                    <input type="text" value="{{ Personal.birth_date }}" disabled="True">
+                                    <input type="date" name="Birthdate">
+                                </div>
+
                             </div>
                         </div>
-
                         <div class="area">
                             <div class="text-area username">
                                 <label for="name">Email</label>
@@ -140,9 +167,7 @@
                                 <label for="name">Address</label>
                                 <input class="address" type="text" value="{{ Personal.address }}" name="Address">
                             </div>
-
                         </div>
-
                         <div class="area">
                             <div class="text-area username">
                                 <label for="name">City</label>
@@ -153,59 +178,43 @@
                                 <input type="text" value="{{ Personal.state }}" name="State">
                             </div>
                         </div>
-                        <button onclick="callUpdateProfileFunction()" name="updateProfile">Update</button>
+                        <button onclick="callUpdateProfileFunction()" class="btn-primary"
+                            name="updateProfile">Update</button>
                     </form>
-
                 </div>
-
-
-                <!-- Starting of Education -->
+                <!-- Starting of Resume  -->
                 <div class="cont2" id='D2'>
                     <div class="header">
                         <div>
-                            <h2>Education</h2>
+                            <h2>Resume</h2>
                             <p>This infomation will be displayed and shared to TPO</p>
                         </div>
-
-                        <button class="btn-sec">Add Field</button>
                     </div>
+                    <form enctype="multipart/form-data" id="resume_form" method="POST" novalidate="" class="uploadR">
+                        {% csrf_token %}
+                        {{ resume_form }}
+                        <button class="btn-primary" type='submit'>Upload Resume</button>
+                    </form>
 
+                    {% if Personal.resume != None %}
+                    <p>Last Uploaded Resume</p>
                     <div class="area">
-                        <div class="text-area">
-                            <label for="name">Education Type</label>
-                            <input type="text">
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Stream</label>
-                            <input type="text">
-                        </div>
 
+                        {% if Personal.resume %}
+                        <div class="single-res" id="resume_div">
+                            <h5>{{ Personal.resume.name }}</h5>
+
+                            <div>
+                                <button onclick="deleteResume('{{ Personal.id }}')"
+                                    class="btn-primary dang">Delete</button>
+                                <button class="btn-primary"><a href="{{ Personal.resume.url }}"
+                                        target="_blank">View</a></button>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-
-                    <div class="area">
-                        <div class="text-area username">
-                            <label for="name">Institute Name</label>
-                            <input type="text">
-                        </div>
-
-                    </div>
-
-                    <div class="area">
-                        <div class="text-area username">
-                            <label for="name">Marks/Percentage</label>
-                            <input type="text">
-                        </div>
-                        <div class="text-area">
-                            <label for="name">Passing Year</label>
-                            <input type="text">
-                        </div>
-                    </div>
-
-
-
+                    {% endif %}
                 </div>
-
-
                 <!-- This is curricualm tab -->
                 <div class="cont2" id='D3'>
                     <div class="header">
@@ -214,28 +223,29 @@
                             <p>This infomation will be displayed and shared to TPO</p>
                         </div>
 
-                        <button class="btn-sec">Add Field</button>
+                        <button class="btn-sec" id="addCo">Add Field</button>
                     </div>
-
-                    <div class="extra-curr-cont">
-                        <div class="text-area">
-                            <label for="name">Company Name</label>
-                            <input type="text">
+                    <div class="co-container" id="co_container">
+                        {% for i in curricular %}
+                        <div class="extra-curr-cont">
+                            <div class="text-area">
+                                <label for="name">Company Name</label>
+                                <input type="text" value="{{ i.CompanyName }}" id="{{ i.id }}name">
+                            </div>
+                            <div class="text-area">
+                                <label for="name">Description</label>
+                                <input class="address" type="text" value="{{ i.Description }}" id="{{ i.id}}desc">
+                            </div>
+                            <div class="row-btns">
+                                <button id="{{ i.id }}" onclick="updateCo(this.id)" class="btn-primary"> Update
+                                </button>
+                                <button id="{{ i.id }}" onclick="DeleteCo(this.id)" class="btn-primary dang"> Delete
+                                </button>
+                            </div>
                         </div>
-                        <div class="text-area">
-                            <label for="name">Description</label>
-                            <input class="address" type="text">
-                        </div>
-
+                        {% endfor %}
                     </div>
-
-
-
-
-
                 </div>
-
-
                 <!-- This is Experince Area  -->
                 <div class="cont2" id='D4'>
                     <div class="header">
@@ -243,14 +253,15 @@
                             <h2>Extra Curricular</h2>
                             <p>This infomation will be displayed and shared to TPO</p>
                         </div>
-                        <!-- <button class="btn-sec">Add Experience</button> -->
+                        <button class="btn-sec" onclick="updatExperience()">Update Experience</button>
                     </div>
 
                     <div class="extra-curr-cont">
 
                         <div class="text-area">
                             <label for="name">Description</label>
-                            <textarea class="address" type="text" rows="3"></textarea>
+                            <textarea class="address" type="text" rows="3" id="textarea"
+                                style="padding: 8px;">{{ Personal.extra_curriculam }}</textarea>
                         </div>
 
                     </div>
@@ -268,12 +279,8 @@
 
                     <div class="extra-curr-cont">
 
-                        <p id="wg" >All Fields Required</p>
+                        <!-- <p id="wg">All Fields Required</p> -->
 
-                        <div class="text-area">
-                            <label for="name">Current Password</label>
-                            <input type="password" required>
-                        </div>
                         <div class="text-area">
                             <label for="name">New Password</label>
                             <input type="password" id="psw" required>
@@ -283,65 +290,108 @@
                             <input type="password" required>
                         </div>
 
+
+
                         <button class="btn-primary" type="submit" onclick="UpdatePassword()"><span
                                 class="material-icons"> update </span> Update
                             Password</button>
 
                     </div>
                 </div>
-
             </div>
-
-
-
-
             <div class="Placement" id="Placement_div">
-                <div class="Placement-cards">
-                    <div class="company-card">
+                <div class="Placement-cards"  id="placementCont">
+                    {% for i in Placed %}
 
+                    <div class="company-card">
                         <div class="c-title">
                             <h2>
-                                Google
+                                {{ i.CompanyName }}
                             </h2>
                             <span class="material-icons"> verified </span>
                             <!-- Add here that blue tick -->
                         </div>
 
-                        <p class="designation">Software Developer</p>
+                        <p class="designation">{{ i.Role }}</p>
 
                         <div class="ctc-cont">
                             <div>
                                 <label for="Joining Date">Joining Date</label>
-                                <h4>12/02/2021</h4>
+                                <h4>{{ i.JoinDate }}</h4>
                             </div>
 
                             <div>
                                 <label for="CTC">CTC</label>
-                                <h4>51 LPA</h4>
+                                <h4>{{ i.CTC }}</h4>
                             </div>
                         </div>
 
                         <div class="offer">
                             <label for="Offer Letter">Offer Letter</label>
-                            <button class="button-sec"><span class="material-icons">
-                                    file_upload
-                                </span> Upload</button>
+                            <button class="button-sec"> <a href="{{ i.Offerletter.url }}"
+                                    target="_blank">view</a></button>
+
                         </div>
 
                     </div>
+                    {% endfor %}
+
+
+
+
                 </div>
             </div>
-
-
             <div class="Event" id="Event_div">
-                <div class="cards">
-                    {% for i in data %}
+                <div class="cards" id="cards_drive">
+                    <!-- {% for i in data %}
                     <div class="single-card">
                         <h3>{{ i.drive_name }}</h3>
                         <p>{{ i.req }}</p>
                         <button value={{ i.id }} onclick="apply(this.value)"> Apply</button>
                     </div>
+                    {% endfor %} -->
+
+                    {% for p in data %}
+                    <!-- <div class="sing-card" type="submit" id={{ p.id }}>
+                        <p id="deadline">Last Date : <b style="color: rgb(0, 0, 0);">{{ p.last_date }}</b> </p>
+                        <p style="color:rgb(1, 35, 23);padding:5px;background-color:rgb(228, 250, 232)"> <b>{{ p.ctc }}</b></p>
+                        <h1 style="color: rgb(0, 149, 255);">{{ p.drive_name }}</h1>
+                        <p>Role</p>
+                        <p> <b>{{ p.role }}</b></p>
+                        <p>{{ p.req }}</p>
+                        <button value="{{ p.id}}" id="{{ p.id }}" onclick="apply(this.value)"> Apply</button>
+                    </div> -->
+
+                    <div class="sing-card" type="submit" id="{{ p.id }}">
+
+                        <div class="info">
+                            <h3>{{ p.drive_name }} </h3>
+                            <p class="comp-desc">{{ p.req }}</p>
+
+                            <p> <span class="material-icons">
+                                    person
+                                </span> <b>{{ p.role }}</b></p>
+
+                            <p id="deadline"><span class="material-icons">
+                                    history_toggle_off
+                                </span>{{ p.last_date }} </p>
+
+                            <p><span class="material-icons">
+                                    payments
+                                </span> {{ p.ctc }}</p>
+                        </div>
+
+                        <div class='gray-bg'>
+                            <button value="{{ p.id }}" id="{{ p.id }}" class="apply-btn" onclick="apply(this.value)">
+                                Apply </button>
+                        </div>
+
+                    </div>
+
                     {% endfor %}
+
+
+
                 </div>
             </div>
             <div class="Education" id="Education_div">
@@ -368,6 +418,17 @@
                         <div class="text-area">
                             <label for="name">Passout Year</label>
                             <input type="number" id="ug_passout" value="{{ Education.ug_passout }}" class="value">
+                        </div>
+                    </div>
+
+                    <div class="Aggregate">
+                        <div class="text-area">
+                            <label for="name">Any Gap Year</label>
+                            <input type="number" id="gap" value="{{ Education.gap }}" class="value">
+                        </div>
+                        <div class="text-area">
+                            <label for="name">Total Aggregate</label>
+                            <input type="number" id="ug_total" value="{{ Education.ug_total }}" class="value">
                         </div>
                     </div>
 
@@ -570,23 +631,181 @@
                 </div>
 
 
-                <button name="update_education" type="" onclick="update_education()">Update</button>
+                <!-- <button name="update_education" type="" onclick="update_education()">Update</button> -->
                 <!-- </form> -->
             </div>
-
-
-
         </div>
     </div>
+
+
+
+
+    <!-- modal to add Placement info -->
+    <div class="dialog" id="myModal" style="display: none;">
+        <div class="content">
+            <span class="close">&times;</span>
+            <div>
+                <!-- <form class="add-event-card offerletter" method="POST" id="offerletter_form" name="offerletteUpload">
+                    {% csrf_token %}
+                  
+                    {{ offer_letter }}
+
+                    <button class="btn-primary" type="submit" name="add_event"> <span class="material-icons">
+                            post_add
+                        </span> Save </button>
+                </form> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to add Co-Curricular info -->
+    <div class="dialog" id="co_model" style="display: none;">
+        <div class="content">
+            <button id="close_dialog"
+                style=" cursor: pointer; background-color: transparent; outline: none; border: none; padding: 20px; margin-left: auto;"><span
+                    class="material-icons">
+                    close
+                </span> </button>
+            <div>
+                <form class="add-event-card offerletter" method="POST" id="add_curricular" name="offerletteUpload">
+                    {% csrf_token %}
+                    <h3>Add Event</h3>
+                    <div>
+                        <label for="Name of Comapany">Comapany Name</label>
+                        <input type="text" name="name">
+                    </div>
+                    <div>
+                        <label for="Description">Description</label>
+                        <input type="text" name="description">
+                    </div>
+                    <input type="text" name="AddCo" style="display: none;">
+
+
+                    <button class="btn-primary" type="submit" name="add_event"> <span class="material-icons">
+                            post_add
+                        </span> Save </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-background" id="modalCont">
+        <div class="modal-cont" id="modal">
+            <form class="add-event-card offerletter" method="POST" id="offerletter_form" name="offerletteUpload">
+                {% csrf_token %}
+
+                {{ offer_letter }}
+
+                <button class="btn-primary" type="submit" name="add_event"> <span class="material-icons">
+                        post_add
+                    </span> Save </button>
+            </form>
+        </div>
+    </div>
+
 </body>
 
+<script>
+    var btn = document.getElementById("addComp");
+    //   var view = document.getElementById('profile_update');
+    //   var view_modal = document.getElementById("view_modal");
+    var span = document.getElementsByClassName("close")[0];
+    //   var card = document.getElementsByClassName("sing-card");
+    // btn.onclick = function () {
+    //     modal.style.display = "block";
+    // };
+
+    // span.onclick = function () {
+    //     console.log("Span Clicked!")
+    //     modal.style.display = "none";
+    // };
+
+
+    // var modal = document.getElementById("myModal");
+    // window.onclick = function (event) {
+    //     console.log(event)
+    //     if (event.target !== modal) {
+    //         if (event.target === btn) {
+    //             modal.style.display = 'block'
+    //         }else{
+    //             console.log(event.target)
+    //         }
+    //     }
+
+    // };
+
+    let openPlacement = ()=> {
+        bg_modal.style.display = 'flex'
+    }
+    var new_modal = document.getElementById('modal')
+    var bg_modal = document.getElementById('modalCont')
+    btn.onclick = openPlacement
+
+    window.onclick = (event) => {
+        console.log(event)
+        if (event.target === bg_modal)
+            bg_modal.style.display = 'none'
+
+    }
+
+//   view.onclick = function(){
+
+//   }
+</script>
+
 <script async defer>
+    let UpdateButton = document.getElementById('EducationUpdate')
     var title = document.getElementById('title_div')
+    let drive_search = document.getElementById('search_event')
+    let drive_card_id = document.getElementById('cards_drive')
+    drive_search.addEventListener('input', function () {
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                search_event: drive_search.value,
+            },
+            success: function (res) {
+                let data = JSON.parse(res.message), o = ""
+                data.forEach(element => {
+
+                    o += '<div class="sing-card" type="submit" id="' + element.fields['id'] + '"><div class="info"><h3>' + element.fields['drive_name'] + '</h3><p class="comp-desc">' + element.fields['req'] + '</p><p> <span class="material-icons">person</span> <b>' + element.fields['role'] + '</b></p><p id="deadline"><span class="material-icons">history_toggle_off</span>' + element.fields['last_date'] + ' </p><p><span class="material-icons">payments</span> ' + element.fields['ctc'] + '</p></div><div class="gray-bg"><button value="' + element.fields['id'] + '" id="' + element.fields['id'] + '" class="apply-btn" onclick="apply(this.value)"> Apply </button></div></div>'
+                    // Convert the sing card div 
+                });
+
+                drive_card_id.innerHTML = o
+
+
+
+            }
+        })
+    })
+
     function change_tab(id) {
-        title.innerHTML = document.getElementById(id).innerText
+
+        if (id == 5) {
+            window.location.href = "/student/Signout"
+        }
+        if (id == 4) {
+            document.getElementById('addComp').style.display = 'block'
+        } else {
+            document.getElementById('addComp').style.display = 'none'
+        }
+        if (id == 3) {
+            UpdateButton.style.display = 'block'
+        } else {
+            UpdateButton.style.display = 'none'
+        } if (id == 1) {
+            drive_search.style.display = 'block'
+        } else {
+            drive_search.style.display = 'none'
+        }
+
+
+        title.innerHTML = document.getElementById(id).innerHTML
         switch (id) {
             case '1':
-
                 document.getElementById('Main_div').style.display = "none";
                 document.getElementById('Placement_div').style.display = "none";
                 document.getElementById('Event_div').style.display = "block";
@@ -617,7 +836,16 @@
     }
 
 
+
+
+
+</script>
+
+<script>
+    let co_modal = document.getElementById('co_model')
+
     function show(id) {
+        co_modal.style.display = "none";
         switch (id) {
             case '1':
                 document.getElementById('D5').style.display = "none";
@@ -659,20 +887,147 @@
     }
 
 
+    let openCo = document.getElementById('addCo')
 
+    let co_container = document.getElementById('co_container')
+    let close_dialog = document.getElementById('close_dialog')
+
+    openCo.onclick = function () {
+        co_modal.style.display = 'flex'
+    }
+
+    close_dialog.onclick = function () {
+        console.log("Close clicked")
+        co_modal.style.display = 'none'
+    }
+
+    let out = ''
+    $('#add_curricular').submit(function (e) {
+        out = ""
+        e.preventDefault()
+        formData = new FormData(this)
+        $.ajax({
+            url: '',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (response) {
+                if (!response.error) {
+                    console.log(response.message)
+                    let JSON_Res = response.message
+                    for (i in JSON_Res) {
+                        out += '<div class="extra-curr-cont" ><div class="text-area"><label for="name">Company Name</label><input type="text" value="' + JSON_Res[i].Name + '" id="' + i + 'name"></div><div class="text-area"><label for="name">Description</label><input class="address" type="text" value="' + JSON_Res[i].Description + '" id="' + i + 'desc" ></div> <div class="row-btns"> <button id="' + i + '" class="btn-primary" onclick="updateCo(this.id)"> Update </button><button id="' + i + '" onclick="DeleteCo(this.id)" class="btn-primary dang" > Delete </button> </div> </div>'
+                    }
+                    // Object contains the all CoCurricular list now you have to just \
+                    co_container.innerHTML = out
+
+                }
+            }
+
+        })
+    })
+
+    function updateCo(id) {
+
+        let Name = document.getElementById(id + "name")
+        let Desc = document.getElementById(id + "desc")
+        console.log(Name.value + Desc.value + id)
+        out = ""
+        $.ajax({
+            url: '',
+            type: 'POST',
+            // processData:false,
+            // contentType:false,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                Name: Name.value,
+                Desc: Desc.value,
+                id: id,
+                UpdateC: ''
+            },
+            success: function (response) {
+                let JSON_Res = response.message
+                for (i in JSON_Res) {
+                    out += '<div class="extra-curr-cont" ><div class="text-area"><label for="name">Company Name</label><input type="text" value="' + JSON_Res[i].Name + '" id="' + i + 'name"></div><div class="text-area"><label for="name">Description</label><input class="address" type="text" value="' + JSON_Res[i].Description + '" id="' + i + 'desc" ></div> <div class="row-btns"> <button id="' + i + '" class="btn-primary" onclick="updateCo(this.id)"> Update </button><button id="' + i + '" onclick="DeleteCo(this.id)" class="btn-primary dang" > Delete </button> </div> </div>'
+                }
+                // Object contains the all CoCurricular list now you have to just \
+                co_container.innerHTML = out
+            }
+
+        })
+    }
+    function DeleteCo(id) {
+        out = ""
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                id: id,
+                DeleteC: ''
+            },
+            success: function (response) {
+                let JSON_Res = response.message
+                for (i in JSON_Res) {
+                    out += '<div class="extra-curr-cont" ><div class="text-area"><label for="name">Company Name</label><input type="text" value="' + JSON_Res[i].Name + '" id="' + i + 'name"></div><div class="text-area"><label for="name">Description</label><input class="address" type="text" value="' + JSON_Res[i].Description + '" id="' + i + 'desc" ></div> <div class="row-btns"> <button id="' + i + '" class="btn-primary" onclick="updateCo(this.id)"> Update </button><button id="' + i + '" onclick="DeleteCo(this.id)" class="btn-primary dang" > Delete </button> </div> </div>'
+                }
+                // Object contains the all CoCurricular list now you have to just \
+                co_container.innerHTML = out
+            }
+
+        })
+    }
 </script>
-
-
 
 <script>
     let arr = new Set()
-    $('#OpenImgUpload').click(function(){ $('#imgupload').trigger('click'); });
+
+    // $('#OpenImgUpload').click(function(){ console.log("Hello ") });
+
+    // function OpenImage() {
+    //     console.log("Hello World!!")
+    //     $('#imgupload').trigger('click');
+    // }
+
     $(".value").on("input", function () {
         arr.add($(this).attr('id'))
         console.log(arr)
 
     });
 
+    function deleteResume(id) {
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                id: id,
+                deleteResume: ''
+            },
+            success: function () {
+                console.log('Request Has been set successfully!')
+                document.getElementById('resume_div').remove()
+            }
+        })
+        console.log(id)
+    }
+    function updatExperience() {
+        Inputdata = document.getElementById('textarea').value
+        console.log(Inputdata)
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                exData: Inputdata,
+                updatEx: ''
+            },
+            success: function () {
+
+            }
+        })
+    }
     function update_education() {
         let send = ""
         let json_obj = {}
@@ -693,7 +1048,7 @@
     }
 
     function apply(id) {
-        console
+        console.log('Request Initiated')
         $.ajax({
             url: '',
             type: "POST",
@@ -701,12 +1056,22 @@
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 id: id,
                 apply: ''
+            },
+            success: function (response) {
+                console.log(response['message'])
+                let url = response['message']
+
+                window.open(url, '_blank')
             }
         })
     }
 
+    // {% comment %} $('#apply_drive').click(function(){
+    //     console.log('Initiate Here')
+    // }) {% endcomment %}
+
     function UpdatePassword() {
-        
+
         pass = document.getElementById("psw")
         console.log(pass.value)
         $.ajax({
@@ -722,6 +1087,105 @@
             }
         })
     }
+</script>
+
+<script>
+    $('#offerletter_form').submit(function (e) {
+        e.preventDefault();
+        bg_modal.style.display = 'none'
+        let out = ""
+        let PlacementCont = document.getElementById('placementCont')
+        offerform = new FormData(this)
+        $.ajax({
+            url: '',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: offerform,
+            success: function (response) {
+                console.log(response.message)
+                let data = response.message
+                for(i in data){
+                     out += "<div class='company-card'><div class='c-title'><h2>"+data[i].Name+"</h2><span class='material-icons'> verified </span> </div><p class='designation'>"+data[i].Role+"</p><div class='ctc-cont'><div><label for='Joining Date'>Joining Date</label><h4>"+data[i].JoinDate+"</h4></div><div><label for='CTC'>CTC</label><h4>"+data[i].CTC+"</h4></div></div><div class='offer'><label for='Offer Letter'>Offer Letter</label><button class='button-sec'> <a href='"+data[i].OfferLetter+"'target='_blank'>view</a></button></div></div>"
+                    data[i].Name
+
+                }
+                document.getElementById('offerletter_form').reset()
+                PlacementCont.innerHTML = out
+                //udpate company list here 
+
+            }
+
+        })
+
+    })
+
+
+
+        
+
+
+</script>
+<!-- This is resume form -->
+<script>
+
+    $('#resume_form').submit(function (e) {
+        e.preventDefault();
+        resumeform = new FormData(this)
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            data: resumeform,
+            success: function () {
+
+            }
+
+        })
+
+    })
+
+
+
+</script>
+
+
+<!-- Image upload Form  -->
+<script type="text/javascript">
+    // form upload
+    $('#id_ajax_upload_form').submit(function (e) {
+        e.preventDefault();
+        $form = $(this)
+        let imagelabel = document.getElementById('imagelabel')
+        var formData = new FormData(this);
+        console.log(formData)
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: formData,
+            success: function (response) {
+                $('.error').remove();
+                console.log(response)
+                if (response.error) {
+                    $.each(response.errors, function (name, error) {
+                        error = '<small class="text-muted error">' + error + '</small>'
+                        $form.find('[name=' + name + ']').after(error);
+                    })
+                }
+                else {
+                    // document.getElementById('profileimg').src = response.message
+                    $('#profileimg').attr('src', response.message)
+                    alert(response.message)
+                    window.location = ""
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
 </script>
 
 </html>

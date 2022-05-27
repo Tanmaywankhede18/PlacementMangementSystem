@@ -18,8 +18,7 @@
             <ul>
                 <li>Personal Information</li>
                 <li>Education</li>
-                <li>Extra Curriculam</li>
-                <li>Experience</li>
+            
             </ul>
         </div>
 
@@ -100,10 +99,23 @@
                                 <label for="Name">Education Type</label>
                                 <select name="EducationType" id="">
                                     <option value="BTech">B.Tech</option>
-                                    <option value="Diploma">Diploma</option>
+                                    {% comment %} <option value="Diploma">Diploma</option>
                                     <option value="HSC">HSC</option>
-                                    <option value="SSC">SSC</option>
+                                    <option value="SSC">SSC</option> {% endcomment %}
                                 </select>
+                            </div>
+
+                            <div class="container-input">
+                                <label for="Name">Do you have any Gap?</label>
+                                <select name="Gap" id="">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <div class="container-input">
+                                <label for="Name">Current Backlogs</label>
+                                <input type="text" name="current_backlog" />
                             </div>
                             <div class="container-input">
                                 <label for="Stream">Stream</label>
@@ -126,7 +138,7 @@
                         <div class="div-2">
                             <div class="container-input">
                                 <label for="Name">Marks/Percentage</label>
-                                <input type="Number" name="ug_marks" />
+                            <input type="Number" step="0.01" name="ug_marks" />
                             </div>
                             <div class="container-input">
                                 <label for="Name">Passout Year</label>
@@ -141,10 +153,10 @@
                             <div class="container-input">
                                 <label for="Name">Education Type</label>
                                 <select name="EducationType" id="">
-                                    <option value="BTech">B.Tech</option>
+                                    {% comment %} <option value="BTech">B.Tech</option> {% endcomment %}
                                     <option value="Diploma">Diploma</option>
-                                    <option value="HSC">HSC</option>
-                                    <option value="SSC">SSC</option>
+                                    {% comment %} <option value="HSC">HSC</option> {% endcomment %}
+                                    {% comment %} <option value="SSC">SSC</option> {% endcomment %}
                                 </select>
                             </div>
                             <div class="container-input">
@@ -168,7 +180,7 @@
                         <div class="div-2">
                             <div class="container-input">
                                 <label for="Name">Marks/Percentage</label>
-                                <input type="Number" name="deploma_marks" />
+                                <input type="Number"  step="0.01" name="deploma_marks" />
                             </div>
                             <div class="container-input">
                                 <label for="Name">Passout Year</label>
@@ -183,10 +195,39 @@
                             <div class="container-input">
                                 <label for="Name">Education Type</label>
                                 <select name="EducationType" id="">
-                                    <option value="BTech">B.Tech</option>
+                                    {% comment %} <option value="BTech">B.Tech</option>
                                     <option value="Diploma">Diploma</option>
-                                    <option value="HSC">HSC</option>
-                                    <option value="SSC">SSC</option>
+                                    <option value="HSC">HSC</option> {% endcomment %}
+                                    <option value="SSC">12TH</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="container-input">
+                            <label for="Name">Institue Name</label>
+                            <input type="text" name="hsc" />
+                        </div>
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Marks/Percentage</label>
+                                <input type="Number"  step="0.01" name="hsc_marks" />
+                            </div>
+                            <div class="container-input">
+                                <label for="Name">Passout Year</label>
+                                <input type="Number" name="hsc_passout" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Education-cont">
+                        <div class="div-2">
+                            <div class="container-input">
+                                <label for="Name">Education Type</label>
+                                <select name="EducationType" id="">
+                                    {% comment %} <option value="BTech">B.Tech</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="HSC">HSC</option> {% endcomment %}
+                                    <option value="SSC">10TH</option>
                                 </select>
                             </div>
 
@@ -198,7 +239,7 @@
                         <div class="div-2">
                             <div class="container-input">
                                 <label for="Name">Marks/Percentage</label>
-                                <input type="Number" name="ssc_marks" />
+                                <input type="Number" step="0.01" name="ssc_marks" />
                             </div>
                             <div class="container-input">
                                 <label for="Name">Passout Year</label>
@@ -206,7 +247,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- This is Extra Curriculam Activities -->

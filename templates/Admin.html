@@ -1,0 +1,197 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/Admin/Admin.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div class="nav-bar">
+
+            <h2>Admin</h2>
+            <button class="nav-icon" onclick="Signout()" id="logout"> <span
+                    class="material-icons">
+                    logout
+                </span></button>
+        </div>
+        <div class="table-header">
+            <h2>TPO List</h2>
+            <button class="btn-primary" id="tpo_dialog" onclick="addtpo_dialog()">
+                <span class="material-icons">
+                    add
+                </span>
+                Add TPO</button>
+        </div>
+        <div class="tpo-table">
+            <table class="tpo">
+                <thead>
+                    <tr>
+                        <th>TPO Name</th>
+                        <th>Department</th>
+                        <th>Mobile</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody class="table-items">
+
+                    {% for i in list %}
+                    <tr>
+                        <td>
+                            <div>
+                                <p>{{ i.fullname }}</p>
+                                <p class="sub-text">{{ i.email }}</p>
+
+                            </div>
+
+                        </td>
+                        <td>{{ i.mobile }}</td>
+                        <td>{{ i.department }}</td>
+                        <td>{{ i.mobile }}</td>
+                        <td>
+                            <div>
+                                <button class="btn-with-outline" id="delete"
+                                    onclick="dlt_tpo('{{ i.user_id }}')">Delete</button>
+                            </div>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="addModal">
+        <form action="" method="POST" class="modal-content">
+            {% csrf_token %}
+            <div class="btn-with-head">
+
+                
+                <h2>Add Placement Manager </h2>
+                <button class="close_button" style="margin-left:auto;"><span class="material-icons">
+                    close
+                    </span> </button>
+            </div>
+            <div class="input-label">
+                <label for="Name">Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="input-label">
+                <label for="Name">Email</label>
+                <input type="text" name="email">
+            </div>
+            <div class="input-label">
+                <label for="Name">Department</label>
+                <select name="department" id="">
+                    <option value="Computer Science and Technology">Computer Science and Technology
+                    </option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Electronics & Telecommunication Engineering">Electronics &
+                        Telecommunication Engineering</option>
+                    <option value="Food Technology">Food Technology</option>
+                    <option value="Civil  Engineering">Civil Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                </select>
+            </div>
+            <div class="input-label">
+                <label for="Name">Mobile</label>
+                <input type="text" name="mobile">
+            </div>
+            <div>
+                <button type="submit" class="btn-primary " id="add_tpo" onclick="close_modal()" name="addTpo">
+                    <span class="material-icons">
+                        add
+                    </span>
+                    Add TPO</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="deletemodal_container" id="deletemodal_container">
+        <div class="deletemodal" id="delete_modal">
+            <h3>Delete</h3>
+            <p>Are you sure to delete this TPO</p>
+            <div>
+                <button onclick="close_modal(this.id)" id="c">Cancel</button>
+                <button id="dlttpo" onclick="close_modal(this.id)" id="d">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    addbtn = document.getElementById('tpo_dialog')
+    modal = document.getElementById('addModal')
+    tpo = document.getElementById('add_tpo')
+    dmodal = document.getElementById('deletemodal_container')
+    dlt = document.getElementById('delete')
+    dlttpo = document.getElementById('dlttpo')
+    let userid = null
+    // document.onclick = function (event) {
+    //     console.log(event.target.id)
+    // }
+    function Signout(){
+        window.location.href = '/Signout'
+    }
+    function dlt_tpo(id) {
+        console.log(id)
+        userid = id
+        dmodal.style.display = 'flex'
+    }
+    
+    function close_modal(id) {
+        if(id!="c") 
+            $.ajax({
+                url: '',
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    id: userid,
+                    deleteTPO: ''
+                },
+                success: function () {
+                    window.location.reload()
+                }
+
+            })
+        dmodal.style.display = 'none'
+        modal.style.display = 'none'
+    }
+
+    dlt.onclick = dlt()
+
+
+
+    function addtpo_dialog() {
+        console.log("Add TPO modal is called!!")
+        modal.style.display = 'flex'
+    }
+
+    tpo.onclick = function () {
+        modal.style.display = 'none'
+    }
+
+
+</script>
+
+</html>

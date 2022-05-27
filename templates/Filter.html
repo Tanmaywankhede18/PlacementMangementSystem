@@ -4,60 +4,96 @@
 
 <head>
     <title>Student Function</title>
-    <link rel="stylesheet" href="{% static 'css/Student_options.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/input_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Filter.css' %}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="student_section">
+    <div class="dialog" id="overlay">
+        <div>
 
-    <div class='main_cont'>
+       
+            <!-- Spinner -->
+            <div id="spinnercont" class="spi">
+                <h2>Downloading</h2>
+                <svg viewBox="0 0 100 100">
+                  <defs>
+                    <filter id="shadow">
+                      <feDropShadow dx="0" dy="0" stdDeviation="1.5" 
+                        flood-color="#fc6767"/>
+                    </filter>
+                  </defs>
+                  <circle id="spinner"  cx="50" cy="50" r="45"/>
+              </svg>
+              </div>
+        </div>
+    </div>
+    <div class='main-cont'>
         <div class='sidebar'>
             <div class="name">
-                <h2 class="ti">Training and Placement</h2>
-                <p>Shivaji University</p>
-                <button onclick="excel()"> Download </button>
+                <div>
+                    <h2 class="ti">Training and Placement</h2>
+                    <p>Shivaji University</p>
+                </div>
+
+                <button onclick="excel()" class="download-btn"> <span class="material-icons">
+                        table_rows
+                    </span>
+                    Download </button>
             </div>
+            <div class="Filter-div">
 
-            <p class="fil-title"><b>Filter</b></p>
-            <div class="sidebar_filter">
-                <!-- <form action="" method="POST" class="sidebar_filter">
-                        {% csrf_token %} -->
-                <div class="filter-input">
-                    <div class="check-box">
-                        <input type="checkbox" value="Name">
-                        <label for="Name">Name</label>
-                    </div>
-                    <input type="text" name="name" id="name">
-                </div>
-
-
-                <div class="filter-input">
-                    <div class="check-box">
-                        <input type="checkbox" value="PRN">
-                        <label for="Name">PRN</label>
-                    </div>
-                    <input type="text" name="PRN" id="prn">
-                </div>
-
-
-                <div class="filter-input">
-                    <div class="check-box">
-                        <input type="checkbox" value="Gender">
-                        <label for="Name">Gender</label>
-                    </div>
-                    <select name="gender" id="gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-
-
-                <div class="mergefilter">
+                <h2>Filter</h2>
+                <div class="sidebar_filter">
+                    <!-- <form action="" method="POST" class="sidebar_filter">
+                            {% csrf_token %} -->
                     <div class="filter-input">
                         <div class="check-box">
-                            <input type="checkbox" value="Marks">
+                            <input type="checkbox" value="Name">
+                            <label for="Name">Name</label>
+                        </div>
+                        <input type="text" name="name" id="name">
+                    </div>
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                   
+                            <label >Name Format</label>
+                        </div>
+                        <select name="gender" id="NameFormat">
+                            <option value="fms">First/Middle/Surname</option>
+                            <option value="sfm">Surname/First/Middle</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" value="PRN">
+                            <label for="Name">PRN</label>
+                        </div>
+                        <input type="text" name="PRN" id="prn">
+                    </div>
+
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" value="Gender">
+                            <label for="Name">Gender</label>
+                        </div>
+                        <select name="gender" id="gender">
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" value="BTech">
                             <label for="Name">Marks</label>
                         </div>
                         <input type="text" name="marks" id="marks">
@@ -65,109 +101,170 @@
 
                     <div class="filter-input">
                         <div class="check-box">
-                            <input type="checkbox" value="backlogs">
+                            <input type="checkbox" value="Backlog">
                             <label for="Name">Backlogs</label>
                         </div>
                         <input type="text" name="backlogs" id="backlogs">
                     </div>
-                </div>
 
-                <div class="mergefilter">
+
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Gap">
                             <label for="Name">Year Gap</label>
                         </div>
-                        <input type="text" name="Gap" id="gap">
+                        <select id="gap">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
                     </div>
 
                     <div class="filter-input">
                         <div class="check-box">
-                            <input type="checkbox" value="passout">
+                            <input type="checkbox" value="Passout">
                             <label for="Name">Passout</label>
                         </div>
                         <input type="text" name="pout" id="pout">
                     </div>
 
-                </div>
 
 
 
 
-
-                <div class="mergefilter">
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Deploma">
-                            <label for="Name">12th/Deploma Marks</label>
+                            <label for="Name">Diploma Marks</label>
+                        </div>
+                        <input type="text" name="Diploma" id="d">
+                    </div>
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" value="HSC">
+                            <label for="Name">12th Marks</label>
                         </div>
                         <input type="text" name="12th" id="12th">
                     </div>
                     <div class="filter-input">
                         <div class="check-box">
-                            <input type="checkbox" value="x">
+                            <input type="checkbox" value="SSC">
                             <label for="Name">10th Marks</label>
                         </div>
                         <input type="text" name="10th" id="10th">
                     </div>
 
-                </div>
+                    <div class="filter-input">
+                        <div class="check-box">
+                            <input type="checkbox" value="Placed">
+                            <label for="Name">Placed</label>
+                        </div>
+                        <select id="Placed">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    
 
-                <div class="filter-input">
-                    <div class="check-box">
-                        <input type="checkbox" name="skills">
-                        <label for="Name">Extra Skills</label>
+                    <div class="filter-input no-in">
+                        <!-- <div class="check-box ">
+                            <input type="checkbox" name="skills" value="Extraskills">
+                            <label for="Name">Extra Skills</label>
+                        </div> -->
+
+                        <div class="check-box ">
+                            <input type="checkbox" name="skills" value="BirthDate">
+                            <label for="Name">Birth Date</label>
+                        </div>
+                        <div class="check-box ">
+                            <input type="checkbox" name="skills" value="Address">
+                            <label for="Name">Address</label>
+                        </div>
+
+                        <div class="check-box ">
+                            <input type="checkbox" name="skills" value="Email">
+                            <label for="Name">Email</label>
+                        </div>
+                        <div class="check-box ">
+                            <input type="checkbox" name="skills" value="Mobile">
+                            <label for="Name">Mobile</label>
+                        </div>
+                     
                     </div>
 
+                    <!-- </form> -->
                 </div>
-                <button type="submit" class='apply' onclick="showValue()"> Apply</button>
-                <!-- </form> -->
+                <button type="submit" class='search-btn' onclick="showValue()"> <span class="material-icons">
+                        filter_alt
+                    </span> Filter</button>
             </div>
         </div>
 
 
 
-        <div class='main_body'>
-            <div class='inner-body'>
-
-                <div class='buttons-div'>
-                    <div class="filters" id="filt">
-
-                    </div>
-
-
-                </div>
-                <div class='data-table'>
-                    <table id="table">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="" class="checkbox" /></th>
-                                <th>PRN </th>
-                                <th> Name</th>
-                                <th>Branch</th>
-                                <th>Marks</th>
-                                <th>Placement Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                            {% for s in data %}
-                            <tr>
-                                <td><input type="checkbox" id="" class="checkbox" /></td>
-                                <td>{{s.PRN}}</td>
-                                <td><a href="http://www.google.com">{{ s.first_name }} {{ s.middle_name }} {{
-                                        s.last_name}}</a></td>
-                                <td>{{ s.ug }}</td>
-                                <td>{{ s.ug_marks }}</td>
-                                <td>NA</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+        <div class='main-body'>
+            <div class="download-btns">
+                
+                <button class="download-btn zip " onclick="zip()" >
+                    <span class="material-icons">
+                        folder_zip
+                    </span>
+                   Resume Zip</button>
+                <button onclick="excel()" class="download-btn"> <span class="material-icons">
+                        table_rows
+                    </span>
+                    Excel </button>
             </div>
+            <p id="total_count">Totaol Students : {{ data.count }}</p>
+            <table id="table" class="data-table">
+                <thead>
+                    <tr>
+                        <!-- <th><input type="checkbox" id="" class="checkbox" /></th> -->
+                        <th>Sr</th>
+                        <th>PRN </th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Marks</th>
+                        <th>Resume</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                  
+                    {% for s in data %}
+                    <tr>    
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ s.PRN }}</td>
+                        <td id="{{ s.PRN }}" onclick="showProfile(this.id)" style="cursor:pointer">{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}</td>
+                        <td>{{ s.gender }}</td>
+                        <td>{{ s.school_marks }}</td>
+                        <td>
+                            {% if s.resume %}
+                            <a href="{{ s.resume.url }}" target="_blank"> View/Download</a>
+                            {% endif %}
+                        </td>
+                        <td><button onclick="deleteStudent('{{ s.id }}','{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}')">Delete</button></td>
+
+                    </tr>
+                    {% endfor %}
+                 
+                </tbody>
+            </table>
+
         </div>
     </div>
 
+
+    <div id="modalCont">
+        <div id="modal">
+            <h3>Delete</h3>
+            <p id="setName">Do you want really delete Student Name Record</p>
+            <div>
+                <button onclick="getDeleteClick(this.value)" value="Cancel">Cancel</button>
+                <button onclick="getDeleteClick(this.value)" value="Delete">Delete</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script>
@@ -179,17 +276,23 @@
     var prn = document.getElementById("prn")
     var gender = document.getElementById("gender")
     var school = document.getElementById("10th")
+    var diploma = document.getElementById('d')
     var hsc_dep = document.getElementById("12th")
     var gap = document.getElementById("gap")
+    let overlay = document.getElementById('overlay')
     var passouts = document.getElementById("pout")
+    var NameFormat = document.getElementById('NameFormat')
+    let total = document.getElementById('total_count')
+    let Placed = document.getElementById('Placed')
     function showValue() {
-        console.log(gender.value)
+        console.log(diploma.value)
         let tbody = document.getElementById('tbody')
         $.ajax({
             url: '',
             type: "POST",
             data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}', name: student_name.value,
+                csrfmiddlewaretoken: '{{ csrf_token }}', 
+                name: student_name.value,
                 // dep: dep.value,
                 marks: marks.value,
                 backlogs: backlogs.value,
@@ -197,19 +300,33 @@
                 gap: gap.value,
                 gender: gender.value,
                 school: school.value,
-                hsc_dep: hsc_dep.value,
+                hsc_marks: hsc_dep.value,
+                diploma_marks: diploma.value,
                 passout: passouts.value,
+                NameFormat: NameFormat.value,
+                Placed:Placed.value,
                 filters: ''
             },
             success: function (data) {
-                console.log(data)
-                var student_data = JSON.parse(data)
-                console.log(student_data)
+                // console.log(data)
+
+                var student_data = JSON.parse(JSON.stringify(data.message))
+                // var student_data = data.message
                 var out = "";
+
+                console.log(student_data)
+
+                // data.message.forEach(element => {
+                //     console.log(element)
+                // });
+                // out += '<tr><td><input type="checkbox" id="" class="checkbox" /></td><td>' + student_data[student].prn + '</td><td><a href="http://www.google.com">' + student_data[student].name + '</a></td><td>' + student_data[student].dep + '</td><td>' + student_data[student].marks + '</td><td>NA</td></tr>'
+                let counter = 0;
                 for (student in student_data) {
-                    out += '<tr><td><input type="checkbox" id="" class="checkbox" /></td><td>' + student_data[student].prn + '</td><td><a href="http://www.google.com">' + student_data[student].name + '</a></td><td>' + student_data[student].dep + '</td><td>' + student_data[student].marks + '</td><td>NA</td></tr>'
+                    counter++;
+                    out += '<tr><td>'+counter+'</td><td>' + student_data[student].prn + '</td><td><a id=' + student_data[student].prn + ' onclick="showProfile(this.id)" >' + student_data[student].name + '</a></td><td>' + student_data[student].gender + '</td><td>' + student_data[student].marks + '</td><td><a href="' + student_data[student].url + '" target="_blank">View/Download</a></td></tr><td><button onclick="deleteStudent(' + student_data[student].id +","+'{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}' +')">Delete</button></td>'
+                    console.log(student_data[student])
                 }
-                console.log(out)
+                total.innerHTML = "Total Students : "+counter
                 tbody.innerHTML = out
 
             }
@@ -221,15 +338,51 @@
 </script>
 
 
+<script>
+    let id = ""
+    let name =""
+    let deleteStudent = (id,name) => {
+        modalCont.style.display = 'flex'
+        id = id
+        name =  name
+        console.log(name)
+        // $.ajax({
+        //     url:'',
+        //     type:"POST",
+        //     data:{
+        //         csrfmiddlewaretoken: '{{ csrf_token }}', 
+        //         student_id : id,
+        //         deleteStudent:''
+        //     }
+        // })
+    }
 
+
+    let getDeleteClick = (value) => {
+        if(value === 'Delete'){
+            console.log("Delete Student object ")
+            modalCont.style.display = 'none'   
+        }else{
+            modalCont.style.display = "none"
+        }
+    }
+
+    let modalCont = document.getElementById('modalCont')
+    let modal = document.getElementById('modal')
+    window.onclick = (event) => {
+        if ( event.target === modalCont){
+            modalCont.style.display = 'none'
+        }
+    }
+</script>
 
 <!-- Filters -->
 <script>
 
     var filters = []
     var fil = document.getElementById('filt')
+
     var out = ""
-    console.log(filters)
     var i = 0
     // filters.push(event.target.id)
     // filters.forEach(element => {
@@ -244,7 +397,7 @@
         for (var checkbox of checkboxes) {
             checkbox.addEventListener('change', function (event) {
                 if (event.target.checked) {
-                
+
                     selected.push(event.target.value)
                     addFilter(event.target.value)
                     // filters.forEach(element => {
@@ -255,18 +408,17 @@
                     // console.log(filters)
                     // out += '<p class="filter1" id="'+event.target.value+'">'+event.target.value+'<span class="material-icons" id="'+i+'"onclick="dlt(this.id)">close</span></p>'
                     // fil.innerHTML = out
-                }else {
+                } else {
                     selected = selected.filter(item => item !== event.target.value)
                     filters = filters.filter(item => item !== event.target.value)
                     // document.getElementById(event.target.value).remove()
-                    fil.innerHTML=""
-                    
+                    fil.innerHTML = ""
+
                 }
-                console.log("this is selected : "+selected)
-          
+
             });
         }
-    
+
     }, false);
 
 
@@ -274,7 +426,6 @@
         filters.push(data)
         i++
         fil.innerHTML += '<p class="filter1" id="' + data + '">' + data + '<span class="material-icons" id="' + i + '"onclick="dlt(this.id)">close</span></p>'
-        console.log(filters)
     }
 
     function removeItemFromArray(array, n) {
@@ -293,7 +444,6 @@
         var pid = document.getElementById(id).parentNode.id
         filters = removeItemFromArray(filters, pid)
         var pid = document.getElementById(id).parentNode.remove()
-        console.log(filters)
 
         filters.forEach(element => {
             out += '<p class="filter" id="' + element + '">' + element + '<span class="material-icons" id="' + i + '"onclick="dlt(this.id)">close</span></p>'
@@ -303,19 +453,69 @@
 
     }
 
-    function excel(){
+    function excel() {
         $.ajax({
-            url:'',
-            type:'POST',
-            data:{
-                csrfmiddlewaretoken:'{{ csrf_token }}',
-                list:JSON.stringify(filters),
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                list: JSON.stringify(filters),
+                NameFormat:document.getElementById('NameFormat').value,
+                excel: ''
+
+            },
+            success: function (response) {
+                window.open(response["message"], '_blank')
+            }
+
+        })
+    }
+    function zip() {
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                zip: '',
                 excel:''
+            },
+            success: function (response) {
+                window.open(response["message"], '_blank')
             }
 
         })
     }
 
+    function showProfile(id) {
+        // $.ajax({
+        //     url: '',
+        //     type: 'POST',
+        //     data: {
+        //         csrfmiddlewaretoken: "{{ csrf_token }}",
+        //         prn: id,
+        //         showProfile: ''
+        //     }
+        // })
+        console.log("Show Profile" + id)
+        let url = window.location.href
+        url = url.replace("Filter","Profile/"+id)
+        console.log(url)
+        window.location = url 
+    }
+</script>
+
+<script>
+    overlay.style.display = "none"
+    $(document).on({
+        ajaxStart: function () {
+            // $("#overlay").addClass("loading");
+            overlay.style.display = 'block'
+        },
+        ajaxStop: function () {
+            // $("#overlay").removeClass("loading");
+            overlay.style.display = "none"
+        }
+    });
 </script>
 
 

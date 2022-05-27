@@ -20,3 +20,6 @@ class Event(models.Model):
     passouts =  models.CharField(max_length=100)
     link = models.CharField(max_length=200)
     stu_applied = models.CharField(max_length=400,null=True)
+
+class SaveExcel(models.Model):
+    excel = models.FileField(upload_to='excel/')

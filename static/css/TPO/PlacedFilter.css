@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    color: #44566c;
+    margin: 0px;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Header{
+    width: 100%;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.Header input{
+    border-radius: 5px;
+    flex: 0.8;
+    padding: 8px;
+    outline: none;
+    border: 1px solid lightgray;
+
+}
+.Header button{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 8px 20px ;
+    margin-left: 20px;
+    outline: none;
+    border: 1px solid lightgray;
+}
+.table-cont{
+    width: 100%;
+    padding: 20px;
+}
+th,td{
+    text-align: left;
+    padding: 8px;
+    border: 1px solid lightgray;
+}
+td > button{
+    margin-left: 10px;
+    cursor: pointer;
+}
+table {
+    font-size: 14px;
+    border-collapse: collapse;
+}
+.center{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.center > table{
+    margin-top: 10px;
+    width: 100%;
+}
+.centerd-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}

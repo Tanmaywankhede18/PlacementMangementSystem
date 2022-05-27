@@ -9,5 +9,7 @@ urlpatterns = [
     path('/Register',views.TPO),
     path('/dashboard/StudentProfile',views.ShowProfile),
     path('/Filter',views.Filter),
+    path('/Profile/<str:prn>', views.ShowProfile),
+    path('/PlacedFilter', views.PlacedFilter),
     path('/test',views.test),
 ]

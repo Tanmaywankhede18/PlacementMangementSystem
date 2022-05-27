@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1mm=2)ywsed&2hicv_n&l_sa3b@s)h7f2v2e*cc4sjhvx%!40e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,8 +84,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'placement',  
         'USER': 'root',  
-        'PASSWORD': '',  
+        'PASSWORD': 'root',  
         'HOST': '127.0.0.1',  
+        # 'USER':'admin',
+        # 'PASSWORD':'admin5640',
+        # 'HOST':'placement.czlsfflozejq.us-east-1.rds.amazonaws.com',
         'PORT': '3306',  
         'OPTIONS': {  
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
@@ -129,10 +132,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,  'static')
 ]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -150,3 +155,14 @@ EMAIL_HOST_USER = 'gpkp1656@gmail.com'
 EMAIL_HOST_PASSWORD = 'Isnam@29'  
 EMAIL_PORT = 587
 
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+AWS_ACCESS_KEY_ID ="AKIA6BYQTIORN7JWRPWI"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "placementmanagement"
+AWS_QUERYSTRING_AUTH = False

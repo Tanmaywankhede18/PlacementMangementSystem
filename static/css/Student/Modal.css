@@ -1,0 +1,35 @@
+  .view_modal input{
+    margin: 0px;
+  }
+  .view_modal{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+  .view_drive{
+    margin:auto;
+    padding: 40px;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+  }
+  .dialog-inputs{
+    flex: 1;
+    display: flex;
+    flex-direction:column;
+  }
+  .dialog-inputs div{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }

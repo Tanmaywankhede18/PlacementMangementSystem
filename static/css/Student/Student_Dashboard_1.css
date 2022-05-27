@@ -1,68 +1,83 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-*{
+
+* {
     font-family: 'Poppins', sans-serif;
     margin: 0px;
 }
 
-body{
+body {
     height: 100vh;
     display: flex;
     flex-direction: row;
 }
 
 
-p{
- font-size: medium;
+p {
+    font-size: 14px;
+
 }
-.sidebar{
+
+.sidebar {
     flex: 2;
     width: 600px;
 }
-.main-body{
+
+.main-body {
     display: flex;
     flex-direction: column;
     flex: 8;
     background-color: #FAFBFF;
 }
-.Placement{
+
+.Placement {
     display: none;
 }
-.Event{
-    display: none;
+
+.Event {
+    display: block;
 }
-.head{
+
+.head {
     flex: 1;
 }
 
-.name-header{
+.name-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 20px;
     border-bottom: 1px solid rgb(235, 232, 232);
 }
-.with-btn{
+
+.with-btn {
     justify-content: space-between;
 }
-#title_div{
+
+#title_div {
+    display: flex;
     color: rgb(0, 119, 255);
 }
-.name-header span{
+
+.name-header span {
     margin-right: 10px;
     color: rgb(0, 119, 255);
 }
-.name-headr p{
+
+.name-headr p {
     color: rgb(0, 119, 255);
 }
-.sidebar ul{
-   list-style-type: none;
-   padding: 0px;
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0px;
 
 }
-.sidebar li span{
+
+.sidebar li span {
     padding-right: 10px;
 }
-.sidebar li{
+
+.sidebar li {
     display: flex;
     align-items: center;
     margin: 0px 20px;
@@ -71,31 +86,35 @@ p{
     padding: 10px;
     font-size: small;
     font-weight: 600;
-    
+
 }
-.sidebar li:hover{
-    background-color:rgb(0, 119, 255);
-    color:white;
+
+.sidebar li:hover {
+    background-color: rgb(0, 119, 255);
+    color: white;
     cursor: pointer;
-   
+
 }
-.Logo{
+
+.Logo {
     padding: 20px;
 }
 
-.body-cont{
+.body-cont {
     overflow-x: hidden;
     flex: 8;
-   
+
 }
-.cards{
+
+.cards {
     height: 550px;
     overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
 }
-.single-card{   
+
+.single-card {
     border-radius: 5px;
     margin: 10px;
     padding: 20px;
@@ -105,16 +124,17 @@ p{
     transition: 0.2s;
     box-shadow: 0px 1px 2px lightgray;
 }
-.single-card button{
+
+.single-card button {
     align-self: flex-end;
 }
 
-.single-card:hover{   
+.single-card:hover {
     box-shadow: 0px 5px 40px rgb(233, 233, 233);
 }
 
 
-.company-card{
+.company-card {
     box-shadow: 0px 1px 2px lightgray;
     margin: 20px;
     width: fit-content;
@@ -122,48 +142,56 @@ p{
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 20px;
 }
-.company-card label{
+
+.company-card label {
     font-weight: normal;
     color: gray;
 }
-.c-title{
+
+.c-title {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.c-title span{
+
+.c-title span {
     color: rgb(60, 145, 255);
 
 }
-.company-card h2{
+
+.company-card h2 {
     margin-right: 10px;
 }
-.ctc-cont{
-    margin-top: 20px;
+
+.ctc-cont {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
 }
-.ctc-cont :first-child{
+
+.ctc-cont :first-child {
     margin-right: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
-.offer{
+
+.offer {
     display: flex;
     flex-direction: column;
 }
-.offer button{
+
+.offer button {
 
     margin-top: 10px;
 }
 
 .button-sec{
-    background-color: white;
+    color: white;
     border: 1px solid rgb(60, 145, 255);
-    color: rgb(60, 145, 255);
+    background-color: rgb(60, 145, 255);
     font-weight: 600;
-    padding:5px 30px 5px 30px;
+    padding: 5px 30px 5px 30px;
     border-radius: 5px;
     outline: none;
     display: flex;
@@ -171,20 +199,27 @@ p{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: 20px;
+    margin: 0px;
 }
-.button-sec span{
+
+.button-sec a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.button-sec span {
     margin-right: 5px;
 }
-.Education{
-   
+
+.Education {
+
     display: none;
     flex-direction: column;
     width: 100%;
 
 
 }
-.btech{
+
+.btech {
     border-radius: 5px;
     box-shadow: 0px 1px 2px lightgray;
     font-size: 14px;
@@ -195,31 +230,37 @@ p{
     background-color: white;
 }
 
-table{
+table {
 
     text-align: left;
     padding: 10px;
-    border-radius:5px;
+    border-radius: 5px;
     border: 1px solid rgb(233, 233, 233);
 }
-table td{
+
+table td {
     padding: 5px;
 }
-table tr{
+
+table tr {
     padding: 10px;
-    border-bottom: 1px solid rgb(202,202,202);
+    border-bottom: 1px solid rgb(202, 202, 202);
 }
-.info-fields{
+
+.info-fields {
     flex: 3;
     padding-right: 20px;
 }
-.marks-fields{
+
+.marks-fields {
     flex: 7;
 }
-.text-area{
+
+.text-area {
     margin-top: 12px;
 }
-.diploma{
+
+.diploma {
     border-radius: 5px;
     box-shadow: 0px 1px 2px lightgray;
     flex-direction: column;
@@ -228,18 +269,21 @@ table tr{
     background-color: white;
     display: flex;
 }
-.line1{
+
+.line1 {
     display: flex;
     font-display: row;
 }
-.school{
+
+.school {
 
     display: flex;
     flex-direction: row;
 
 
 }
-.school-div{
+
+.school-div {
     margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0px 1px 2px lightgray;
@@ -253,26 +297,29 @@ table tr{
 }
 
 
-.extra-curr-cont p{
+.extra-curr-cont p {
     color: rgb(255, 0, 0);
     background-color: rgb(255, 228, 228);
     padding: 10px;
 }
-.image{
+
+.image {
 
     position: relative;
     margin-left: 18%;
     width: 80px;
     height: 80px;
 }
-.profile{
+
+.profile {
     position: absolute;
     height: 80px;
     width: 80px;
     border-radius: 50%;
-    object-fit: cover; 
+    object-fit: cover;
 }
-.image button{
+
+.image button {
     display: flex;
     border: none;
     background-color: rgb(60, 145, 255);
@@ -287,7 +334,217 @@ table tr{
     position: absolute;
     color: white;
 }
+
 .profile-update {
+    /* font-size: 14px;
+    padding: 8px; */
+}
+
+.single-res {
+    margin-top: 10px;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 1px 2px rgb(209, 209, 209);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.single-res>* {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.single-res p {
     font-size: 14px;
-    padding: 8px;
+}
+
+#resume_form label {
+    display: none;
+}
+
+#resume_form label input {
+    margin: 5px;
+}
+
+.uploadR {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 20px;
+}
+
+.uploadR button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.offerletter {
+    display: flex;
+    flex-direction: column;
+}
+
+.offerletter label {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.offerletter input {
+    margin-bottom: 10px;
+}
+
+#id_ajax_upload_form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#id_ajax_upload_form>* {
+    margin-right: 10px;
+
+}
+
+.Placement-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+table input {
+    width: 80px;
+}
+
+.Aggregate {
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+/* .sing-card {
+    background-color: white;
+    width: 250px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px;
+      transition:0.2s;
+    box-shadow: 0px 1px 2px rgb(196, 196, 196);
+    font-size: 12px;
+  }*/
+#search_event {
+    width: 60%;
+}
+
+
+.sing-card {
+    height: fit-content;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 1px 2px rgb(210, 210, 210);
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s;
+}
+
+.sing-card:hover {
+    box-shadow: 20px 20px 60px rgb(153 168 182 / 21%);
+}
+
+.sing-card p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 5px;
+}
+
+.sing-card p>span {
+    padding-right: 5px;
+}
+
+.comp-desc {
+    padding-bottom: 20px;
+    color: gray;
+
+}
+
+.sing-card button {
+    margin-left: auto;
+}
+
+.gray-bg {
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px;
+    display: flex;
+    background-color: rgb(243, 243, 243);
+}
+
+.info {
+    padding: 15px
+}
+
+.apply-btn {
+    background-color: rgb(42, 140, 238);
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: 500;
+    color: white;
+}
+
+.apply-btn:hover {
+    cursor: pointer;
+}
+
+.dang {
+    background-color: red;
+    margin-left: 10px;
+}
+
+.date-input {
+    border-radius: 5px;
+    border: 1px solid rgb(212, 212, 212);
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.date-input>input{
+    outline: none;
+    border: none;
+}
+
+
+.single-res .btn-primary{
+    margin-top: 0px;
+}
+.single-res .btn-primary > a{
+    color: white;
+    text-decoration: none;
+}
+
+.offer .button-sec{
+    margin-top: 0px;
+}
+
+.modal-background{
+    background-color: rgba(0, 0, 0, 0.492);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+   
+}
+.modal-cont{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
 }

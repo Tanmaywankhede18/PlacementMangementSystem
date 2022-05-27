@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'css/profile_.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-cont">
+
+        <!-- Personal information -->
+        <div class="personal-block">
+
+            <img src={{ student.profile.url }} alt="" width="100px " height="100px" style="object-fit:cover" > 
+            <div class="personal_info">
+                <div class="name-head">
+                    <div class="hr">
+                        <h3>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</h3>
+                    </div>
+                    <p class="tags">{{ education.ug_stream }}</p>
+
+                </div>
+                <div class="sub-head">
+                    <div class="hr">
+                        <span class="material-icons">
+                            cake
+                        </span>
+                        <p>{{ student.birth_date }}</p>
+
+                    </div>
+                    <div class="hr">
+                        <span class="material-icons">
+                            badge
+                        </span>
+                        <p>{{ student.PRN }}</p>
+                    </div>
+                    <div class="hr">
+                        <span class="material-icons">
+                            home
+                        </span>
+                        <p>Prajin patil park shingnapur</p>
+                    </div>
+                    <div class="hr">
+                        <span class="material-icons">
+                            phone
+                        </span>
+                        <p>{{ student.mobile }}</p>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+
+        <!-- information -->
+        <div class="information">
+            <div>
+                <h2>Resume</h2>
+                <div class="two-col">
+                    <div class="education">
+                        <h3>Education</h3>
+                        <div class="horizontal">
+
+                            <article class="colg">
+                                <h4></h4>
+                                <h4>Shivaji University</h4>
+                                <p class="year">{{ education.ug_passout }}</p>
+                                <p> <b>{{ education.ug_total }}</b> </p>
+                                <p>{{ education.ug_stream }}</p>
+                                
+                            </article>
+                            
+                        </div>
+                        <div class="horizontal">
+
+                            <article class="colg">
+                                <h4>{{ education.diploma_college_name}}</h4>
+                                <p class="year">{{ education.diploma_passout }}</p>
+                                <p> <b>{{ education.diploma_total }}</b> </p>
+                                <p>{{ education.diploma_stream }}</p>
+                                
+                            </article>
+                            
+                        </div>
+                        <div class="horizontal">
+                            <article class="colg">
+                                <h4>{{ education.school_name }}</h4>
+                                <p class="year">{{ education.school_passout }}</p>
+                                <p> <b>{{ education.school_marks }}</b> </p>
+                                {% comment %} <p>Information about your University</p> {% endcomment %}
+                                
+                            </article>
+                            
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="education">
+                        <h3>Experience</h3>
+                        {% for i in curricular %}
+                        <div class="horizontal">
+                            <article class="colg">
+                                <h4>{{ i.CompanyName }}</h4>
+                                <p class="year">2019-2020</p>
+                                <p>{{ i.Description }}</p>
+                            </article>
+                        </div>
+                        {% endfor %}
+      
+                    </div>
+                </div>
+                <div>
+                    <h3>Skills</h3>
+                    <div class="skills">
+                        {% for i in skills %}
+                            <p class="tags">{{ i }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- <div class="col-mark">
+                    <h3>Education</h3>
+                    <table>
+                        <tr>
+                            <th>College Name</th>
+                            <th>Stream Name</th>
+                            <th>Passout Year</th>
+                            <th>Percentage / CGPA </th>
+
+
+                        </tr>
+                        <tr>
+                            <td>Government Polytechnics</td>
+                            <td>Computer Science</td>
+                            <td>2022</td>
+                            <td>8.2</td>
+
+
+                        </tr>
+                    </table>
+                </div> -->
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div></div>
+    </div>
+</body>
+
+</html>

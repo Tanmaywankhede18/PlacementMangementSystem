@@ -78,6 +78,8 @@ label{
 
 
 .select li{
+
+    align-items: center;
     font-weight: 600;
     font-size: 14px;
     margin: 0px 15px 0px 15px;
@@ -88,14 +90,20 @@ label{
     transition:0.1s;
     border-radius: 5px;
 }
-
+.select li > span{
+  margin-right: 10px;
+}
 .select li:hover{
 
     background-color: rgb(60, 145, 255);
     cursor: pointer;
     color: white;
 }
-
+.activebtn{
+  background-color: rgb(60, 145, 255);
+  cursor: pointer;
+  color: white;
+}
 
 .container {
   height: 100%;
@@ -134,7 +142,7 @@ label{
 .sing-card {
   background-color: white;
   width: 250px;
-  height: 200px;
+  /* height: 200px; */
   padding: 20px;
   border-radius: 5px;
   margin: 20px;
@@ -383,4 +391,32 @@ label{
 
 .btn-primary{
   margin-top: 20px;
+}
+.btn-pr{
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  background-color: rgb(61, 152, 255);
+}
+.dang{
+  background-color: rgb(215, 95, 95);
+}
+.btn-pr:hover{
+  cursor: pointer;
+}
+
+.message{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(196, 250, 196);
+  padding: 10px;
+}
+.message p{
+  margin: 0px;
+  color: #000;
 }

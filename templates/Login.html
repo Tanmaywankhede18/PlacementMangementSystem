@@ -40,18 +40,19 @@
         <div class="div4">
           <!-- <h4 id="page_title">Admin Login</h4> -->
           <p>Dont have an account?</p>
-          <button id="create">
-            <a href="/student/Signup">Create</a>
+          <button id="create" onclick="Signup()">
+            Create
           </button>
         </div>
         <div class="div3">
          
         </div>
+
         <div class="div5">
           <h2>Login</h2>
-          <p>Log in with your Email</p>
+          <p>Log in with your credentials</p>
           <!-- <div id="form"> -->
-
+            
             <form action="" id="form"  method="POST">
               {% csrf_token %}
               <label>Username </label>
@@ -60,11 +61,19 @@
               <input type="password" placeholder="Password" name="password" />
               <button class="submit" id="submit">Login </button>
             </form>
-
+            {% if password %}
+            <p style="color:red;"><b>Please check your Username or Password</b></p> <br>
+          {% endif %}
             <p><a href="/ForgotPassword">Forgot Password?</a></p>
           <!-- </div> -->
         </div>
       </div>
     </div>
   </body>
+  <script>
+    function Signup(){
+      window.location.href = '/student/Signup'
+    }
+  </script>
+
 </html>

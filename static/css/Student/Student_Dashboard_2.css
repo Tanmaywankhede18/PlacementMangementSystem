@@ -5,8 +5,8 @@
 }
 
 .add-event-card{
-  padding: 40px;
-  margin-bottom: 40px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .add-event-card div{
@@ -22,7 +22,6 @@ p {
   font-size:14px;
 }
 .header{
-    margin-bottom: 30px;
     display: flex;
     flex-direction: row;
     /* justify-content:space-between; */
@@ -35,6 +34,7 @@ p {
 .main{
     display: flex;
     flex-direction: row;
+    display: none;
 }
 
 .sidebar{
@@ -142,6 +142,46 @@ label{
   border-radius: 5px;
 }
 
-.company{
-  
+#resume_form label button{
+  padding: 10px 20px ;
+}
+.extra-curr-cont{
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgb(184, 184, 184);
+  padding: 4px 20px 20px 20px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+.extra-curr-cont>button{
+  margin-bottom: 10px;
+}
+.add_company{
+  margin-top: 0px;
+}
+
+.co-container .address{
+  margin-bottom: 10px;
+}
+
+.cont .btn-primary{
+  margin-right: 20px;
+}
+.row-btns{
+  display: flex;
+  font-display: row;
+}
+.close{
+  padding: 20px;
+}
+
+.address{
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  outline: none;
+}
+.address:focus{
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
 }

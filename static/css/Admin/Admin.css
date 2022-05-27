@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    color: #44566c;
+    margin: 0px;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.nav-bar {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 0.10;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.nav-bar>* {
+    margin: 0px 20px;
+}
+
+.nav-bar button {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#main {
+    background-color: rgb(240, 243, 255);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+
+th {
+    font-size: 14px;
+    color: rgb(166, 173, 200);
+    text-align: left;
+    font-weight: 500;
+    /* border-bottom: 1px solid lightgray; */
+    padding: 10px;
+}
+
+td {
+
+    font-size: 14px;
+    padding: 15px;
+    background-color: white;
+    /* border-bottom: 1px solid lightgray; */
+}
+
+.table-items {
+
+    background-color: white;
+
+}
+
+.tpo-table {
+    overflow: scroll;
+    overflow-x: hidden;
+    flex: 0.8;
+    width: 80%;
+    margin-top: 10px;
+
+}
+
+.tpo {
+
+
+    width: 100%;
+
+}
+
+.sub-text {
+    font-size: 12px;
+    color: gray;
+}
+
+.table-header {
+    margin-top: 10px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-header h2 {
+    font-weight: 500;
+}
+
+.btn-primary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: rgb(48, 138, 255);
+    padding: 5px 15px;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px 2px rgb(171, 171, 171); */
+}
+
+.btn-primary:hover {
+    background-color: rgb(32, 99, 186);
+
+}
+
+.btn-primary span {
+    padding-right: 10px;
+}
+
+.tpo-table-head {
+
+    width: 80%;
+}
+
+.btn-with-outline {
+    border: 1px solid lightgray;
+    outline: none;
+    background-color: white;
+    padding: 5px 20px;
+    font-weight: 600;
+    border-radius: 5px;
+
+}
+
+.btn-with-outline:hover {
+    cursor: pointer;
+    background-color: rgb(233, 233, 233);
+}
+
+.modal {
+    justify-content: center;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.614);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 30%;
+    margin: 40px;
+    background-color: white;
+    padding: 60px;
+}
+.input-label{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.input-label label{
+    font-size: 14px;
+    margin-bottom: 4px;
+
+}
+.input-label input,select{
+    border: 1px solid lightgray;
+    padding: 8px;
+}
+.deletemodal_container{
+        justify-content: center;
+        left: 0;
+        top: 0;
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(128, 128, 128, 0.614);
+}
+.deletemodal{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 5px;
+    width: fit-content;
+    box-shadow: 0px 1px 2px gray;
+}
+.deletemodal > *{
+    margin-bottom: 10px;
+}
+.deletemodal > div{
+    margin-top: 10px;
+     margin-left: auto;
+}
+.close_button{
+    display: flex;
+    background-color: transparent;
+    cursor: pointer;
+    align-items: center;
+    outline: none;
+    border: none;
+    justify-content: center;
+}
+.btn-with-head{
+    display: flex;
+    align-items: center;
+}
