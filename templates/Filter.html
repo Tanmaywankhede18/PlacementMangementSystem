@@ -161,6 +161,8 @@
                         <select id="Placed">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
+                            <option value="2">Both</option>
+
                         </select>
                     </div>
                     
@@ -323,7 +325,7 @@
                 let counter = 0;
                 for (student in student_data) {
                     counter++;
-                    out += '<tr><td>'+counter+'</td><td>' + student_data[student].prn + '</td><td><a id=' + student_data[student].prn + ' onclick="showProfile(this.id)" >' + student_data[student].name + '</a></td><td>' + student_data[student].gender + '</td><td>' + student_data[student].marks + '</td><td><a href="' + student_data[student].url + '" target="_blank">View/Download</a></td></tr><td><button onclick="deleteStudent(' + student_data[student].id +","+'{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}' +')">Delete</button></td>'
+                    out += '<tr><td>'+counter+'</td><td>' + student_data[student].prn + '</td><td><a id=' + student_data[student].prn + ' onclick="showProfile(this.id)" >' + student_data[student].name + '</a></td><td>' + student_data[student].gender + '</td><td>' + student_data[student].marks + '</td><td><a href="' + student_data[student].url + '" target="_blank">View/Download</a></td><td><button onclick="deleteStudent(' + student_data[student].id +","+'{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}' +')">Delete</button></td></tr>'
                     console.log(student_data[student])
                 }
                 total.innerHTML = "Total Students : "+counter
