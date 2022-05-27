@@ -507,11 +507,11 @@ def filterdata(request):
     q = "select student_student.first_name,student_student.middle_name,student_student.last_name, student_student.PRN,student_student.gender,student_student.birth_date, student_studenteducation.ug_passout,student_studenteducation.school_marks, student_student.id, student_studenteducation.id from student_studenteducation join student_student on student_student.id = student_studenteducation.student_id where ( CONCAT(TRIM(student_student.first_name), ' ', TRIM(student_student.middle_name),' ',TRIM(student_student.last_name)) LIKE '%"+name+"%' or student_student.first_name LIKE '%"+name+"%' or student_student.middle_name LIKE '%"+name+"%' or student_student.last_name LIKE '%"+name+"%') and student_student.PRN like '%"+str(
         prn)+"%' and student_studenteducation.school_marks > '"+str(school)+"'  and student_student.gender like '"+gender+"' and student_studenteducation.ug_total > '"+str(marks)+"' and student_studenteducation.ug_backlog = '"+str(backlog)+"'  and student_studenteducation.hsc_marks > '"+str(hsc_marks)+"' and student_studenteducation.diploma_total > '"+str(diploma_marks)+"' and student_studenteducation.gap = "+gap+" and student_student.verified > 0  " + str(passout_query)+"  "+ Placed+" "
 
-    print(q)
+    # print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     result = cursor.fetchall()
-    print(NameFormat)
+    # print(NameFormat)
     jobj = arraytojson(result, NameFormat)
     # for  i in ids_dict:
     #     get_student = Student.objects.get(id=i)
