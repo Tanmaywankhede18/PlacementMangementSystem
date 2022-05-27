@@ -277,20 +277,6 @@ def index(request):
         return render(request, 'Verfication.html')
 
 
-def test(request):
-    if request.method == 'POST':
-        upload = request.FILES['upload']
-        fss = FileSystemStorage()
-        file = fss.save(upload.name, upload)
-        file_url = fss.url(file)
-        return render(request, 'test.html', {'file': file_url})
-
-    stu = Student.objects.all()
-
-    pm = PM.objects.get(email='temp@gmail.com')
-    print(pm)
-
-    return render(request, 'test.html', {'file': None})
 
 
 def signout(request):

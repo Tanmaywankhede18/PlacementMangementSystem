@@ -44,7 +44,7 @@ def signup(request):
                 mail_subject, message, to=[email]
             )
             email.send()
-            return render(request, 'Email_Verification.html')
+            return render(request, 'Verfication.html')
             return HttpResponse('Please confirm your email address to complete the registration')
 
     return render(request, 'Signup.html', {'message_exist': a})
