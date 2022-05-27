@@ -161,7 +161,7 @@
                         <select id="Placed">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
-                            <option value="2">Both</option>
+                            <option value="2">Bothb</option>
 
                         </select>
                     </div>
@@ -342,12 +342,13 @@
 
 <script>
     let id = ""
-    let name =""
+    let name =  ""
     let deleteStudent = (id,name) => {
         modalCont.style.display = 'flex'
-        id = id
-        name =  name
+        this.id = id 
+        this.name = name
         console.log(name)
+        
         // $.ajax({
         //     url:'',
         //     type:"POST",
@@ -362,6 +363,7 @@
 
     let getDeleteClick = (value) => {
         if(value === 'Delete'){
+            console.log(id)
             console.log("Delete Student object ")
             modalCont.style.display = 'none'   
         }else{

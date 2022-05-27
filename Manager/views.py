@@ -41,7 +41,7 @@ ids_dict = {}
 def index(request):
     user = request.user
     events = Event.objects.all()
-    st = Student.objects.filter(verified=0).filter()
+    st = Student.objects.filter(verified=0)
     # Apply Department fileter for this student tables
 
     if(request.method == "POST"):
@@ -263,7 +263,8 @@ def index(request):
                 return HttpResponse(jo)
 
     if user.is_staff:
-        manager = PM.objects.get(email=user.email)
+        manager = PM.objects.get(user_id=user.id)
+        st = st.filter(Department = manager.department)
         return render(request, 'PMdashboard.html', {'data': events, 'students': st, 'Profile': manager})
     try:
         obj = Student.objects.get(user_id=user.id)
