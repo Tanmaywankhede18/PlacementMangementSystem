@@ -437,7 +437,17 @@ table input {
     width: 60%;
 }
 
-
+.yes{
+    background-color: rgb(42, 140, 238);
+    color: white;
+    outline: none;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-left: 10px;
+    cursor: pointer;
+}
 .sing-card {
     height: fit-content;
     margin: 10px;
@@ -464,9 +474,10 @@ table input {
 .sing-card p>span {
     padding-right: 5px;
 }
-
+.info > h3 {
+    font-size: 24px;
+}
 .comp-desc {
-    padding-bottom: 20px;
     color: gray;
 
 }

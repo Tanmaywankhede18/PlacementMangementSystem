@@ -302,3 +302,35 @@ td {
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
+
+.delete-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.delete{
+    color:red;
+}
+.warning{
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.cancel{
+    font-weight: bold;
+    background-color: transparent;
+    color: gray;
+    outline: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+button{
+
+    cursor: pointer;
+}

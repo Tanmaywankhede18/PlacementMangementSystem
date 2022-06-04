@@ -163,7 +163,7 @@ def index(request):
                 student = Student.objects.filter(verified=0)
                 Jresp = {}
                 for s in student:
-                    ug = Student.objects.get(PRN=s.PRN).ug_stream
+                    ug = Student.objects.get(PRN=s.PRN).Department
                     Jresp[s.PRN] = {
                         'PRN': s.PRN,
                         'Name': s.first_name,
@@ -171,9 +171,7 @@ def index(request):
                         'Department': ug
                     }
 
-                print(Jresp)
                 jo = json.dumps(Jresp, default=str)
-                print(jo)
                 return HttpResponse(jo)
 
         elif "add_event" in request.POST:
@@ -403,7 +401,13 @@ def Filter(request):
         NameFormat = ''
         if "deleteStudent" in request.POST:
             student_id = request.POST['student_id']
-            Student.objects.get(id=student_id).delete()
+            print(student_id)
+            stu_inst =Student.objects.get(id=student_id)
+            user_id = stu_inst.user_id
+            stu_inst.delete()
+            User.objects.get(id = user_id).delete()
+            return JsonResponse({'error':False,'message':str(id)+' deleted !'})
+            
 
         if "filters" in request.POST:
             NameFormat = request.POST['NameFormat']

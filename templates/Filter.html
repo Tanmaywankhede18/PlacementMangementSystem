@@ -12,21 +12,18 @@
 <body class="student_section">
     <div class="dialog" id="overlay">
         <div>
-
-       
             <!-- Spinner -->
             <div id="spinnercont" class="spi">
                 <h2>Downloading</h2>
                 <svg viewBox="0 0 100 100">
-                  <defs>
-                    <filter id="shadow">
-                      <feDropShadow dx="0" dy="0" stdDeviation="1.5" 
-                        flood-color="#fc6767"/>
-                    </filter>
-                  </defs>
-                  <circle id="spinner"  cx="50" cy="50" r="45"/>
-              </svg>
-              </div>
+                    <defs>
+                        <filter id="shadow">
+                            <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#fc6767" />
+                        </filter>
+                    </defs>
+                    <circle id="spinner" cx="50" cy="50" r="45" />
+                </svg>
+            </div>
         </div>
     </div>
     <div class='main-cont'>
@@ -34,16 +31,16 @@
             <div class="name">
                 <div>
                     <h2 class="ti">Training and Placement</h2>
-                    <p>Shivaji University</p>
+                    <p>
+                        Shivaji University
+                    </p>
                 </div>
-
-                <button onclick="excel()" class="download-btn"> <span class="material-icons">
-                        table_rows
-                    </span>
-                    Download </button>
+                <button onclick="excel()" class="download-btn">
+                    <span class="material-icons">table_rows</span>
+                    Download
+                </button>
             </div>
             <div class="Filter-div">
-
                 <h2>Filter</h2>
                 <div class="sidebar_filter">
                     <!-- <form action="" method="POST" class="sidebar_filter">
@@ -55,20 +52,19 @@
                         </div>
                         <input type="text" name="name" id="name">
                     </div>
-
                     <div class="filter-input">
                         <div class="check-box">
-                   
-                            <label >Name Format</label>
+                            <label>Name Format</label>
                         </div>
                         <select name="gender" id="NameFormat">
-                            <option value="fms">First/Middle/Surname</option>
-                            <option value="sfm">Surname/First/Middle</option>
+                            <option value="fms">
+                                First/Middle/Surname
+                            </option>
+                            <option value="sfm">
+                                Surname/First/Middle
+                            </option>
                         </select>
                     </div>
-
-
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="PRN">
@@ -76,21 +72,23 @@
                         </div>
                         <input type="text" name="PRN" id="prn">
                     </div>
-
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Gender">
                             <label for="Name">Gender</label>
                         </div>
                         <select name="gender" id="gender">
-                            <option value="">Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="">
+                                Select
+                            </option>
+                            <option value="Male">
+                                Male
+                            </option>
+                            <option value="Female">
+                                Female
+                            </option>
                         </select>
                     </div>
-
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="BTech">
@@ -98,7 +96,6 @@
                         </div>
                         <input type="text" name="marks" id="marks">
                     </div>
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Backlog">
@@ -106,19 +103,20 @@
                         </div>
                         <input type="text" name="backlogs" id="backlogs">
                     </div>
-
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Gap">
                             <label for="Name">Year Gap</label>
                         </div>
                         <select id="gap">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option value="0">
+                                No
+                            </option>
+                            <option value="1">
+                                Yes
+                            </option>
                         </select>
                     </div>
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Passout">
@@ -126,11 +124,6 @@
                         </div>
                         <input type="text" name="pout" id="pout">
                     </div>
-
-
-
-
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Deploma">
@@ -152,27 +145,28 @@
                         </div>
                         <input type="text" name="10th" id="10th">
                     </div>
-
                     <div class="filter-input">
                         <div class="check-box">
                             <input type="checkbox" value="Placed">
                             <label for="Name">Placed</label>
                         </div>
                         <select id="Placed">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
-                            <option value="2">Bothb</option>
-
+                            <option value="0">
+                                No
+                            </option>
+                            <option value="1">
+                                Yes
+                            </option>
+                            <option value="2">
+                                Bothb
+                            </option>
                         </select>
                     </div>
-                    
-
                     <div class="filter-input no-in">
                         <!-- <div class="check-box ">
                             <input type="checkbox" name="skills" value="Extraskills">
                             <label for="Name">Extra Skills</label>
-                        </div> -->
-
+</div> -->
                         <div class="check-box ">
                             <input type="checkbox" name="skills" value="BirthDate">
                             <label for="Name">Birth Date</label>
@@ -181,7 +175,6 @@
                             <input type="checkbox" name="skills" value="Address">
                             <label for="Name">Address</label>
                         </div>
-
                         <div class="check-box ">
                             <input type="checkbox" name="skills" value="Email">
                             <label for="Name">Email</label>
@@ -190,84 +183,106 @@
                             <input type="checkbox" name="skills" value="Mobile">
                             <label for="Name">Mobile</label>
                         </div>
-                     
                     </div>
-
                     <!-- </form> -->
                 </div>
-                <button type="submit" class='search-btn' onclick="showValue()"> <span class="material-icons">
-                        filter_alt
-                    </span> Filter</button>
+                <button type="submit" class='search-btn' onclick="showValue()">
+                    <span class="material-icons">filter_alt</span> Filter
+                </button>
             </div>
         </div>
-
-
-
         <div class='main-body'>
             <div class="download-btns">
-                
-                <button class="download-btn zip " onclick="zip()" >
-                    <span class="material-icons">
-                        folder_zip
-                    </span>
-                   Resume Zip</button>
-                <button onclick="excel()" class="download-btn"> <span class="material-icons">
-                        table_rows
-                    </span>
-                    Excel </button>
+                <button class="download-btn zip " onclick="zip()">
+                    <span class="material-icons">folder_zip</span>
+                    Resume Zip
+                </button>
+                <button onclick="excel()" class="download-btn">
+                    <span class="material-icons">table_rows</span>
+                    Excel
+                </button>
             </div>
-            <p id="total_count">Totaol Students : {{ data.count }}</p>
+            <p id="total_count">
+                Totaol Students : {{ data.count }}
+            </p>
             <table id="table" class="data-table">
                 <thead>
                     <tr>
                         <!-- <th><input type="checkbox" id="" class="checkbox" /></th> -->
-                        <th>Sr</th>
-                        <th>PRN </th>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Marks</th>
-                        <th>Resume</th>
-                        <th>Delete</th>
-
+                        <th>
+                            Sr
+                        </th>
+                        <th>
+                            PRN
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Gender
+                        </th>
+                        <th>
+                            Marks
+                        </th>
+                        <th>
+                            Resume
+                        </th>
+                        <th>
+                            Delete
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                  
                     {% for s in data %}
-                    <tr>    
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ s.PRN }}</td>
-                        <td id="{{ s.PRN }}" onclick="showProfile(this.id)" style="cursor:pointer">{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}</td>
-                        <td>{{ s.gender }}</td>
-                        <td>{{ s.school_marks }}</td>
+                    <tr>
                         <td>
-                            {% if s.resume %}
-                            <a href="{{ s.resume.url }}" target="_blank"> View/Download</a>
-                            {% endif %}
+                            {{ forloop.counter }}
                         </td>
-                        <td><button onclick="deleteStudent('{{ s.id }}','{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}')">Delete</button></td>
-
+                        <td>
+                            {{ s.PRN }}
+                        </td>
+                        <td id="{{ s.PRN }}" onclick="showProfile(this.id)" style="cursor:pointer">
+                            {{ s.first_name }} {{ s.middle_name }} {{ s.last_name }}
+                        </td>
+                        <td>
+                            {{ s.gender }}
+                        </td>
+                        <td>
+                            {{ s.school_marks }}
+                        </td>
+                        <td>
+                            {% if s.resume %}<a href="{{ s.resume.url }}" target="_blank"> View/Download</a>{% endif %}
+                        </td>
+                        <td>
+                            <button
+                                onclick="deleteStudent('{{ s.id }}','{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}')" class="delete-btn">
+                                <span class="delete material-icons ">delete</span>
+                            </button>
+                        </td>
                     </tr>
                     {% endfor %}
-                 
                 </tbody>
             </table>
-
         </div>
     </div>
-
-
     <div id="modalCont">
         <div id="modal">
-            <h3>Delete</h3>
-            <p id="setName">Do you want really delete Student Name Record</p>
+            <h3>
+                Delete
+            </h3>
+            <p style="font-size:16px" id="setName">
+                Do you want really delete Student Name Record
+            </p>
             <div>
-                <button onclick="getDeleteClick(this.value)" value="Cancel">Cancel</button>
-                <button onclick="getDeleteClick(this.value)" value="Delete">Delete</button>
+                <button onclick="getDeleteClick(this.value)" id="delete_btn" value="Delete" class="warning">
+                    Delete
+                </button>
+                <button onclick="getDeleteClick(this.value)" value="Cancel" class="cancel">
+                    Cancel
+                </button>
             </div>
         </div>
     </div>
-
 </body>
 <script>
 
@@ -293,7 +308,7 @@
             url: '',
             type: "POST",
             data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}', 
+                csrfmiddlewaretoken: '{{ csrf_token }}',
                 name: student_name.value,
                 // dep: dep.value,
                 marks: marks.value,
@@ -306,7 +321,7 @@
                 diploma_marks: diploma.value,
                 passout: passouts.value,
                 NameFormat: NameFormat.value,
-                Placed:Placed.value,
+                Placed: Placed.value,
                 filters: ''
             },
             success: function (data) {
@@ -325,10 +340,10 @@
                 let counter = 0;
                 for (student in student_data) {
                     counter++;
-                    out += '<tr><td>'+counter+'</td><td>' + student_data[student].prn + '</td><td><a id=' + student_data[student].prn + ' onclick="showProfile(this.id)" >' + student_data[student].name + '</a></td><td>' + student_data[student].gender + '</td><td>' + student_data[student].marks + '</td><td><a href="' + student_data[student].url + '" target="_blank">View/Download</a></td><td><button onclick="deleteStudent(' + student_data[student].id +","+'{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}' +')">Delete</button></td></tr>'
+                    out += '<tr><td>' + counter + '</td><td>' + student_data[student].prn + '</td><td><a id=' + student_data[student].prn + ' onclick="showProfile(this.id)">' + student_data[student].name + '</a></td><td>' + student_data[student].gender + '</td><td>' + student_data[student].marks + '</td><td><a href="' + student_data[student].url + '" target="_blank">View/Download</a></td><td><button onclick="deleteStudent(' + student_data[student].id + "," + '{{ s.first_name }}  {{ s.middle_name }} {{ s.last_name }}' + ')" class="delete-btn"><span class="material-icons delete">delete</span></button></td></tr>'
                     console.log(student_data[student])
                 }
-                total.innerHTML = "Total Students : "+counter
+                total.innerHTML = "Total Students : " + counter
                 tbody.innerHTML = out
 
             }
@@ -338,35 +353,39 @@
 
 
 </script>
-
-
 <script>
-    let id = ""
-    let name =  ""
-    let deleteStudent = (id,name) => {
+
+    let delete_btn = document.getElementById('delete_btn')
+    let set_modal_data = document.getElementById('setName')
+    let deleteStudent = (id, name) => {
         modalCont.style.display = 'flex'
-        this.id = id 
-        this.name = name
-        console.log(name)
-        
-        // $.ajax({
-        //     url:'',
-        //     type:"POST",
-        //     data:{
-        //         csrfmiddlewaretoken: '{{ csrf_token }}', 
-        //         student_id : id,
-        //         deleteStudent:''
-        //     }
-        // })
+        delete_btn.value = id
+        set_modal_data.innerHTML = "Do you want really delete <b>" + name + " </b> Record"
+
     }
 
 
     let getDeleteClick = (value) => {
-        if(value === 'Delete'){
+        if (value !== 'Cancel') {
+            id = delete_btn.value
             console.log(id)
             console.log("Delete Student object ")
-            modalCont.style.display = 'none'   
-        }else{
+            modalCont.style.display = 'none'
+            $.ajax({
+                url: '',
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    student_id: id,
+                    deleteStudent: ''
+                },
+                success:function(response){
+                    console.log(response)
+                    document.location.reload(true)
+                }
+
+            })
+        } else {
             modalCont.style.display = "none"
         }
     }
@@ -374,12 +393,11 @@
     let modalCont = document.getElementById('modalCont')
     let modal = document.getElementById('modal')
     window.onclick = (event) => {
-        if ( event.target === modalCont){
+        if (event.target === modalCont) {
             modalCont.style.display = 'none'
         }
     }
 </script>
-
 <!-- Filters -->
 <script>
 
@@ -464,7 +482,7 @@
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 list: JSON.stringify(filters),
-                NameFormat:document.getElementById('NameFormat').value,
+                NameFormat: document.getElementById('NameFormat').value,
                 excel: ''
 
             },
@@ -481,7 +499,7 @@
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 zip: '',
-                excel:''
+                excel: ''
             },
             success: function (response) {
                 window.open(response["message"], '_blank')
@@ -502,12 +520,11 @@
         // })
         console.log("Show Profile" + id)
         let url = window.location.href
-        url = url.replace("Filter","Profile/"+id)
+        url = url.replace("Filter", "Profile/" + id)
         console.log(url)
-        window.location = url 
+        window.location = url
     }
 </script>
-
 <script>
     overlay.style.display = "none"
     $(document).on({
@@ -521,6 +538,5 @@
         }
     });
 </script>
-
 
 </html>

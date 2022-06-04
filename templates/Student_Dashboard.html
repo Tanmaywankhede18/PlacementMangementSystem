@@ -60,7 +60,7 @@
                 <h3>{{ Personal.first_name }} {{ Personal.middle_name }} {{ Personal.last_name }}</h3>
                 
                 {% if Personal.PlacementStatus != 1 %}
-                <p style="margin-left:auto ;">Are you placed ?  <button onclick="openPlacement()"> Yes </button></p>
+                <p style="margin-left:auto ;">Are you placed ?  <button onclick="openPlacement()" class="yes"> Yes </button></p>
                 {% endif %}
             </div>
 
@@ -365,24 +365,19 @@
                     <div class="sing-card" type="submit" id="{{ p.id }}">
 
                         <div class="info">
-                            <h3>{{ p.drive_name }} </h3>
-                            <p class="comp-desc">{{ p.req }}</p>
+                            <h3 >{{ p.drive_name }} </h3>
 
-                            <p> <span class="material-icons">
-                                    person
-                                </span> <b>{{ p.role }}</b></p>
+                            <p> Role :&nbsp; <b> {{ p.role }}</b></p>
 
-                            <p id="deadline"><span class="material-icons">
-                                    history_toggle_off
-                                </span>{{ p.last_date }} </p>
-
-                            <p><span class="material-icons">
-                                    payments
-                                </span> {{ p.ctc }}</p>
+                            
+                            <p id="deadline"> Last Date :&nbsp;  <b> {{ p.last_date }}</b> </p>
+                            
+                            <p> CTC :&nbsp;  <b>{{ p.ctc }}</b></p>
+                            <p class="comp-desc">Requirments : &ensp; <b> {{ p.req }}</b></p>
                         </div>
 
                         <div class='gray-bg'>
-                            <button value="{{ p.id }}" id="{{ p.id }}" class="apply-btn" onclick="apply(this.value)">
+                            <button value="{{ p.link }}" id="{{ p.id }}" class="apply-btn" onclick="apply(this.value,this.id)">
                                 Apply </button>
                         </div>
 
@@ -1047,8 +1042,9 @@
         })
     }
 
-    function apply(id) {
-        console.log('Request Initiated')
+    function apply(value,id) {
+        console.log(value)
+
         $.ajax({
             url: '',
             type: "POST",
@@ -1059,9 +1055,7 @@
             },
             success: function (response) {
                 console.log(response['message'])
-                let url = response['message']
-
-                window.open(url, '_blank')
+                window.open("http://"+value, "_blank")
             }
         })
     }
