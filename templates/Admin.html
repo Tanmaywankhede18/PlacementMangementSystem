@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/Admin/Admin.css' %}">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-control" content="no-cache">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
@@ -117,7 +119,7 @@
                 <input type="text" name="mobile">
             </div>
             <div>
-                <button type="submit" class="btn-primary " id="add_tpo" onclick="close_modal()" name="addTpo">
+                <button type="submit" class="btn-primary " id="add_tpo" onclick="close_modal()" name="AddTPO">
                     <span class="material-icons">
                         add
                     </span>
@@ -127,14 +129,19 @@
 
     </div>
     <div class="deletemodal_container" id="deletemodal_container">
-        <div class="deletemodal" id="delete_modal">
-            <h3>Delete</h3>
-            <p>Are you sure to delete this TPO</p>
-            <div>
-                <button onclick="close_modal(this.id)" id="c">Cancel</button>
-                <button id="dlttpo" onclick="close_modal(this.id)" id="d">Delete</button>
-            </div>
-        </div>
+       
+            <form action="" method="POST" class="deletemodal" id="delete_modal">
+                {% csrf_token %}
+                <h3>Delete</h3>
+                <p>Are you sure to delete this TPO</p>
+                <div>
+                    <input type="text" style="display:none;" value="" id="id_cont" name="get_id">
+                    <button onclick="close_modal()" >Cancel</button>
+                    <button type="submit" onclick="close_modal()"  name="DeleteTPO">Delete</button>
+                </div>
+
+            </form>
+    
     </div>
 
 </body>
@@ -146,7 +153,7 @@
     dmodal = document.getElementById('deletemodal_container')
     dlt = document.getElementById('delete')
     dlttpo = document.getElementById('dlttpo')
-    let userid = null
+    let userid = document.getElementById('id_cont')
     // document.onclick = function (event) {
     //     console.log(event.target.id)
     // }
@@ -155,30 +162,17 @@
     }
     function dlt_tpo(id) {
         console.log(id)
-        userid = id
+        console.log("Deleting the user")
+        userid.value = id
         dmodal.style.display = 'flex'
     }
     
-    function close_modal(id) {
-        if(id!="c") 
-            $.ajax({
-                url: '',
-                type: "POST",
-                data: {
-                    csrfmiddlewaretoken: "{{ csrf_token }}",
-                    id: userid,
-                    deleteTPO: ''
-                },
-                success: function () {
-                    window.location.reload()
-                }
-
-            })
+    function close_modal() {
         dmodal.style.display = 'none'
         modal.style.display = 'none'
     }
 
-    dlt.onclick = dlt()
+
 
 
 

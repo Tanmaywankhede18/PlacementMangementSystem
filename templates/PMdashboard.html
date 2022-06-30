@@ -146,15 +146,13 @@
             <div class="cards" id="cardcont">
                 {% for p in data %}
                     <div class="sing-card {{ p.id }}" type="submit" id={{ p.id }}>
-                        <p id="deadline">
-                            Last Date : <b>{{ p.last_date }}</b>
-                        </p>
-                        <h5>
-                            {{ p.drive_name }}
-                        </h5>
-                        <p>
-                            {{ p.req }}
-                        </p>
+                
+                        <h5>{{ p.drive_name }} </h5>
+                        <p> Role :<b> {{ p.role }}</b></p>
+                        <p id="deadline"> Last Date :<b> {{ p.last_date }}</b> </p>
+                        <p> CTC : <b>{{ p.ctc }}</b></p>
+                        <p class="comp-desc" >Req.: <b>{{ p.req }}</b></p>
+
                         <button id={{ p.drive_name }} value={{ p.id }} name="requestEvent" onclick="openCard(this.value)" class="btn-pr">View
                         </button>
                         <button id={{ p.id }} onclick="Delete(this.id)" class="btn-pr dang">Delete
@@ -249,6 +247,10 @@
                                 <input type="password" name="retype_password" id="retype_p">
                             </div>
                         </div>
+                        <div style="margin-top: 10px; display: none;" id="p_dia" class="message error">
+                            <p>Password mismatch</p>
+                        </div>
+
                         <div class="message" id="message" style="display: none;">
                             <p>
                                 Password Updated Successfully!!
@@ -658,12 +660,12 @@
         inputEvent: search_event.value
       },
       success: function (data) {
+   
         let d = JSON.parse(data), out = "";
-        console.log(d)
+     
         for (event in d) {
-          console.log(event)
-          // Add whole single card code here
-          out += '<div class="sing-card {{ p.id }}" type="submit" id=' + d[event].drive_name + '><p id="deadline">Last Date : <b>' + d[event].last_date + '</b></p><h5>' + d[event].drive_name + '</h5><p>' + d[event].req + '</p><button id=' + d[event].drive_name + ' value=' + d[event].id + ' name="requestEvent"onclick="openCard(this.value)" style="margin-right:2px" class="btn-pr">View</button><button id=' + d[event].id + '  class="btn-pr dang" onclick="Delete(this.id)">Delete</button></div>'
+          
+          out += '<div class="sing-card "  id=' + d[event].drive_name + ' > <h5>' + d[event].drive_name + '</h5> <p> Role :  <b> ' + d[event].role + '</b></p> <p id="deadline"> Last Date :  <b> ' + d[event].last_date + ' </b> </p> <p> CTC :  <b>' + d[event].ctc + '</b></p> <p class="comp-desc">Req.:   <b>' + d[event].req + '</b></p> <button id=' + d[event].drive_name + ' value=' + d[event].id + ' name="requestEvent" onclick="openCard(this.value)" class="btn-pr">View </button> <button id=' + d[event].id + ' onclick="Delete(this.id)" class="btn-pr dang">Delete </button> </div>'
           // out += '<tr> <td>' + d[student].PRN + '</td><td>' + d[student].Name + '</td><td>' + d[student].Email + '</td> <td>' + d[student].Department + '</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id=' + d[student].PRN + ' value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id=' + d[student].PRN + ' name="Reject" value="Reject">Reject</Button></div></td></tr>'
         }
         cardholder.innerHTML = out
@@ -682,7 +684,7 @@
       },
       success: function (data) {
         let d = JSON.parse(data), out = "";
-        console.log(d)
+      
         for (student in d) {
           console.log(d[student])
           out += '<tr> <td>' + d[student].PRN + '</td><td>' + d[student].Name + '</td><td>' + d[student].Email + '</td> <td>' + "Department of Technology" + '</td> <td><div class="btns"><Button class="accept" onclick="action(this.value,this.id)" id=' + d[student].PRN + ' value="Accept">Accept</Button><Button class="reject" onclick="action(this.value,this.id)" id=' + d[student].PRN + ' name="Reject" value="Reject">Reject</Button></div></td></tr>'
@@ -716,19 +718,28 @@
     var old = document.getElementById("old_p")
     var new_p = document.getElementById("new_p")
     var retype_p = document.getElementById("retype_p")
-    $.ajax({
-      url: '',
-      type: "POST",
-      data: {
-        csrfmiddlewaretoken: '{{ csrf_token }}',
-        update_pass: new_p.value
-      },
-      success: function (data) {
-        if(data==="1")
-            Message.style.display = "flex"
-       
-      }
-    })
+    p_dia = document.getElementById('p_dia')
+    if(new_p.value === retype_p.value){
+        console.log("Password Updated")
+        p_dia.style.display="none"
+            $.ajax({
+        url: '',
+        type: "POST",
+        data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            update_pass: new_p.value
+        },
+        success: function (data) {
+            if(data==="1")
+                Message.style.display = "flex"
+        }
+        })
+    }else{
+
+        p_dia.style.display="block"
+        // show mismatch dialog
+    }
+   
   }
 
   function action(id, data) {

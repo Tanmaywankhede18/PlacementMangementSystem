@@ -25,7 +25,7 @@
         <!-- Make it scrolable -->
 
         <div class="register-cont">
-            <form action="" method="POST">
+            <form action="" method="POST" id="formId">
                 {% csrf_token %}
                 <h2>Personal Information</h2>
                 <div class="personal-cont">
@@ -256,7 +256,7 @@
                 </div>
 
                 <div class="agreem">
-                    <input type="checkbox">
+                    <input type="checkbox" id="CheckBox">
                     <p> I have read, understood and consent to the language and authorization</p>
                     <button class="button-primary" type="submit">Submit and Register</button>
                 </div>
@@ -265,5 +265,18 @@
     </div>
 
 </body>
+<script>
+    let box = document.getElementById('CheckBox')
+    document.getElementById('formId').addEventListener('submit',function(event){
+        if(box.checked){
+            return true
+        }else{
+            alert("Please Check the check box")
+            event.preventDefault();
+            console.log("GO back")
+            return false
+        }
+    })
+</script>
 
 </html>

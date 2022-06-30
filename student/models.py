@@ -18,7 +18,7 @@ def path_and_rename(instance, filename):
     ext = filename.split('.')[-1]
     # get filename
     if instance.pk:
-        filename = '{}.{}'.format(instance.PRN, ext)
+        filename = '{}.{}'.format(instance.first_name+""+instance.middle_name+""+instance.last_name+"_"+instance.PRN, ext)
     else:
         # set filename as random string 
         filename = '{}.{}'.format(uuid4().hex, ext)

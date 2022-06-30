@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  
         'NAME': 'placement',  
         'USER': 'root',  
-        'PASSWORD': 'root',  
+        'PASSWORD': '',  
         'HOST': '127.0.0.1',  
         # 'USER':'admin',
         # 'PASSWORD':'admin5640',
@@ -150,10 +150,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
+# EMAIL_HOST = 'smtp.gmail.com'  
+# EMAIL_HOST_USER = 'gpkp1656@gmail.com'  
+# EMAIL_HOST_PASSWORD = 'Isnam@29'  
+EMAIL_HOST_PASSWORD = 'qhjnnntusyzkpkps'  
+EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'  
 EMAIL_HOST_USER = 'gpkp1656@gmail.com'  
-EMAIL_HOST_PASSWORD = 'Isnam@29'  
-EMAIL_PORT = 587
+
 
 
 

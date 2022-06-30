@@ -5,6 +5,7 @@ import io
 from multiprocessing import Manager
 from posixpath import split
 from tkinter import Place
+from turtle import back
 from types import NoneType
 from webbrowser import get
 from django.db import connection
@@ -40,7 +41,7 @@ ids_dict = {}
 
 def index(request):
     user = request.user
-    events = Event.objects.all()
+    events = Event.objects.order_by('-last_date')
     st = Student.objects.filter(verified=0)
     # Apply Department fileter for this student tables
 
@@ -70,7 +71,7 @@ def index(request):
                 'drive_name': event.drive_name,
                 'Desc': event.req,
                 'ctc': event.ctc,
-                'roll': event.roll,
+                'roll': event.role,
                 'website': event.link,
                 'passout': event.passouts,
                 'lastdate': event.last_date,
@@ -133,7 +134,9 @@ def index(request):
                     'req': s.req,
                     'passouts': s.passouts,
                     'last_date': s.last_date,
-                    'id': s.id
+                    'id': s.id,
+                    'ctc':s.ctc
+                    
                 }
             jo = json.dumps(Jresp, default=str)
             return HttpResponse(jo)
@@ -338,20 +341,12 @@ def Login(request):
 
 def AdminPanel(request):
     checkUser(request)
-    if 'deleteTPO' in request.POST:
-        user_id = request.POST['id']
-        print(request.POST)
-        User.objects.get(id=user_id).delete()
-        pm = PM.objects.all()
-        print("Account Deleted Successfully!")
-        return JsonResponse({'error': False, 'message': serializers.serialize('json', pm)})
-    elif 'addTpo' in request.POST:
-
+    print(request.POST)
+    if 'AddTPO' in request.POST:
         userName = request.POST['name']
         userMail = request.POST['email']
         dep = request.POST['department']
         mobile = request.POST['mobile']
-
         if userName and userMail:
             if(User.objects.filter(username=userMail).exists()):
                 print("User already exists")
@@ -378,8 +373,14 @@ def AdminPanel(request):
                     mail_subject, message, to=[userMail]
                 )
                 email.send()
-                print("User Created Successfully")
-
+                print("-----------------User Created Successfully")
+                
+    elif 'DeleteTPO' in request.POST:
+        user_id = request.POST['get_id']
+        print(request.POST)
+        user = User.objects.get(id=user_id)
+        user.delete()
+         
     tpo_list = PM.objects.all()
     print(tpo_list)
     return render(request, 'Admin.html', {'list': tpo_list})
@@ -416,7 +417,7 @@ def Filter(request):
             return redirect('/Manager/Profile')
 
         if 'excel' in request.POST:
-            # NameFormat = request.POST['NameFormat']
+            NameFormat = request.POST['NameFormat']
             return ExcelUpload(request, NameFormat)
 
         if 'zip' in request.POST:
@@ -490,12 +491,13 @@ def filterdata(request):
 
 
     q = "select student_student.first_name,student_student.middle_name,student_student.last_name, student_student.PRN,student_student.gender,student_student.birth_date, student_studenteducation.ug_passout,student_studenteducation.school_marks, student_student.id, student_studenteducation.id from student_studenteducation join student_student on student_student.id = student_studenteducation.student_id where ( CONCAT(TRIM(student_student.first_name), ' ', TRIM(student_student.middle_name),' ',TRIM(student_student.last_name)) LIKE '%"+name+"%' or student_student.first_name LIKE '%"+name+"%' or student_student.middle_name LIKE '%"+name+"%' or student_student.last_name LIKE '%"+name+"%') and student_student.PRN like '%"+str(
-        prn)+"%' and student_studenteducation.school_marks > '"+str(school)+"'  and student_student.gender like '"+gender+"' and student_studenteducation.ug_total > '"+str(marks)+"' and student_studenteducation.ug_backlog = '"+str(backlog)+"'  and student_studenteducation.hsc_marks > '"+str(hsc_marks)+"' and student_studenteducation.diploma_total > '"+str(diploma_marks)+"' and student_studenteducation.gap = "+gap+" and student_student.verified > 0  " + str(passout_query)+"  "+ Placed+" "
+        prn)+"%' and student_studenteducation.school_marks > '"+str(school)+"'  and student_student.gender like '"+gender+"' and student_studenteducation.ug_total > '"+str(marks)+"' and student_studenteducation.ug_backlog <= "+str(backlog)+"  and student_studenteducation.hsc_marks > '"+str(hsc_marks)+"' and student_studenteducation.diploma_total > '"+str(diploma_marks)+"' and student_studenteducation.gap = "+gap+" and student_student.verified > 0  " + str(passout_query)+"  "+ Placed+" "
 
     # print(q)
     cursor = connection.cursor()
     cursor.execute(q)
     result = cursor.fetchall()
+    print(result,"Here printing ------------------")
     # print(NameFormat)
     jobj = arraytojson(result, NameFormat)
     # for  i in ids_dict:
@@ -564,22 +566,25 @@ def ExporttoExcel(NameFormat):
             Name = get_student.first_name+" "+get_student.middle_name+" "+get_student.last_name
         else:
             Name = get_student.last_name+" "+get_student.first_name+" "+get_student.middle_name
-
         excel_dict['Name'].append(Name)
         excel_dict['PRN'].append(get_student.PRN)
         excel_dict['Gender'].append(get_student.gender)
         excel_dict['BTech'].append(get_education.ug_total)
         excel_dict['Passout'].append(get_education.ug_passout)
         excel_dict['Deploma'].append(get_education.diploma_total)
-        excel_dict['Backlog'].append(get_education.ug_backlog)
+        backlog = str(get_education.ug_backlog) if (get_education.ug_backlog)!="" else "NO"
+        excel_dict['Backlog'].append(backlog)
         excel_dict['HSC'].append(get_education.hsc_marks)
         excel_dict['SSC'].append(get_education.school_marks)
         excel_dict['BirthDate'].append(str(get_student.birth_date))
         excel_dict['Email'].append(str(get_student.email))
         excel_dict['Address'].append(str(get_student.address))
         excel_dict['Mobile'].append(str(get_student.mobile))
-        resume_url_temp = str(get_student.resume.url) if (
-            get_student.resume.url) else ""
+        try:
+            resume_url_temp = str(get_student.resume.url) 
+        except ValueError:
+            resume_url_temp =""
+            
         excel_dict['ResumeURL'].append(resume_url_temp)
     return excel_dict
 
@@ -598,6 +603,7 @@ def ExcelUpload(request, NameFormat):
             index_dot = i.rfind('.')
             pdf_name = i[index_slash:index_dot]
             download_file(i, pdf_name, pm_obj)
+
         shutil.make_archive(settings.MEDIA_ROOT+"/"+pm_obj.department,
                             'zip', settings.MEDIA_ROOT+"/PDF/"+pm_obj.department)
         return JsonResponse({"error": False, "message": "/media/"+pm_obj.department+".zip"})

@@ -19,6 +19,23 @@
 </head>
 
 <body>
+    <div class="dialog" id="overlay">
+        <div>
+            <!-- Spinner -->
+            <div id="spinnercont" class="spi">
+                <h2>Uploading</h2>
+                <svg viewBox="0 0 100 100">
+                    <defs>
+                        <filter id="shadow">
+                            <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#fc6767" />
+                        </filter>
+                    </defs>
+                    <circle id="spinner" cx="50" cy="50" r="45" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <div class="sidebar">
         <div class="Logo">
             <h2>Placement <br> Management </h2>
@@ -58,9 +75,10 @@
             <div class="name-header">
                 <span class="material-icons">person</span>
                 <h3>{{ Personal.first_name }} {{ Personal.middle_name }} {{ Personal.last_name }}</h3>
-                
+
                 {% if Personal.PlacementStatus != 1 %}
-                <p style="margin-left:auto ;">Are you placed ?  <button onclick="openPlacement()" class="yes"> Yes </button></p>
+                <p style="margin-left:auto ;">Are you placed ? <button onclick="openPlacement()" class="yes"> Yes
+                    </button></p>
                 {% endif %}
             </div>
 
@@ -107,7 +125,9 @@
                             <p>This infomation will be displayed and shared to TPO</p>
                         </div>
                         <label class="image" title="Click to update profile picture" for="actual-btn" id="imagelabel">
+                            {% if Personal.profile.url %}
                             <img class="profile" id="profileimg" src="{{ Personal.profile.url }}">
+                            {% endif %}
                         </label>
 
                     </div>
@@ -198,7 +218,7 @@
 
                     {% if Personal.resume != None %}
                     <p>Last Uploaded Resume</p>
-                    <div class="area">
+                    <div class="area" id="resume_a">
 
                         {% if Personal.resume %}
                         <div class="single-res" id="resume_div">
@@ -287,11 +307,11 @@
                         </div>
                         <div class="text-area">
                             <label for="name">Retype New Password</label>
-                            <input type="password" required>
+                            <input type="password" id="r_psw"required>
                         </div>
-
-
-
+                        <div style="margin-top: 10px; display: none;" id="p_dia">
+                            <p>Password mismatch</p>
+                        </div>
                         <button class="btn-primary" type="submit" onclick="UpdatePassword()"><span
                                 class="material-icons"> update </span> Update
                             Password</button>
@@ -300,7 +320,7 @@
                 </div>
             </div>
             <div class="Placement" id="Placement_div">
-                <div class="Placement-cards"  id="placementCont">
+                <div class="Placement-cards" id="placementCont">
                     {% for i in Placed %}
 
                     <div class="company-card">
@@ -363,21 +383,16 @@
                     </div> -->
 
                     <div class="sing-card" type="submit" id="{{ p.id }}">
-
                         <div class="info">
-                            <h3 >{{ p.drive_name }} </h3>
-
-                            <p> Role :&nbsp; <b> {{ p.role }}</b></p>
-
-                            
-                            <p id="deadline"> Last Date :&nbsp;  <b> {{ p.last_date }}</b> </p>
-                            
-                            <p> CTC :&nbsp;  <b>{{ p.ctc }}</b></p>
-                            <p class="comp-desc">Requirments : &ensp; <b> {{ p.req }}</b></p>
+                            <h3>{{ p.drive_name }} </h3>
+                            <p> Role : <b> {{ p.role }}</b></p>
+                            <p id="deadline"> Last Date :&nbsp; <b> {{ p.last_date }}</b> </p>
+                            <p> CTC : <b>{{ p.ctc }}</b></p>
+                            <p class="comp-desc">Req.:  <b> {{ p.req }}</b></p>
                         </div>
-
                         <div class='gray-bg'>
-                            <button value="{{ p.link }}" id="{{ p.id }}" class="apply-btn" onclick="apply(this.value,this.id)">
+                            <button value="{{ p.link }}" id="{{ p.id }}" class="apply-btn"
+                                onclick="apply(this.value,this.id)">
                                 Apply </button>
                         </div>
 
@@ -729,7 +744,7 @@
 
     // };
 
-    let openPlacement = ()=> {
+    let openPlacement = () => {
         bg_modal.style.display = 'flex'
     }
     var new_modal = document.getElementById('modal')
@@ -753,7 +768,9 @@
     var title = document.getElementById('title_div')
     let drive_search = document.getElementById('search_event')
     let drive_card_id = document.getElementById('cards_drive')
+    let overlay = document.getElementById('overlay') 
     drive_search.addEventListener('input', function () {
+        
         $.ajax({
             url: '',
             type: 'POST',
@@ -763,10 +780,13 @@
             },
             success: function (res) {
                 let data = JSON.parse(res.message), o = ""
+                console.log(data)
                 data.forEach(element => {
 
-                    o += '<div class="sing-card" type="submit" id="' + element.fields['id'] + '"><div class="info"><h3>' + element.fields['drive_name'] + '</h3><p class="comp-desc">' + element.fields['req'] + '</p><p> <span class="material-icons">person</span> <b>' + element.fields['role'] + '</b></p><p id="deadline"><span class="material-icons">history_toggle_off</span>' + element.fields['last_date'] + ' </p><p><span class="material-icons">payments</span> ' + element.fields['ctc'] + '</p></div><div class="gray-bg"><button value="' + element.fields['id'] + '" id="' + element.fields['id'] + '" class="apply-btn" onclick="apply(this.value)"> Apply </button></div></div>'
-                    // Convert the sing card div 
+                    // o += '<div class="sing-card" type="submit" id="' + element.fields['id'] + '"><div class="info"><h3>' + element.fields['drive_name'] + '</h3><p class="comp-desc">' + element.fields['req'] + '</p><p> <span class="material-icons">person</span> <b>' + element.fields['role'] + '</b></p><p id="deadline"><span class="material-icons">history_toggle_off</span>' + element.fields['last_date'] + ' </p><p><span class="material-icons">payments</span> ' + element.fields['ctc'] + '</p></div><div class="gray-bg"><button value="' + element.fields['id'] + '" id="' + element.fields['id'] + '" class="apply-btn" onclick="apply(this.value)"> Apply </button></div></div>'
+                    // // Convert the sing card div 
+                    o += '<div class="sing-card" type="submit" id="' + element.fields['id'] + '"> <div class="info"> <h3>' + element.fields['drive_name'] + '</h3> <p> Role : <b>' + element.fields['role'] + '</b></p> <p id="deadline"> Last Date :  <b> ' + element.fields['last_date'] + ' </b> </p> <p> CTC : <b>' + element.fields['ctc'] + '</b></p> <p class="comp-desc">Req.: <b>' + element.fields['req'] + '</b></p> </div> <div class="gray-bg"> <button value="' + element.fields['link'] + '" id="' + element.fields['id'] + '" class="apply-btn" onclick="apply(this.value,this.id)"> Apply </button> </div> </div>'
+
                 });
 
                 drive_card_id.innerHTML = o
@@ -892,7 +912,7 @@
     }
 
     close_dialog.onclick = function () {
-        console.log("Close clicked")
+
         co_modal.style.display = 'none'
     }
 
@@ -1042,7 +1062,7 @@
         })
     }
 
-    function apply(value,id) {
+    function apply(value, id) {
         console.log(value)
 
         $.ajax({
@@ -1055,7 +1075,7 @@
             },
             success: function (response) {
                 console.log(response['message'])
-                window.open("http://"+value, "_blank")
+                window.open("http://" + value, "_blank")
             }
         })
     }
@@ -1067,19 +1087,27 @@
     function UpdatePassword() {
 
         pass = document.getElementById("psw")
-        console.log(pass.value)
-        $.ajax({
-            url: '',
-            type: "POST",
-            data: {
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-                id: pass.value,
-                UpdatePassword: ''
-            },
-            success: function () {
-                console.log("Data Updated Successfully!!")
-            }
-        })
+        p_dia = document.getElementById('p_dia')
+        r_psw = document.getElementById('r_psw')
+        if(pass.value===r_psw.value){
+            p_dia.style.display="none"
+            $.ajax({
+                url: '',
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    id: pass.value,
+                    UpdatePassword: ''
+                },
+                success: function () {
+                    console.log("Data Updated Successfully!!")
+                }
+            })
+        }
+        else{
+            p_dia.style.display="block"
+        }
+            
     }
 </script>
 
@@ -1099,8 +1127,8 @@
             success: function (response) {
                 console.log(response.message)
                 let data = response.message
-                for(i in data){
-                     out += "<div class='company-card'><div class='c-title'><h2>"+data[i].Name+"</h2><span class='material-icons'> verified </span> </div><p class='designation'>"+data[i].Role+"</p><div class='ctc-cont'><div><label for='Joining Date'>Joining Date</label><h4>"+data[i].JoinDate+"</h4></div><div><label for='CTC'>CTC</label><h4>"+data[i].CTC+"</h4></div></div><div class='offer'><label for='Offer Letter'>Offer Letter</label><button class='button-sec'> <a href='"+data[i].OfferLetter+"'target='_blank'>view</a></button></div></div>"
+                for (i in data) {
+                    out += "<div class='company-card'><div class='c-title'><h2>" + data[i].Name + "</h2><span class='material-icons'> verified </span> </div><p class='designation'>" + data[i].Role + "</p><div class='ctc-cont'><div><label for='Joining Date'>Joining Date</label><h4>" + data[i].JoinDate + "</h4></div><div><label for='CTC'>CTC</label><h4>" + data[i].CTC + "</h4></div></div><div class='offer'><label for='Offer Letter'>Offer Letter</label><button class='button-sec'> <a href='" + data[i].OfferLetter + "'target='_blank'>view</a></button></div></div>"
                     data[i].Name
 
                 }
@@ -1116,7 +1144,7 @@
 
 
 
-        
+
 
 
 </script>
@@ -1126,17 +1154,21 @@
     $('#resume_form').submit(function (e) {
         e.preventDefault();
         resumeform = new FormData(this)
-
+        out = " "
+        let div_form_cont = document.getElementById('resume_a')
         $.ajax({
             url: '',
             type: 'POST',
             contentType: false,
             processData: false,
             data: resumeform,
-            success: function () {
+            success: function (response) {
+                console.log("Show resume here get link of resume url ", response.message)
+               
+                out += '<div class="single-res" id="resume_div"><h5>' + response.message.FileName + '</h5 > <div><button onclick="deleteResume('+response.message.ProfileId+')"class="btn-primary dang">Delete</button><button class="btn-primary"><a href="' + response.message.Url + '"target="_blank">View</a></button></div></div>'
+                div_form_cont.innerHTML = out
 
             }
-
         })
 
     })
@@ -1154,31 +1186,32 @@
         $form = $(this)
         let imagelabel = document.getElementById('imagelabel')
         var formData = new FormData(this);
-        console.log(formData)
+        console.log("Uploading Image ")
+        let img_out = ""
         $.ajax({
             url: '',
             type: 'POST',
             data: formData,
             success: function (response) {
-                $('.error').remove();
-                console.log(response)
-                if (response.error) {
-                    $.each(response.errors, function (name, error) {
-                        error = '<small class="text-muted error">' + error + '</small>'
-                        $form.find('[name=' + name + ']').after(error);
-                    })
-                }
-                else {
-                    // document.getElementById('profileimg').src = response.message
-                    $('#profileimg').attr('src', response.message)
-                    alert(response.message)
-                    window.location = ""
-                }
+                // document.getElementById('profileimg').src = response.message
+                img_out +=  '<img class="profile" id="profileimg" src="'+response.message+'">' 
+                imagelabel.innerHTML = img_out
             },
             cache: false,
             contentType: false,
             processData: false
         });
+    });
+
+
+    overlay.style.display = "none"
+    $(document).on({
+        ajaxStart: function () {
+            overlay.style.display = 'block'
+        },
+        ajaxStop: function () {
+            overlay.style.display = "none"
+        }
     });
 </script>
 

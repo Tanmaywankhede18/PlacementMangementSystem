@@ -1,5 +1,4 @@
-from tkinter import Place
-from unittest import result
+
 from django.db import connection, reset_queries
 import json
 from django.db.models import Q
@@ -21,14 +20,16 @@ from django.core import serializers
 
 def signup(request):
     email = request.POST.get('Email')
+    Password = request.POST.get('Pass')
     a = False
     if email != None:
         if(User.objects.filter(username=email).exists()):
             print("User already exists")
             a = True
         else:
-            Password = request.POST.get('Pass')
+            print("Setting user is_active as false")
             new_user = User.objects.create_user(email, email, Password)
+            new_user.is_active = False
             new_user.save()
             current_site = get_current_site(request)
             print(current_site)
@@ -206,13 +207,13 @@ def index(request):
             Q(req__icontains = input_Data)|
             Q(ctc__icontains = input_Data)|
                 Q(passouts__icontains = input_Data)
-        )
+        ).order_by("-last_date")
         qs_json = serializers.serialize('json', event_array)
         # return HttpResponse(qs_json, content_type='application/json')
         return JsonResponse({'error':False,'message':qs_json})
 
     if stu.verified == 1:
-        events = Event.objects.all()
+        events = Event.objects.all().order_by('-last_date')
         if 'apply' in request.POST:
             return ApplyForEvent(request)
         form = ImageUpload()
@@ -321,13 +322,19 @@ def index(request):
                 stu.profile = request.FILES['profile']
                 stu.save()
                 JsonResponse({'error': False, 'message': stu.profile.url})
+             
                 return JsonResponse({'error': False, 'message': stu.profile.url})
                 
             elif 'resume' in request.FILES:
                 r_form = ResumeUpload(request.POST,request.FILES)
                 stu.resume = request.FILES['resume']
                 stu.save()
-                return JsonResponse({'error':False,'message':stu.resume.url})
+                response = {}
+                response["Url"]=stu.resume.url
+                response['ProfileId']= stu.id
+                response["FileName"] = stu.resume.name
+                print(response)
+                return JsonResponse({'error':False,'message':response})
 
         cocur = Cocurriclar.objects.filter(student_id = stu.id)      
 

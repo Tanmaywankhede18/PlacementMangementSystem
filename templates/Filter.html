@@ -101,7 +101,7 @@
                             <input type="checkbox" value="Backlog">
                             <label for="Name">Backlogs</label>
                         </div>
-                        <input type="text" name="backlogs" id="backlogs">
+                        <input type="text" name="backlogs" id="backlogs" value="0">
                     </div>
                     <div class="filter-input">
                         <div class="check-box">
@@ -151,14 +151,14 @@
                             <label for="Name">Placed</label>
                         </div>
                         <select id="Placed">
+                            <option value="2">
+                                Both
+                            </option>
                             <option value="0">
                                 No
                             </option>
                             <option value="1">
                                 Yes
-                            </option>
-                            <option value="2">
-                                Bothb
                             </option>
                         </select>
                     </div>
@@ -285,7 +285,6 @@
     </div>
 </body>
 <script>
-
     var student_name = document.getElementById("name")
     var dep = document.getElementById("dep")
     var marks = document.getElementById("marks")
@@ -539,4 +538,7 @@
     });
 </script>
 
+<script>
+    showValue()
+</script>
 </html>
