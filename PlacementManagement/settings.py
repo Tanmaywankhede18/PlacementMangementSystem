@@ -150,23 +150,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True  
-# EMAIL_HOST = 'smtp.gmail.com'  
-# EMAIL_HOST_USER = 'gpkp1656@gmail.com'  
-# EMAIL_HOST_PASSWORD = 'Isnam@29'  
-EMAIL_HOST_PASSWORD = 'qhjnnntusyzkpkps'  
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_USER = 'gpkp1656@gmail.com'  
-
-
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-
-AWS_ACCESS_KEY_ID ="AKIA6BYQTIORN7JWRPWI"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "placementmanagement"
-AWS_QUERYSTRING_AUTH = False
